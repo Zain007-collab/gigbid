@@ -74,9 +74,16 @@ def structured(node: str, schema: type[T], system: str, user: str) -> tuple[T | 
         tin, tout = um.get("input_tokens", 0), um.get("output_tokens", 0)
         usage.update(tokens_in=tin, tokens_out=tout, usd=round(cost_usd(spec, tin, tout), 6),
                      latency_s=round(time.perf_counter() - t0, 3), model=f"{spec['provider']}/{spec['model']}")
+        _record(usage)
         if parsed is not None:
             return parsed, usage
         last_err = out.get("parsing_error")
     if last_err is not None:
         usage["error"] = f"{type(last_err).__name__}: {str(last_err)[:200]}"
+        _record({"node": node, "error": usage["error"]})
     return None, usage
+
+
+def _record(usage: dict) -> None:
+    from agent.nodes.base import record_usage  # late import: avoids a cycle
+    record_usage(dict(usage))

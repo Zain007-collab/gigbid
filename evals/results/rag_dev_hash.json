@@ -1,0 +1,277 @@
+{
+ "embedder": "hash:BAAI/bge-small-en-v1.5",
+ "reranker": "hash:BAAI/bge-reranker-base",
+ "split": "dev",
+ "variants": {
+  "v3_rerank": {
+   "ai_ml": {
+    "aggregate": {
+     "recall@5": 0.7733,
+     "mrr": 0.86,
+     "ndcg@10": 0.5723,
+     "recall@5_4plus_reqs": 0.7714,
+     "n_jobs": 15,
+     "p50_latency_s": 0.0021,
+     "p95_latency_s": 0.003
+    },
+    "per_job": [
+     {
+      "recall@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@10": 0.7273298443105218,
+      "job_id": "dev-ai_ml-001",
+      "n_req": 3,
+      "category": "ai_ml"
+     },
+     {
+      "recall@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@10": 0.7865139506556358,
+      "job_id": "dev-ai_ml-003",
+      "n_req": 3,
+      "category": "ai_ml"
+     },
+     {
+      "recall@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@10": 0.6582299251674777,
+      "job_id": "dev-ai_ml-004",
+      "n_req": 7,
+      "category": "ai_ml"
+     },
+     {
+      "recall@5": 0.6,
+      "mrr": 0.5,
+      "ndcg@10": 0.3971921948634016,
+      "job_id": "dev-ai_ml-005",
+      "n_req": 5,
+      "category": "web"
+     },
+     {
+      "recall@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@10": 0.6536180157437473,
+      "job_id": "dev-ai_ml-007",
+      "n_req": 4,
+      "category": "ai_ml"
+     },
+     {
+      "recall@5": 0.8,
+      "mrr": 1.0,
+      "ndcg@10": 0.38379062074515036,
+      "job_id": "dev-ai_ml-008",
+      "n_req": 4,
+      "category": "ai_ml"
+     },
+     {
+      "recall@5": 0.2,
+      "mrr": 0.2,
+      "ndcg@10": 0.15232257932946242,
+      "job_id": "dev-ai_ml-009",
+      "n_req": 2,
+      "category": "ai_ml"
+     },
+     {
+      "recall@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@10": 0.6489315753318465,
+      "job_id": "dev-ai_ml-010",
+      "n_req": 2,
+      "category": "ai_ml"
+     },
+     {
+      "recall@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@10": 0.7767471075223498,
+      "job_id": "dev-ai_ml-014",
+      "n_req": 2,
+      "category": "devops"
+     },
+     {
+      "recall@5": 0.8,
+      "mrr": 1.0,
+      "ndcg@10": 0.821291189872545,
+      "job_id": "dev-ai_ml-015",
+      "n_req": 5,
+      "category": "ai_ml"
+     },
+     {
+      "recall@5": 0.8,
+      "mrr": 1.0,
+      "ndcg@10": 0.6114924643439253,
+      "job_id": "dev-ai_ml-016",
+      "n_req": 5,
+      "category": "ai_ml"
+     },
+     {
+      "recall@5": 0.8,
+      "mrr": 1.0,
+      "ndcg@10": 0.7155506487682609,
+      "job_id": "dev-ai_ml-017",
+      "n_req": 2,
+      "category": "ai_ml"
+     },
+     {
+      "recall@5": 0.4,
+      "mrr": 1.0,
+      "ndcg@10": 0.4125317798925535,
+      "job_id": "dev-ai_ml-018",
+      "n_req": 4,
+      "category": "data"
+     },
+     {
+      "recall@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@10": 0.7222954974312066,
+      "job_id": "dev-ai_ml-019",
+      "n_req": 3,
+      "category": "ai_ml"
+     },
+     {
+      "recall@5": 0.2,
+      "mrr": 0.2,
+      "ndcg@10": 0.11706259313796355,
+      "job_id": "dev-ai_ml-020",
+      "n_req": 2,
+      "category": "ai_ml"
+     }
+    ]
+   }
+  },
+  "v8_crag": {
+   "ai_ml": {
+    "aggregate": {
+     "recall@5": 0.7733,
+     "mrr": 0.9167,
+     "ndcg@10": 0.6783,
+     "recall@5_4plus_reqs": 0.8,
+     "n_jobs": 15,
+     "p50_latency_s": 0.0019,
+     "p95_latency_s": 0.0032
+    },
+    "per_job": [
+     {
+      "recall@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@10": 0.9363792118010481,
+      "job_id": "dev-ai_ml-001",
+      "n_req": 3,
+      "category": "ai_ml"
+     },
+     {
+      "recall@5": 0.8,
+      "mrr": 0.5,
+      "ndcg@10": 0.6599949760041346,
+      "job_id": "dev-ai_ml-003",
+      "n_req": 3,
+      "category": "ai_ml"
+     },
+     {
+      "recall@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@10": 0.671755014306097,
+      "job_id": "dev-ai_ml-004",
+      "n_req": 7,
+      "category": "ai_ml"
+     },
+     {
+      "recall@5": 0.6,
+      "mrr": 1.0,
+      "ndcg@10": 0.4885468020156227,
+      "job_id": "dev-ai_ml-005",
+      "n_req": 5,
+      "category": "web"
+     },
+     {
+      "recall@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@10": 0.8609781448700988,
+      "job_id": "dev-ai_ml-007",
+      "n_req": 4,
+      "category": "ai_ml"
+     },
+     {
+      "recall@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@10": 0.6030203048177273,
+      "job_id": "dev-ai_ml-008",
+      "n_req": 4,
+      "category": "ai_ml"
+     },
+     {
+      "recall@5": 0.4,
+      "mrr": 1.0,
+      "ndcg@10": 0.6562469259663064,
+      "job_id": "dev-ai_ml-009",
+      "n_req": 2,
+      "category": "ai_ml"
+     },
+     {
+      "recall@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@10": 0.7967610662472991,
+      "job_id": "dev-ai_ml-010",
+      "n_req": 2,
+      "category": "ai_ml"
+     },
+     {
+      "recall@5": 0.8,
+      "mrr": 1.0,
+      "ndcg@10": 0.7641675933748661,
+      "job_id": "dev-ai_ml-014",
+      "n_req": 2,
+      "category": "devops"
+     },
+     {
+      "recall@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@10": 0.7021297715667043,
+      "job_id": "dev-ai_ml-015",
+      "n_req": 5,
+      "category": "ai_ml"
+     },
+     {
+      "recall@5": 0.8,
+      "mrr": 1.0,
+      "ndcg@10": 0.7493018298925971,
+      "job_id": "dev-ai_ml-016",
+      "n_req": 5,
+      "category": "ai_ml"
+     },
+     {
+      "recall@5": 0.8,
+      "mrr": 1.0,
+      "ndcg@10": 0.8512360941594272,
+      "job_id": "dev-ai_ml-017",
+      "n_req": 2,
+      "category": "ai_ml"
+     },
+     {
+      "recall@5": 0.2,
+      "mrr": 0.25,
+      "ndcg@10": 0.2730452654360898,
+      "job_id": "dev-ai_ml-018",
+      "n_req": 4,
+      "category": "data"
+     },
+     {
+      "recall@5": 1.0,
+      "mrr": 1.0,
+      "ndcg@10": 0.8579809428223729,
+      "job_id": "dev-ai_ml-019",
+      "n_req": 3,
+      "category": "ai_ml"
+     },
+     {
+      "recall@5": 0.2,
+      "mrr": 1.0,
+      "ndcg@10": 0.3026024134988135,
+      "job_id": "dev-ai_ml-020",
+      "n_req": 2,
+      "category": "ai_ml"
+     }
+    ]
+   }
+  }
+ }
+}

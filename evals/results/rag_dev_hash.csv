@@ -1,0 +1,3 @@
+variant,persona,recall@5,mrr,ndcg@10,recall@5_4plus_reqs,n_jobs,p95_latency_s
+v3_rerank,ai_ml,0.7733,0.86,0.5723,0.7714,15,0.003
+v8_crag,ai_ml,0.7733,0.9167,0.6783,0.8,15,0.0032

@@ -88,6 +88,7 @@ def main() -> None:
             r = evaluate(v, persona, rows, emb, rr)
             results["variants"][v][persona] = r
             print(f"{v:16s} {persona:13s} {r['aggregate']}", flush=True)
+            rr.flush()
 
     out = ROOT / "evals" / "results"
     out.mkdir(parents=True, exist_ok=True)

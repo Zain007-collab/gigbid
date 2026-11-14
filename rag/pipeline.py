@@ -72,9 +72,10 @@ def extract_requirements(job_text: str) -> list[str]:
 
 class Pipeline:
     def __init__(self, name: str, docs: list[Doc], flags: Flags, embedder: Embedder,
-                 reranker: Reranker | None = None, crag_threshold: float = 0.0, candidate_n: int = 30):
+                 reranker: Reranker | None = None, crag_threshold: float = 0.0, candidate_n: int = 30,
+                 rerank_depth: int = 15):
         self.name, self.flags, self.embedder, self.reranker = name, flags, embedder, reranker
-        self.crag_threshold, self.candidate_n = crag_threshold, candidate_n
+        self.crag_threshold, self.candidate_n, self.rerank_depth = crag_threshold, candidate_n, rerank_depth
         self.docs = docs
         self.chunks = fixed_chunks(docs) if flags.fixed_chunks else doc_chunks(docs)
         if not flags.multivector:
@@ -100,8 +101,11 @@ class Pipeline:
             fused = dense
         hits = [Hit(c, s) for c, s in fused]
         if self.flags.rerank and self.reranker is not None and hits:
-            scores = self.reranker.score(query, [h.chunk.text for h in hits])
-            hits = [Hit(h.chunk, s) for h, s in sorted(zip(hits, scores), key=lambda x: -x[1])]
+            head, tail = hits[:self.rerank_depth], hits[self.rerank_depth:]
+            scores = self.reranker.score(query, [h.chunk.text[:1500] for h in head])
+            hits = [Hit(h.chunk, s) for h, s in sorted(zip(head, scores), key=lambda x: -x[1])]
+            floor = min(scores) - 1.0
+            hits += [Hit(h.chunk, floor - i * 1e-3) for i, h in enumerate(tail)]
         if self.flags.outcome:
             hits = sorted((Hit(h.chunk, self._outcome_adjust(h)) for h in hits), key=lambda h: -h.score)
         return hits
@@ -113,6 +117,14 @@ class Pipeline:
         if h.project in self._won_projects:
             w *= 1.1
         return s * w if sign > 0 else s / w
+
+    def similarity(self, query: str, hits: list[Hit]) -> list[float]:
+        """Cosine similarity of the query to each hit's chunk (comparable across variants)."""
+        if not hasattr(self, "_row"):
+            self._row = {c.chunk_id: i for i, c in enumerate(self.chunks)}
+        q = self.embedder.embed([query], is_query=True)[0]
+        return [float(self.dense.matrix[self._row[h.chunk.chunk_id]] @ q) if h.chunk.chunk_id in self._row else 0.0
+                for h in hits]
 
     # ------------------------------------------------------------------ public
     def retrieve(self, job_text: str, requirements: list[str] | None = None, k: int = 10) -> EvidenceSet:

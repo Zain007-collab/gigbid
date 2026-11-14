@@ -141,7 +141,10 @@ thresholds:
   watch_min_fit: 0.45
   max_risk_to_bid: 0.40
   scam_block: 0.70
-  evidence_min_score: 0.35          # below this a requirement counts as unsupported
+  evidence_min_score:               # cosine(requirement, best evidence) needed to count as supported;
+    fastembed: 0.55                 #   per embedder because similarity scales differ (tuned on dev)
+    ollama: 0.55
+    hash: 0.20                      #   CI only
   proposal_max_words: 220
 
 autonomy:
@@ -153,6 +156,7 @@ autonomy:
 rag:
   variant: v0_naive                 # replaced by the eval winner (see evals/results/rag_*.json)
   crag_threshold: 0.0               # V8 grade threshold on reranker logits
+  rerank_depth: 15                  # cross-encoder rescoring depth per query
   k: 8
   chunk_size: 600
   chunk_overlap: 80

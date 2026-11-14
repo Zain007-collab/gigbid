@@ -84,6 +84,11 @@ def _caller(ctx: Context) -> tuple[str, str]:
     """(user_id, trace_id) from HTTP headers; defaults for stdio/in-memory use."""
     user = os.environ.get("MARKETPLACE_DEFAULT_USER", "local")
     trace = None
+    try:  # in-process GigBid (memory transport): identity of the current graph run
+        from agent.mcp_client import current_trace, current_user
+        user, trace = current_user.get(), current_trace.get()
+    except ImportError:
+        pass
     try:
         req = ctx.request_context.request
     except Exception:

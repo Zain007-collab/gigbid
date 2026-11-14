@@ -46,7 +46,8 @@ class EvidenceItem(BaseModel):
     project: str | None
     date: str | None
     outcome: str | None
-    score: float
+    score: float = Field(description="variant-specific ranking score")
+    similarity: float = Field(description="cosine similarity to the requirement (comparable across variants)")
     snippet: str
 
 
@@ -85,11 +86,17 @@ def _persona_dir(ctx: Context | None = None) -> Path:
             persona = req.headers.get("x-gigbid-persona") if req is not None else None
         except Exception:
             persona = None
-    if persona:
-        if not re.fullmatch(r"[a-z0-9_-]{1,40}", persona):
-            raise ToolError("invalid persona id")
-        return ROOT / "data" / "personas" / persona
-    return Path(os.environ.get("PORTFOLIO_DIR", ROOT / "data" / "personas" / "ai_ml"))
+    if not persona and os.environ.get("PORTFOLIO_DIR"):
+        return Path(os.environ["PORTFOLIO_DIR"])
+    if not persona:  # in-process GigBid (memory transport): persona of the current graph run
+        try:
+            from agent.mcp_client import current_persona
+            persona = current_persona.get()
+        except ImportError:
+            persona = "ai_ml"
+    if not re.fullmatch(r"[a-z0-9_-]{1,40}", persona):
+        raise ToolError("invalid persona id")
+    return ROOT / "data" / "personas" / persona
 
 
 _DOCS: dict[str, list[Doc]] = {}
@@ -127,7 +134,8 @@ def search_evidence(
     pipe = retriever.for_persona(persona)
     ev = pipe.retrieve(requirement, [requirement], k=max(k * 3, 10))
     items = []
-    for h in ev.hits:
+    sims = pipe.similarity(requirement, ev.hits)
+    for h, sim in zip(ev.hits, sims):
         m = h.chunk.meta
         if filters:
             if filters.types and m.get("type") not in filters.types:
@@ -140,7 +148,7 @@ def search_evidence(
                 continue
         items.append(EvidenceItem(id=h.chunk.doc_id, type=m.get("type", "?"), source=m.get("source"),
                                   project=m.get("project"), date=m.get("date"), outcome=m.get("outcome"),
-                                  score=round(h.score, 4), snippet=h.chunk.text[:400]))
+                                  score=round(h.score, 4), similarity=round(sim, 4), snippet=h.chunk.text[:400]))
         if len(items) >= k:
             break
     return EvidenceResult(requirement=requirement, items=items,

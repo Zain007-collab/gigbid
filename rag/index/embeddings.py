@@ -65,17 +65,37 @@ class Embedder:
 
 
 class Reranker:
+    """Cross-encoder scores, cached on disk per (model, query, passage)."""
+
     def __init__(self, backend: str, model: str):
         self.backend, self.model, self._impl = backend, model, None
+        self._cache_path = CACHE_DIR / f"rerank_{backend}_{re.sub(r'[^A-Za-z0-9]+', '_', model)}.json"
+        self._cache: dict[str, float] = json.loads(self._cache_path.read_text()) if self._cache_path.exists() else {}
+        self._dirty = 0
 
     def score(self, query: str, passages: list[str]) -> list[float]:
         if self.backend == "hash":   # lexical overlap stand-in for CI
             q = set(_tokens(query))
             return [len(q & set(_tokens(p))) / (1 + len(q)) for p in passages]
-        if self._impl is None:
-            from fastembed.rerank.cross_encoder import TextCrossEncoder
-            self._impl = TextCrossEncoder(model_name=self.model)
-        return [float(s) for s in self._impl.rerank(query, passages)]
+        keys = [hashlib.sha1(f"{query}\x00{p}".encode()).hexdigest() for p in passages]
+        missing = [i for i, k in enumerate(keys) if k not in self._cache]
+        if missing:
+            if self._impl is None:
+                from fastembed.rerank.cross_encoder import TextCrossEncoder
+                self._impl = TextCrossEncoder(model_name=self.model)
+            scores = list(self._impl.rerank(query, [passages[i] for i in missing]))
+            for i, s in zip(missing, scores):
+                self._cache[keys[i]] = round(float(s), 5)
+            self._dirty += len(missing)
+            if self._dirty > 500:
+                self.flush()
+        return [self._cache[k] for k in keys]
+
+    def flush(self) -> None:
+        if self._dirty:
+            self._cache_path.parent.mkdir(parents=True, exist_ok=True)
+            self._cache_path.write_text(json.dumps(self._cache))
+            self._dirty = 0
 
 
 def _tokens(t: str) -> list[str]:

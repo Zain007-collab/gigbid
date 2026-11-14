@@ -33,7 +33,8 @@ def build(variant: str, persona: str, emb: Embedder | None = None, rr: Reranker 
     cfg = section("rag")
     return Pipeline(variant, load_persona(PERSONA_ROOT / persona), flags, emb or embedder(),
                     rr or (reranker() if flags.rerank else None),
-                    crag_threshold=float(cfg.get("crag_threshold", 0.0)))
+                    crag_threshold=float(cfg.get("crag_threshold", 0.0)),
+                    rerank_depth=int(cfg.get("rerank_depth", 15)))
 
 
 @lru_cache(maxsize=8)
