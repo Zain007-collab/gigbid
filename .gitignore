@@ -38,3 +38,4 @@ apps/web/playwright-report/
 apps/web/test-results/
 apps/web/dist/
 gigbid-starter-kit/
+deploy/

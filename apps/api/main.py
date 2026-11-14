@@ -65,8 +65,11 @@ async def _warm_reviewer(uid: str) -> None:
     """Fill an empty reviewer inbox once so graders see real runs immediately."""
     if db.one("SELECT 1 AS x FROM inbox WHERE user_id=:u", u=uid):
         return
+    from agent.settings import section
     from worker import tasks
     await asyncio.sleep(3)
+    if n := os.environ.get("WARM_REVIEWER_JOBS"):        # small instances: analyse fewer jobs on first start
+        section("scheduling")["max_jobs_per_scout_run"] = int(n)
     await tasks.scout({}, user_id=uid)
 
 

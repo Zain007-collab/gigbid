@@ -20,13 +20,21 @@ CACHE_DIR = Path(os.environ.get("RAG_CACHE_DIR", Path(__file__).resolve().parent
 
 
 class Embedder:
+    """Embeddings cached on disk (.npz) and held in memory as float32 arrays (≈10x smaller than float lists)."""
+
     def __init__(self, backend: str, model: str):
         self.backend, self.model = backend, model
         self._impl = None
-        self._cache: dict[str, list[float]] = {}
-        self._cache_path = CACHE_DIR / f"{backend}_{re.sub(r'[^A-Za-z0-9]+', '_', model)}.json"
+        self._cache: dict[str, np.ndarray] = {}
+        stem = CACHE_DIR / f"{backend}_{re.sub(r'[^A-Za-z0-9]+', '_', model)}"
+        self._cache_path = stem.with_suffix(".npz")
         if self._cache_path.exists():
-            self._cache = json.loads(self._cache_path.read_text())
+            with np.load(self._cache_path, allow_pickle=False) as z:
+                self._cache = dict(zip(z["keys"].tolist(), z["vecs"]))
+        elif stem.with_suffix(".json").exists():          # migrate the old JSON cache once
+            self._cache = {k: np.asarray(v, dtype=np.float32)
+                           for k, v in json.loads(stem.with_suffix(".json").read_text()).items()}
+            _save_npz(self._cache_path, self._cache)
 
     @property
     def name(self) -> str:
@@ -38,7 +46,8 @@ class Embedder:
         if self.backend == "fastembed":
             if self._impl is None:
                 from fastembed import TextEmbedding
-                self._impl = TextEmbedding(model_name=self.model)
+                threads = int(os.environ["FASTEMBED_THREADS"]) if os.environ.get("FASTEMBED_THREADS") else None
+                self._impl = TextEmbedding(model_name=self.model, threads=threads)
             fn = self._impl.query_embed if is_query else self._impl.passage_embed
             return np.stack(list(fn(texts)))
         if self.backend == "ollama":
@@ -56,10 +65,10 @@ class Embedder:
             idx = missing[start:start + 64]
             vecs = self._raw([texts[i] for i in idx], is_query)
             for i, v in zip(idx, vecs):
-                self._cache[keys[i]] = [round(float(x), 6) for x in v]
-        if missing:
-            _atomic_write(self._cache_path, self._cache)
-        m = np.array([self._cache[k] for k in keys], dtype=np.float32)
+                self._cache[keys[i]] = np.asarray(v, dtype=np.float32)
+        if missing and os.environ.get("RAG_CACHE_READONLY") != "1":
+            _save_npz(self._cache_path, self._cache)
+        m = np.stack([self._cache[k] for k in keys]).astype(np.float32)
         return m / (np.linalg.norm(m, axis=1, keepdims=True) + 1e-9)
 
 
@@ -94,6 +103,22 @@ class Reranker:
         if self._dirty:
             _atomic_write(self._cache_path, self._cache)
             self._dirty = 0
+
+
+def _save_npz(path: Path, cache: dict[str, np.ndarray]) -> None:
+    """Merge with entries another process may have written, then replace atomically."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if path.exists():
+        try:
+            with np.load(path, allow_pickle=False) as z:
+                for k, v in zip(z["keys"].tolist(), z["vecs"]):
+                    cache.setdefault(k, v)
+        except (OSError, ValueError, KeyError):
+            pass
+    keys = list(cache)
+    tmp = path.with_name(f"{path.stem}.{os.getpid()}.tmp.npz")
+    np.savez(tmp, keys=np.array(keys), vecs=np.stack([cache[k] for k in keys]).astype(np.float32))
+    os.replace(tmp, path)
 
 
 def _atomic_write(path: Path, data: dict) -> None:

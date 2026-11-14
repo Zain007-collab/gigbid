@@ -48,12 +48,14 @@ if it is a content rule, `data/policy_pack/` + the rule list in `agent/nodes/pro
 Only from environment variables; `.env` is git-ignored and CI fails on committed secrets. OAuth tokens are
 Fernet-encrypted per user (`apps/api/auth/token_store.py`) and masked in every log line.
 
-## Deploy (public URL)
-1. **Database:** create a free Neon Postgres; copy the `postgresql://…` URL (checkpointer, memory store, app tables).
-2. **Space:** create a *Docker* Space on Hugging Face (free CPU, 16 GB RAM — enough for the open embedding models).
-3. **Secrets** (Space → Settings → Variables and secrets): `DATABASE_URL`, `GROQ_API_KEY`, `SESSION_SECRET`,
-   `TOKEN_ENCRYPTION_KEY`, `REVIEWER_EMAIL`, `REVIEWER_PASSWORD`, `GIGSIM_ADMIN_TOKEN`.
-4. `python scripts/deploy_hf_space.py` (reads `.env`; sets the secrets above through the HF API; uploads committed files only)
-5. Open `https://<you>-gigbid.hf.space`, sign in with the reviewer account, and check `/api/health`.
-The image (`infra/docker/app.Dockerfile`) serves the built UI, the API, the embedded GigSim at `/gigsim` and runs the
-worker inline (bounded to 3 concurrent runs). Keep the Space running until grades are released.
+## Deploy (public URL) — Render free
+1. Neon Postgres (free) holds checkpoints, memory and app tables; its URL is `DEPLOY_DATABASE_URL` in `.env`.
+2. `python -m scripts.make_render_env` writes `deploy/render.env` (git-ignored) with the production variables.
+3. Render → New → **Blueprint** → this GitHub repo (`render.yaml`) → Environment → **Add from .env** → paste
+   `deploy/render.env` → Deploy. Then delete `deploy/render.env`.
+4. Check `https://<service>.onrender.com/api/health` and sign in with the reviewer account.
+Free-plan behaviour: 512 MB RAM (app measured at ~500 MB under load locally, so the image runs single-threaded with
+one inline run at a time and a pre-built embedding cache); the service sleeps after 15 minutes idle and the first
+request afterwards takes about a minute. GigSim runs embedded and in memory, so its state resets on restart; all
+GigBid state (inbox, approvals, checkpoints, memory) lives in Neon and survives. Hugging Face Docker Spaces now need
+PRO; `scripts/deploy_hf_space.py` still works there if a PRO account is available.

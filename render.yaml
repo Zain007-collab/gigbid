@@ -1,0 +1,21 @@
+# Render Blueprint: New -> Blueprint -> pick this repo. Free plan: 512 MB, sleeps after 15 min idle (first request
+# after sleep takes ~1 min). Secrets are entered in the dashboard (sync: false) — never committed.
+services:
+  - type: web
+    name: gigbid
+    runtime: docker
+    plan: free
+    dockerfilePath: ./infra/docker/app.Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - { key: DATABASE_URL, sync: false }
+      - { key: GROQ_API_KEY, sync: false }
+      - { key: OPENROUTER_API_KEY, sync: false }
+      - { key: SESSION_SECRET, sync: false }
+      - { key: TOKEN_ENCRYPTION_KEY, sync: false }
+      - { key: GIGSIM_ADMIN_TOKEN, sync: false }
+      - { key: MARKETPLACE_SERVICE_TOKEN, sync: false }
+      - { key: REVIEWER_EMAIL, sync: false }
+      - { key: REVIEWER_PASSWORD, sync: false }

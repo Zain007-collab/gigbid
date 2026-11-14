@@ -1,0 +1,2165 @@
+{
+ "model": "groq/openai/gpt-oss-20b",
+ "n_tasks": 40,
+ "toolsets": {
+  "fine": {
+   "n_tools": 21,
+   "tool_selection_accuracy": 0.9211,
+   "argument_accuracy": 0.9211,
+   "tokens_per_task": 669.2,
+   "usd_per_task": 6.7e-05,
+   "completed": 38,
+   "per_task": [
+    {
+     "prompt": "How many Connects does it cost to apply to job dev-fullstack-132?",
+     "gold": [
+      "get_job_connects",
+      {
+       "job_id": "dev-fullstack-132"
+      }
+     ],
+     "got": [
+      "get_job_connects",
+      {
+       "job_id": "dev-fullstack-132"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 630
+    },
+    {
+     "prompt": "Is the client behind job dev-data_analyst-005 (client id c0297) trustworthy? Check their history.",
+     "gold": [
+      "get_client_rating",
+      {
+       "client_id": "c0297"
+      }
+     ],
+     "got": [
+      "get_client_rating",
+      {
+       "client_id": "c0297"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 653
+    },
+    {
+     "prompt": "What is the typical fixed price for ai_ml jobs?",
+     "gold": [
+      "get_market_fixed_prices",
+      {
+       "category": "ai_ml"
+      }
+     ],
+     "got": [
+      "get_market_fixed_prices",
+      {
+       "category": "ai_ml"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 638
+    },
+    {
+     "prompt": "How many Connects do I have left?",
+     "gold": [
+      "get_balance",
+      {}
+     ],
+     "got": [
+      "get_balance",
+      {
+       "": ""
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 603
+    },
+    {
+     "prompt": "Find proof in my portfolio that I have done this: A/B test analysis.",
+     "gold": [
+      "search_case_studies",
+      {}
+     ],
+     "got": [
+      "search_case_studies",
+      {
+       "query": "A/B test analysis"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 695
+    },
+    {
+     "prompt": "Find new open jobs about RAG chatbots.",
+     "gold": [
+      "search_jobs_by_keyword",
+      {}
+     ],
+     "got": [
+      "search_jobs_by_keyword",
+      {
+       "query": "RAG chatbots"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 622
+    },
+    {
+     "prompt": "Show me the full post for job dev-ai_ml-039, including screening questions.",
+     "gold": [
+      "get_job_description",
+      {
+       "job_id": "dev-ai_ml-039"
+      }
+     ],
+     "got": [
+      "get_job_description",
+      {
+       "job_id": "dev-ai_ml-039"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 623
+    },
+    {
+     "prompt": "Which skills can I actually prove from my portfolio?",
+     "error": "Error code: 400 - Tool choice is required, but model did not call a tool"
+    },
+    {
+     "prompt": "How many Connects does it cost to apply to job dev-ai_ml-072?",
+     "gold": [
+      "get_job_connects",
+      {
+       "job_id": "dev-ai_ml-072"
+      }
+     ],
+     "got": [
+      "get_job_connects",
+      {
+       "job_id": "dev-ai_ml-072"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 635
+    },
+    {
+     "prompt": "Is the client behind job dev-ai_ml-093 (client id c0002) trustworthy? Check their history.",
+     "gold": [
+      "get_client_rating",
+      {
+       "client_id": "c0002"
+      }
+     ],
+     "got": [
+      "get_client_rating",
+      {
+       "client_id": "c0002"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 651
+    },
+    {
+     "prompt": "What is the typical fixed price for ai_ml jobs?",
+     "gold": [
+      "get_market_fixed_prices",
+      {
+       "category": "ai_ml"
+      }
+     ],
+     "got": [
+      "get_market_fixed_prices",
+      {
+       "category": "ai_ml"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 638
+    },
+    {
+     "prompt": "How many Connects do I have left?",
+     "gold": [
+      "get_balance",
+      {}
+     ],
+     "got": [
+      "get_balance",
+      {
+       "": ""
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 603
+    },
+    {
+     "prompt": "Find proof in my portfolio that I have done this: background task queue with Celery.",
+     "gold": [
+      "search_case_studies",
+      {}
+     ],
+     "got": [
+      "search_case_studies",
+      {
+       "query": "Celery"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 686
+    },
+    {
+     "prompt": "Find new open jobs about RAG chatbots.",
+     "gold": [
+      "search_jobs_by_keyword",
+      {}
+     ],
+     "got": [
+      "search_jobs_by_keyword",
+      {
+       "query": "RAG chatbots"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 622
+    },
+    {
+     "prompt": "Show me the full post for job dev-data_analyst-007, including screening questions.",
+     "gold": [
+      "get_job_description",
+      {
+       "job_id": "dev-data_analyst-007"
+      }
+     ],
+     "got": [
+      "get_job_description",
+      {
+       "job_id": "dev-data_analyst-007"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 627
+    },
+    {
+     "prompt": "Which skills can I actually prove from my portfolio?",
+     "gold": [
+      "list_skills",
+      {}
+     ],
+     "got": [
+      "search_past_proposals",
+      {
+       "query": "portfolio"
+      }
+     ],
+     "tool_ok": false,
+     "args_ok": false,
+     "tokens": 918
+    },
+    {
+     "prompt": "How many Connects does it cost to apply to job dev-ai_ml-137?",
+     "gold": [
+      "get_job_connects",
+      {
+       "job_id": "dev-ai_ml-137"
+      }
+     ],
+     "got": [
+      "get_job_connects",
+      {
+       "job_id": "dev-ai_ml-137"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 630
+    },
+    {
+     "prompt": "Is the client behind job dev-data_analyst-030 (client id c0113) trustworthy? Check their history.",
+     "gold": [
+      "get_client_rating",
+      {
+       "client_id": "c0113"
+      }
+     ],
+     "got": [
+      "get_client_rating",
+      {
+       "client_id": "c0113"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 653
+    },
+    {
+     "prompt": "What is the typical fixed price for ai_ml jobs?",
+     "gold": [
+      "get_market_fixed_prices",
+      {
+       "category": "ai_ml"
+      }
+     ],
+     "got": [
+      "get_market_fixed_prices",
+      {
+       "category": "ai_ml"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 638
+    },
+    {
+     "prompt": "How many Connects do I have left?",
+     "gold": [
+      "get_balance",
+      {}
+     ],
+     "got": [
+      "get_balance",
+      {
+       "": ""
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 603
+    },
+    {
+     "prompt": "Find proof in my portfolio that I have done this: background task queue with Celery.",
+     "gold": [
+      "search_case_studies",
+      {}
+     ],
+     "got": [
+      "search_case_studies",
+      {
+       "query": "Celery"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 686
+    },
+    {
+     "prompt": "Find new open jobs about RAG chatbots.",
+     "gold": [
+      "search_jobs_by_keyword",
+      {}
+     ],
+     "got": [
+      "search_jobs_by_keyword",
+      {
+       "query": "RAG chatbots"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 622
+    },
+    {
+     "prompt": "Show me the full post for job dev-ai_ml-193, including screening questions.",
+     "gold": [
+      "get_job_description",
+      {
+       "job_id": "dev-ai_ml-193"
+      }
+     ],
+     "got": [
+      "get_job_description",
+      {
+       "job_id": "dev-ai_ml-193"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 623
+    },
+    {
+     "prompt": "Which skills can I actually prove from my portfolio?",
+     "gold": [
+      "list_skills",
+      {}
+     ],
+     "got": [
+      "search_past_proposals",
+      {
+       "query": "portfolio"
+      }
+     ],
+     "tool_ok": false,
+     "args_ok": false,
+     "tokens": 918
+    },
+    {
+     "prompt": "How many Connects does it cost to apply to job dev-ai_ml-065?",
+     "gold": [
+      "get_job_connects",
+      {
+       "job_id": "dev-ai_ml-065"
+      }
+     ],
+     "got": [
+      "get_job_connects",
+      {
+       "job_id": "dev-ai_ml-065"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 635
+    },
+    {
+     "prompt": "Is the client behind job dev-ai_ml-062 (client id c0268) trustworthy? Check their history.",
+     "gold": [
+      "get_client_rating",
+      {
+       "client_id": "c0268"
+      }
+     ],
+     "got": [
+      "get_client_rating",
+      {
+       "client_id": "c0268"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 651
+    },
+    {
+     "prompt": "What is the typical fixed price for data jobs?",
+     "gold": [
+      "get_market_fixed_prices",
+      {
+       "category": "data"
+      }
+     ],
+     "got": [
+      "get_market_fixed_prices",
+      {
+       "category": "Data"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 628
+    },
+    {
+     "prompt": "How many Connects do I have left?",
+     "gold": [
+      "get_balance",
+      {}
+     ],
+     "got": [
+      "get_balance",
+      {
+       "": ""
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 603
+    },
+    {
+     "prompt": "Find proof in my portfolio that I have done this: fine-tuning a Hugging Face model.",
+     "gold": [
+      "search_case_studies",
+      {}
+     ],
+     "got": [
+      "search_case_studies",
+      {
+       "query": "fine-tuning Hugging Face"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 733
+    },
+    {
+     "prompt": "Find new open jobs about RAG chatbots.",
+     "gold": [
+      "search_jobs_by_keyword",
+      {}
+     ],
+     "got": [
+      "search_jobs_by_keyword",
+      {
+       "query": "RAG chatbots"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 622
+    },
+    {
+     "prompt": "Show me the full post for job dev-fullstack-055, including screening questions.",
+     "gold": [
+      "get_job_description",
+      {
+       "job_id": "dev-fullstack-055"
+      }
+     ],
+     "got": [
+      "get_job_description",
+      {
+       "job_id": "dev-fullstack-055"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 623
+    },
+    {
+     "prompt": "Which skills can I actually prove from my portfolio?",
+     "error": "Error code: 400 - Tool choice is required, but model did not call a tool"
+    },
+    {
+     "prompt": "How many Connects does it cost to apply to job dev-data_analyst-189?",
+     "gold": [
+      "get_job_connects",
+      {
+       "job_id": "dev-data_analyst-189"
+      }
+     ],
+     "got": [
+      "get_job_connects",
+      {
+       "job_id": "dev-data_analyst-189"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 632
+    },
+    {
+     "prompt": "Is the client behind job dev-data_analyst-138 (client id c0018) trustworthy? Check their history.",
+     "gold": [
+      "get_client_rating",
+      {
+       "client_id": "c0018"
+      }
+     ],
+     "got": [
+      "get_client_rating",
+      {
+       "client_id": "c0018"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 653
+    },
+    {
+     "prompt": "What is the typical fixed price for data jobs?",
+     "gold": [
+      "get_market_fixed_prices",
+      {
+       "category": "data"
+      }
+     ],
+     "got": [
+      "get_market_fixed_prices",
+      {
+       "category": "Data"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 628
+    },
+    {
+     "prompt": "How many Connects do I have left?",
+     "gold": [
+      "get_balance",
+      {}
+     ],
+     "got": [
+      "get_balance",
+      {
+       "": ""
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 603
+    },
+    {
+     "prompt": "Find proof in my portfolio that I have done this: fine-tuning a Hugging Face model.",
+     "gold": [
+      "search_case_studies",
+      {}
+     ],
+     "got": [
+      "search_case_studies",
+      {
+       "query": "fine-tuning Hugging Face"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 733
+    },
+    {
+     "prompt": "Find new open jobs about RAG chatbots.",
+     "gold": [
+      "search_jobs_by_keyword",
+      {}
+     ],
+     "got": [
+      "search_jobs_by_keyword",
+      {
+       "query": "RAG chatbots"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 622
+    },
+    {
+     "prompt": "Show me the full post for job dev-ai_ml-156, including screening questions.",
+     "gold": [
+      "get_job_description",
+      {
+       "job_id": "dev-ai_ml-156"
+      }
+     ],
+     "got": [
+      "get_job_description",
+      {
+       "job_id": "dev-ai_ml-156"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 623
+    },
+    {
+     "prompt": "Which skills can I actually prove from my portfolio?",
+     "gold": [
+      "list_skills",
+      {}
+     ],
+     "got": [
+      "search_past_proposals",
+      {
+       "query": "portfolio"
+      }
+     ],
+     "tool_ok": false,
+     "args_ok": false,
+     "tokens": 1222
+    }
+   ]
+  },
+  "coarse": {
+   "n_tools": 2,
+   "tool_selection_accuracy": 1.0,
+   "argument_accuracy": 0.925,
+   "tokens_per_task": 301.3,
+   "usd_per_task": 3e-05,
+   "completed": 40,
+   "per_task": [
+    {
+     "prompt": "How many Connects does it cost to apply to job dev-fullstack-132?",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "job"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "job",
+       "params": {}
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 284
+    },
+    {
+     "prompt": "Is the client behind job dev-data_analyst-005 (client id c0297) trustworthy? Check their history.",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "client"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "client",
+       "params": {
+        "client_id": "c0297"
+       },
+       "client_id": "c0297"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 311
+    },
+    {
+     "prompt": "What is the typical fixed price for ai_ml jobs?",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "market_stats"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "market_stats",
+       "params": {}
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 288
+    },
+    {
+     "prompt": "How many Connects do I have left?",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "balance"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "balance",
+       "params": {}
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 250
+    },
+    {
+     "prompt": "Find proof in my portfolio that I have done this: A/B test analysis.",
+     "gold": [
+      "portfolio_query",
+      {
+       "action": "search"
+      }
+     ],
+     "got": [
+      "portfolio_query",
+      {
+       "action": "search",
+       "params": {}
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 269
+    },
+    {
+     "prompt": "Find new open jobs about RAG chatbots.",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "search"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "search",
+       "params": {
+        "query": "RAG chatbots"
+       },
+       "query": "RAG chatbots"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 331
+    },
+    {
+     "prompt": "Show me the full post for job dev-ai_ml-039, including screening questions.",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "job"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "job",
+       "params": {
+        "job_id": "dev-ai_ml-039"
+       },
+       "job_id": "dev-ai_ml-039"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 280
+    },
+    {
+     "prompt": "Which skills can I actually prove from my portfolio?",
+     "gold": [
+      "portfolio_query",
+      {
+       "action": "skills"
+      }
+     ],
+     "got": [
+      "portfolio_query",
+      {
+       "action": "skills",
+       "params": {}
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 277
+    },
+    {
+     "prompt": "How many Connects does it cost to apply to job dev-ai_ml-072?",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "job"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "job",
+       "params": {
+        "job_id": "dev-ai_ml-072"
+       },
+       "job_id": "dev-ai_ml-072"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 290
+    },
+    {
+     "prompt": "Is the client behind job dev-ai_ml-093 (client id c0002) trustworthy? Check their history.",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "client"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "job",
+       "params": {
+        "job_id": "dev-ai_ml-093"
+       },
+       "job_id": "dev-ai_ml-093"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": false,
+     "tokens": 286
+    },
+    {
+     "prompt": "What is the typical fixed price for ai_ml jobs?",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "market_stats"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "market_stats",
+       "params": {}
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 288
+    },
+    {
+     "prompt": "How many Connects do I have left?",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "balance"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "balance",
+       "params": {}
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 250
+    },
+    {
+     "prompt": "Find proof in my portfolio that I have done this: background task queue with Celery.",
+     "gold": [
+      "portfolio_query",
+      {
+       "action": "search"
+      }
+     ],
+     "got": [
+      "portfolio_query",
+      {
+       "action": "search",
+       "params": {}
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 300
+    },
+    {
+     "prompt": "Find new open jobs about RAG chatbots.",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "search"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "search",
+       "params": {
+        "query": "RAG chatbots"
+       },
+       "query": "RAG chatbots"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 366
+    },
+    {
+     "prompt": "Show me the full post for job dev-data_analyst-007, including screening questions.",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "job"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "job",
+       "params": {
+        "job_id": "dev-data_analyst-007"
+       },
+       "job_id": "dev-data_analyst-007"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 286
+    },
+    {
+     "prompt": "Which skills can I actually prove from my portfolio?",
+     "gold": [
+      "portfolio_query",
+      {
+       "action": "skills"
+      }
+     ],
+     "got": [
+      "portfolio_query",
+      {
+       "action": "skills",
+       "params": {}
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 277
+    },
+    {
+     "prompt": "How many Connects does it cost to apply to job dev-ai_ml-137?",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "job"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "job",
+       "params": {}
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 284
+    },
+    {
+     "prompt": "Is the client behind job dev-data_analyst-030 (client id c0113) trustworthy? Check their history.",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "client"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "client",
+       "params": {
+        "client_id": "c0113"
+       },
+       "client_id": "c0113"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 315
+    },
+    {
+     "prompt": "What is the typical fixed price for ai_ml jobs?",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "market_stats"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "market_stats",
+       "params": {}
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 288
+    },
+    {
+     "prompt": "How many Connects do I have left?",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "balance"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "balance",
+       "params": {}
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 250
+    },
+    {
+     "prompt": "Find proof in my portfolio that I have done this: background task queue with Celery.",
+     "gold": [
+      "portfolio_query",
+      {
+       "action": "search"
+      }
+     ],
+     "got": [
+      "portfolio_query",
+      {
+       "action": "search",
+       "params": {}
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 300
+    },
+    {
+     "prompt": "Find new open jobs about RAG chatbots.",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "search"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "search",
+       "params": {
+        "query": "RAG chatbots"
+       },
+       "query": "RAG chatbots"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 350
+    },
+    {
+     "prompt": "Show me the full post for job dev-ai_ml-193, including screening questions.",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "job"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "job",
+       "params": {
+        "job_id": "dev-ai_ml-193"
+       },
+       "job_id": "dev-ai_ml-193"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 280
+    },
+    {
+     "prompt": "Which skills can I actually prove from my portfolio?",
+     "gold": [
+      "portfolio_query",
+      {
+       "action": "skills"
+      }
+     ],
+     "got": [
+      "portfolio_query",
+      {
+       "action": "skills",
+       "params": {}
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 277
+    },
+    {
+     "prompt": "How many Connects does it cost to apply to job dev-ai_ml-065?",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "job"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "job",
+       "params": {}
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 284
+    },
+    {
+     "prompt": "Is the client behind job dev-ai_ml-062 (client id c0268) trustworthy? Check their history.",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "client"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "job",
+       "params": {
+        "job_id": "dev-ai_ml-062"
+       },
+       "job_id": "dev-ai_ml-062"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": false,
+     "tokens": 286
+    },
+    {
+     "prompt": "What is the typical fixed price for data jobs?",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "market_stats"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "market_stats",
+       "params": {}
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 569
+    },
+    {
+     "prompt": "How many Connects do I have left?",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "balance"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "balance",
+       "params": {}
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 250
+    },
+    {
+     "prompt": "Find proof in my portfolio that I have done this: fine-tuning a Hugging Face model.",
+     "gold": [
+      "portfolio_query",
+      {
+       "action": "search"
+      }
+     ],
+     "got": [
+      "portfolio_query",
+      {
+       "action": "search",
+       "params": {}
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 312
+    },
+    {
+     "prompt": "Find new open jobs about RAG chatbots.",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "search"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "search",
+       "params": {
+        "query": "RAG chatbots"
+       },
+       "query": "RAG chatbots"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 366
+    },
+    {
+     "prompt": "Show me the full post for job dev-fullstack-055, including screening questions.",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "job"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "job",
+       "params": {
+        "job_id": "dev-fullstack-055"
+       },
+       "job_id": "dev-fullstack-055"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 280
+    },
+    {
+     "prompt": "Which skills can I actually prove from my portfolio?",
+     "gold": [
+      "portfolio_query",
+      {
+       "action": "skills"
+      }
+     ],
+     "got": [
+      "portfolio_query",
+      {
+       "action": "skills",
+       "params": {}
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 277
+    },
+    {
+     "prompt": "How many Connects does it cost to apply to job dev-data_analyst-189?",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "job"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "job",
+       "params": {}
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 288
+    },
+    {
+     "prompt": "Is the client behind job dev-data_analyst-138 (client id c0018) trustworthy? Check their history.",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "client"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "job",
+       "params": {
+        "job_id": "dev-data_analyst-138"
+       },
+       "job_id": "dev-data_analyst-138"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": false,
+     "tokens": 292
+    },
+    {
+     "prompt": "What is the typical fixed price for data jobs?",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "market_stats"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "market_stats",
+       "params": {}
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 355
+    },
+    {
+     "prompt": "How many Connects do I have left?",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "balance"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "balance",
+       "params": {}
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 250
+    },
+    {
+     "prompt": "Find proof in my portfolio that I have done this: fine-tuning a Hugging Face model.",
+     "gold": [
+      "portfolio_query",
+      {
+       "action": "search"
+      }
+     ],
+     "got": [
+      "portfolio_query",
+      {
+       "action": "search",
+       "params": {}
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 312
+    },
+    {
+     "prompt": "Find new open jobs about RAG chatbots.",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "search"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "search",
+       "params": {
+        "query": "RAG chatbots"
+       },
+       "query": "RAG chatbots"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 367
+    },
+    {
+     "prompt": "Show me the full post for job dev-ai_ml-156, including screening questions.",
+     "gold": [
+      "marketplace_query",
+      {
+       "action": "job"
+      }
+     ],
+     "got": [
+      "marketplace_query",
+      {
+       "action": "job",
+       "params": {
+        "id": "dev-ai_ml-156"
+       },
+       "id": "dev-ai_ml-156"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 311
+    },
+    {
+     "prompt": "Which skills can I actually prove from my portfolio?",
+     "gold": [
+      "portfolio_query",
+      {
+       "action": "skills"
+      }
+     ],
+     "got": [
+      "portfolio_query",
+      {
+       "action": "skills",
+       "params": {}
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 277
+    }
+   ]
+  },
+  "ours": {
+   "n_tools": 9,
+   "tool_selection_accuracy": 1.0,
+   "argument_accuracy": 1.0,
+   "tokens_per_task": 565.5,
+   "usd_per_task": 5.6e-05,
+   "completed": 40,
+   "per_task": [
+    {
+     "prompt": "How many Connects does it cost to apply to job dev-fullstack-132?",
+     "gold": [
+      "get_job",
+      {
+       "job_id": "dev-fullstack-132"
+      }
+     ],
+     "got": [
+      "get_job",
+      {
+       "job_id": "dev-fullstack-132"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 574
+    },
+    {
+     "prompt": "Is the client behind job dev-data_analyst-005 (client id c0297) trustworthy? Check their history.",
+     "gold": [
+      "get_client_history",
+      {
+       "client_id": "c0297"
+      }
+     ],
+     "got": [
+      "get_client_history",
+      {
+       "client_id": "c0297"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 576
+    },
+    {
+     "prompt": "What is the typical fixed price for ai_ml jobs?",
+     "gold": [
+      "get_market_stats",
+      {
+       "category": "ai_ml"
+      }
+     ],
+     "got": [
+      "get_market_stats",
+      {
+       "category": "ai_ml"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 569
+    },
+    {
+     "prompt": "How many Connects do I have left?",
+     "gold": [
+      "get_connects_balance",
+      {}
+     ],
+     "got": [
+      "get_connects_balance",
+      {}
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 549
+    },
+    {
+     "prompt": "Find proof in my portfolio that I have done this: A/B test analysis.",
+     "gold": [
+      "search_evidence",
+      {}
+     ],
+     "got": [
+      "search_evidence",
+      {
+       "requirement": "A/B test analysis"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 572
+    },
+    {
+     "prompt": "Find new open jobs about RAG chatbots.",
+     "gold": [
+      "search_jobs",
+      {}
+     ],
+     "got": [
+      "search_jobs",
+      {
+       "limit": 10,
+       "query": "RAG chatbot"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 562
+    },
+    {
+     "prompt": "Show me the full post for job dev-ai_ml-039, including screening questions.",
+     "gold": [
+      "get_job",
+      {
+       "job_id": "dev-ai_ml-039"
+      }
+     ],
+     "got": [
+      "get_job",
+      {
+       "job_id": "dev-ai_ml-039"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 571
+    },
+    {
+     "prompt": "Which skills can I actually prove from my portfolio?",
+     "gold": [
+      "list_skills",
+      {}
+     ],
+     "got": [
+      "list_skills",
+      {}
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 548
+    },
+    {
+     "prompt": "How many Connects does it cost to apply to job dev-ai_ml-072?",
+     "gold": [
+      "get_job",
+      {
+       "job_id": "dev-ai_ml-072"
+      }
+     ],
+     "got": [
+      "get_job",
+      {
+       "job_id": "dev-ai_ml-072"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 574
+    },
+    {
+     "prompt": "Is the client behind job dev-ai_ml-093 (client id c0002) trustworthy? Check their history.",
+     "gold": [
+      "get_client_history",
+      {
+       "client_id": "c0002"
+      }
+     ],
+     "got": [
+      "get_client_history",
+      {
+       "client_id": "c0002"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 574
+    },
+    {
+     "prompt": "What is the typical fixed price for ai_ml jobs?",
+     "gold": [
+      "get_market_stats",
+      {
+       "category": "ai_ml"
+      }
+     ],
+     "got": [
+      "get_market_stats",
+      {
+       "category": "ai_ml"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 569
+    },
+    {
+     "prompt": "How many Connects do I have left?",
+     "gold": [
+      "get_connects_balance",
+      {}
+     ],
+     "got": [
+      "get_connects_balance",
+      {}
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 549
+    },
+    {
+     "prompt": "Find proof in my portfolio that I have done this: background task queue with Celery.",
+     "gold": [
+      "search_evidence",
+      {}
+     ],
+     "got": [
+      "search_evidence",
+      {
+       "requirement": "background task queue with Celery"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 568
+    },
+    {
+     "prompt": "Find new open jobs about RAG chatbots.",
+     "gold": [
+      "search_jobs",
+      {}
+     ],
+     "got": [
+      "search_jobs",
+      {
+       "limit": 10,
+       "query": "RAG chatbot"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 562
+    },
+    {
+     "prompt": "Show me the full post for job dev-data_analyst-007, including screening questions.",
+     "gold": [
+      "get_job",
+      {
+       "job_id": "dev-data_analyst-007"
+      }
+     ],
+     "got": [
+      "get_job",
+      {
+       "job_id": "dev-data_analyst-007"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 577
+    },
+    {
+     "prompt": "Which skills can I actually prove from my portfolio?",
+     "gold": [
+      "list_skills",
+      {}
+     ],
+     "got": [
+      "list_skills",
+      {}
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 548
+    },
+    {
+     "prompt": "How many Connects does it cost to apply to job dev-ai_ml-137?",
+     "gold": [
+      "get_job",
+      {
+       "job_id": "dev-ai_ml-137"
+      }
+     ],
+     "got": [
+      "get_job",
+      {
+       "job_id": "dev-ai_ml-137"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 574
+    },
+    {
+     "prompt": "Is the client behind job dev-data_analyst-030 (client id c0113) trustworthy? Check their history.",
+     "gold": [
+      "get_client_history",
+      {
+       "client_id": "c0113"
+      }
+     ],
+     "got": [
+      "get_client_history",
+      {
+       "client_id": "c0113"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 576
+    },
+    {
+     "prompt": "What is the typical fixed price for ai_ml jobs?",
+     "gold": [
+      "get_market_stats",
+      {
+       "category": "ai_ml"
+      }
+     ],
+     "got": [
+      "get_market_stats",
+      {
+       "category": "ai_ml"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 569
+    },
+    {
+     "prompt": "How many Connects do I have left?",
+     "gold": [
+      "get_connects_balance",
+      {}
+     ],
+     "got": [
+      "get_connects_balance",
+      {}
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 549
+    },
+    {
+     "prompt": "Find proof in my portfolio that I have done this: background task queue with Celery.",
+     "gold": [
+      "search_evidence",
+      {}
+     ],
+     "got": [
+      "search_evidence",
+      {
+       "requirement": "background task queue with Celery"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 568
+    },
+    {
+     "prompt": "Find new open jobs about RAG chatbots.",
+     "gold": [
+      "search_jobs",
+      {}
+     ],
+     "got": [
+      "search_jobs",
+      {
+       "limit": 10,
+       "query": "RAG chatbot"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 562
+    },
+    {
+     "prompt": "Show me the full post for job dev-ai_ml-193, including screening questions.",
+     "gold": [
+      "get_job",
+      {
+       "job_id": "dev-ai_ml-193"
+      }
+     ],
+     "got": [
+      "get_job",
+      {
+       "job_id": "dev-ai_ml-193"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 571
+    },
+    {
+     "prompt": "Which skills can I actually prove from my portfolio?",
+     "gold": [
+      "list_skills",
+      {}
+     ],
+     "got": [
+      "list_skills",
+      {}
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 548
+    },
+    {
+     "prompt": "How many Connects does it cost to apply to job dev-ai_ml-065?",
+     "gold": [
+      "get_job",
+      {
+       "job_id": "dev-ai_ml-065"
+      }
+     ],
+     "got": [
+      "get_job",
+      {
+       "job_id": "dev-ai_ml-065"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 574
+    },
+    {
+     "prompt": "Is the client behind job dev-ai_ml-062 (client id c0268) trustworthy? Check their history.",
+     "gold": [
+      "get_client_history",
+      {
+       "client_id": "c0268"
+      }
+     ],
+     "got": [
+      "get_client_history",
+      {
+       "client_id": "c0268"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 574
+    },
+    {
+     "prompt": "What is the typical fixed price for data jobs?",
+     "gold": [
+      "get_market_stats",
+      {
+       "category": "data"
+      }
+     ],
+     "got": [
+      "get_market_stats",
+      {
+       "category": "data"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 565
+    },
+    {
+     "prompt": "How many Connects do I have left?",
+     "gold": [
+      "get_connects_balance",
+      {}
+     ],
+     "got": [
+      "get_connects_balance",
+      {}
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 549
+    },
+    {
+     "prompt": "Find proof in my portfolio that I have done this: fine-tuning a Hugging Face model.",
+     "gold": [
+      "search_evidence",
+      {}
+     ],
+     "got": [
+      "search_evidence",
+      {
+       "requirement": "fine-tuning a Hugging Face model"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 584
+    },
+    {
+     "prompt": "Find new open jobs about RAG chatbots.",
+     "gold": [
+      "search_jobs",
+      {}
+     ],
+     "got": [
+      "search_jobs",
+      {
+       "limit": 10,
+       "query": "RAG chatbot"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 562
+    },
+    {
+     "prompt": "Show me the full post for job dev-fullstack-055, including screening questions.",
+     "gold": [
+      "get_job",
+      {
+       "job_id": "dev-fullstack-055"
+      }
+     ],
+     "got": [
+      "get_job",
+      {
+       "job_id": "dev-fullstack-055"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 571
+    },
+    {
+     "prompt": "Which skills can I actually prove from my portfolio?",
+     "gold": [
+      "list_skills",
+      {}
+     ],
+     "got": [
+      "list_skills",
+      {}
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 548
+    },
+    {
+     "prompt": "How many Connects does it cost to apply to job dev-data_analyst-189?",
+     "gold": [
+      "get_job",
+      {
+       "job_id": "dev-data_analyst-189"
+      }
+     ],
+     "got": [
+      "get_job",
+      {
+       "job_id": "dev-data_analyst-189"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 580
+    },
+    {
+     "prompt": "Is the client behind job dev-data_analyst-138 (client id c0018) trustworthy? Check their history.",
+     "gold": [
+      "get_client_history",
+      {
+       "client_id": "c0018"
+      }
+     ],
+     "got": [
+      "get_client_history",
+      {
+       "client_id": "c0018"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 576
+    },
+    {
+     "prompt": "What is the typical fixed price for data jobs?",
+     "gold": [
+      "get_market_stats",
+      {
+       "category": "data"
+      }
+     ],
+     "got": [
+      "get_market_stats",
+      {
+       "category": "data"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 565
+    },
+    {
+     "prompt": "How many Connects do I have left?",
+     "gold": [
+      "get_connects_balance",
+      {}
+     ],
+     "got": [
+      "get_connects_balance",
+      {}
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 549
+    },
+    {
+     "prompt": "Find proof in my portfolio that I have done this: fine-tuning a Hugging Face model.",
+     "gold": [
+      "search_evidence",
+      {}
+     ],
+     "got": [
+      "search_evidence",
+      {
+       "requirement": "fine-tuning a Hugging Face model"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 584
+    },
+    {
+     "prompt": "Find new open jobs about RAG chatbots.",
+     "gold": [
+      "search_jobs",
+      {}
+     ],
+     "got": [
+      "search_jobs",
+      {
+       "limit": 10,
+       "query": "RAG chatbot"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 562
+    },
+    {
+     "prompt": "Show me the full post for job dev-ai_ml-156, including screening questions.",
+     "gold": [
+      "get_job",
+      {
+       "job_id": "dev-ai_ml-156"
+      }
+     ],
+     "got": [
+      "get_job",
+      {
+       "job_id": "dev-ai_ml-156"
+      }
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 571
+    },
+    {
+     "prompt": "Which skills can I actually prove from my portfolio?",
+     "gold": [
+      "list_skills",
+      {}
+     ],
+     "got": [
+      "list_skills",
+      {}
+     ],
+     "tool_ok": true,
+     "args_ok": true,
+     "tokens": 548
+    }
+   ]
+  }
+ }
+}
