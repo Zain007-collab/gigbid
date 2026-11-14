@@ -1,0 +1,30 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	liaison_fetch(liaison_fetch)
+	liaison_intent(liaison_intent)
+	liaison_gather(liaison_gather)
+	liaison_draft(liaison_draft)
+	liaison_compliance(liaison_compliance)
+	liaison_approval(liaison_approval)
+	liaison_send(liaison_send)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> liaison_fetch;
+	liaison_approval -.-> __end__;
+	liaison_approval -.-> liaison_send;
+	liaison_compliance -.-> __end__;
+	liaison_compliance -.-> liaison_approval;
+	liaison_draft --> liaison_compliance;
+	liaison_fetch -.-> __end__;
+	liaison_fetch -.-> liaison_intent;
+	liaison_gather --> liaison_draft;
+	liaison_intent --> liaison_gather;
+	liaison_send --> __end__;
+	liaison_approval -.-> liaison_approval;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc

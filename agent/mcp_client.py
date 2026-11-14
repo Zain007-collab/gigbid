@@ -23,7 +23,7 @@ ALLOWLIST: dict[str, set[str]] = {
     "intake": {"marketplace.get_job"},
     "risk_assessor": {"marketplace.get_client_history"},
     "fit_matcher": {"portfolio.search_evidence", "portfolio.list_skills"},
-    "pricing": {"marketplace.get_connects_balance", "marketplace.get_market_stats"},
+    "pricing": {"marketplace.get_connects_balance", "marketplace.get_market_stats", "marketplace.list_proposals"},
     "writer": {"portfolio.search_evidence", "portfolio.get_case_study"},
     "verifier": {"portfolio.search_evidence", "portfolio.get_case_study"},
     "critic": {"portfolio.search_evidence"},

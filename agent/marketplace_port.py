@@ -96,6 +96,7 @@ class MarketStats(BaseModel):
 class ProposalStatus(BaseModel):
     proposal_id: str
     job_id: str
+    client_id: str | None = None
     thread_id: str | None = None
     status: Literal["submitted", "viewed", "replied", "interview", "hired", "lost",
                     "pending_user_confirmation"]

@@ -1,0 +1,378 @@
+{
+  "get_case_study": {
+    "annotations": {
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false,
+      "readOnlyHint": true
+    },
+    "inputSchema": {
+      "properties": {
+        "id": {
+          "description": "project id like 'ai_ml-p03' or a case doc id",
+          "maxLength": 80,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "get_case_studyArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "properties": {
+        "client_industry": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Client Industry"
+        },
+        "date": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Date"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "project": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Project"
+        },
+        "related": {
+          "description": "ids of the README, code, reviews and proposals for the same project",
+          "items": {
+            "type": "string"
+          },
+          "title": "Related",
+          "type": "array"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "project",
+        "date",
+        "client_industry",
+        "text",
+        "related"
+      ],
+      "title": "CaseStudy",
+      "type": "object"
+    }
+  },
+  "list_skills": {
+    "annotations": {
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false,
+      "readOnlyHint": true
+    },
+    "inputSchema": {
+      "properties": {},
+      "title": "list_skillsArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "$defs": {
+        "SkillCount": {
+          "properties": {
+            "evidence_ids": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Evidence Ids",
+              "type": "array"
+            },
+            "mentions": {
+              "title": "Mentions",
+              "type": "integer"
+            },
+            "skill": {
+              "title": "Skill",
+              "type": "string"
+            }
+          },
+          "required": [
+            "skill",
+            "mentions",
+            "evidence_ids"
+          ],
+          "title": "SkillCount",
+          "type": "object"
+        }
+      },
+      "properties": {
+        "skills": {
+          "items": {
+            "$ref": "#/$defs/SkillCount"
+          },
+          "title": "Skills",
+          "type": "array"
+        }
+      },
+      "required": [
+        "skills"
+      ],
+      "title": "SkillsResult",
+      "type": "object"
+    }
+  },
+  "search_evidence": {
+    "annotations": {
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false,
+      "readOnlyHint": true
+    },
+    "inputSchema": {
+      "$defs": {
+        "EvidenceFilters": {
+          "properties": {
+            "outcome": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "won",
+                    "replied",
+                    "ignored"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "proposals only",
+              "title": "Outcome"
+            },
+            "project": {
+              "anyOf": [
+                {
+                  "maxLength": 64,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Project"
+            },
+            "since_year": {
+              "anyOf": [
+                {
+                  "maximum": 2100,
+                  "minimum": 2000,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Since Year"
+            },
+            "types": {
+              "anyOf": [
+                {
+                  "items": {
+                    "enum": [
+                      "case_study",
+                      "readme",
+                      "code",
+                      "repo",
+                      "review",
+                      "proposal",
+                      "cv"
+                    ],
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "restrict to these evidence types",
+              "title": "Types"
+            }
+          },
+          "title": "EvidenceFilters",
+          "type": "object"
+        }
+      },
+      "properties": {
+        "filters": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceFilters"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "k": {
+          "default": 5,
+          "maximum": 20,
+          "minimum": 1,
+          "title": "K",
+          "type": "integer"
+        },
+        "requirement": {
+          "description": "one job requirement, e.g. 'background task queue with Celery'",
+          "maxLength": 500,
+          "minLength": 3,
+          "title": "Requirement",
+          "type": "string"
+        }
+      },
+      "required": [
+        "requirement"
+      ],
+      "title": "search_evidenceArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "$defs": {
+        "EvidenceItem": {
+          "properties": {
+            "date": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Date"
+            },
+            "id": {
+              "title": "Id",
+              "type": "string"
+            },
+            "outcome": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Outcome"
+            },
+            "project": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Project"
+            },
+            "score": {
+              "description": "variant-specific ranking score",
+              "title": "Score",
+              "type": "number"
+            },
+            "similarity": {
+              "description": "cosine similarity to the requirement (comparable across variants)",
+              "title": "Similarity",
+              "type": "number"
+            },
+            "snippet": {
+              "title": "Snippet",
+              "type": "string"
+            },
+            "source": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Source"
+            },
+            "type": {
+              "title": "Type",
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "type",
+            "source",
+            "project",
+            "date",
+            "outcome",
+            "score",
+            "similarity",
+            "snippet"
+          ],
+          "title": "EvidenceItem",
+          "type": "object"
+        }
+      },
+      "properties": {
+        "items": {
+          "items": {
+            "$ref": "#/$defs/EvidenceItem"
+          },
+          "title": "Items",
+          "type": "array"
+        },
+        "requirement": {
+          "title": "Requirement",
+          "type": "string"
+        },
+        "supported": {
+          "description": "False when nothing relevant was found \u2014 do not claim this requirement",
+          "title": "Supported",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "requirement",
+        "items",
+        "supported"
+      ],
+      "title": "EvidenceResult",
+      "type": "object"
+    }
+  }
+}

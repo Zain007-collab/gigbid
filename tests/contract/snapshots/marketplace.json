@@ -956,6 +956,18 @@
               "default": null,
               "title": "Bid Amount"
             },
+            "client_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Client Id"
+            },
             "connects_spent": {
               "default": 0,
               "title": "Connects Spent",

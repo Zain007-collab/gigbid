@@ -12,7 +12,7 @@ from agent.handoffs import (
 )
 from agent.memory import store as memory
 from agent.nodes.base import node, tool
-from agent.policy import connects_cost
+from agent.policy import bidding_rules, check_bidding_rules, connects_cost
 from agent.settings import section
 
 CONNECT_USD = 0.15     # marketplace price of one Connect
@@ -60,6 +60,13 @@ async def pricing(state: dict) -> dict:
     job, fit = state["job"], state["fit"]
     prof = persona_profile(state["persona"])
     cat = job.get("category") or "other"
+    if bidding_rules():   # config-driven platform/user rules (the change request lands here, not in code)
+        from datetime import datetime, timezone
+        mine = (await tool("pricing", "marketplace.list_proposals", {}))["proposals"]
+        sim_now = max((datetime.fromisoformat(str(p["submitted_at"])) for p in mine if p.get("submitted_at")),
+                      default=datetime.now(timezone.utc))
+        if violation := check_bidding_rules(job, mine, sim_now):
+            return {"status": "skipped", "attention_reason": violation}
     stats = (await tool("pricing", "marketplace.get_market_stats", {"category": cat}))["stats"]
     bal = (await tool("pricing", "marketplace.get_connects_balance", {}))["balance"]["available"]
     hourly = job.get("budget_type") == "hourly"
