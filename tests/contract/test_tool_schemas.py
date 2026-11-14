@@ -13,7 +13,7 @@ SNAP_DIR = Path(__file__).parent / "snapshots"
 SERVERS = {
     "marketplace": "mcp_servers.marketplace.server",
     # "portfolio": "mcp_servers.portfolio.server",
-    # "workspace": "mcp_servers.workspace.server",
+    "workspace": "mcp_servers.workspace.server",
 }
 
 pytestmark = pytest.mark.anyio

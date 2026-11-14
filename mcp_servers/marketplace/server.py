@@ -10,7 +10,6 @@ Run:  python -m mcp_servers.marketplace.server          (streamable HTTP, bearer
 """
 # NOTE: no `from __future__ import annotations` here — FastMCP builds tool
 # schemas from real (evaluated) annotations.
-import hmac
 import os
 import uuid
 from collections.abc import Awaitable, Callable
@@ -323,27 +322,10 @@ async def send_message(
     )
 
 
-# ---------------------------------------------------------------- HTTP: bearer auth + health
-class BearerAuth:
-    """ASGI middleware: service bearer token + mandatory X-GigBid-User for per-user limits."""
-
-    def __init__(self, app, token: str):
-        self.app, self.expected = app, f"Bearer {token}".encode()
-
-    async def __call__(self, scope, receive, send):
-        from starlette.responses import JSONResponse
-
-        if scope["type"] != "http":
-            return await self.app(scope, receive, send)
-        if scope["path"] == "/healthz":
-            ok = await runtime().adapter.health()
-            return await JSONResponse({"ok": True, "marketplace_up": ok})(scope, receive, send)
-        headers = dict(scope.get("headers") or [])
-        if not hmac.compare_digest(headers.get(b"authorization", b""), self.expected):
-            return await JSONResponse({"error": "unauthorized"}, status_code=401)(scope, receive, send)
-        if not headers.get(b"x-gigbid-user"):
-            return await JSONResponse({"error": "X-GigBid-User header required"}, status_code=400)(scope, receive, send)
-        return await self.app(scope, receive, send)
+# ---------------------------------------------------------------- HTTP entrypoint
+async def _health() -> dict:
+    """Unauthenticated /healthz: the API polls this to drive the degraded-mode banner."""
+    return {"ok": True, "marketplace": runtime().adapter.name, "marketplace_up": await runtime().adapter.health()}
 
 
 def main() -> None:
@@ -352,10 +334,12 @@ def main() -> None:
         return
     import uvicorn
 
+    from shared.mcp_auth import BearerAuth
+
     token = os.environ.get("MARKETPLACE_SERVICE_TOKEN")
     if not token:
         raise SystemExit("MARKETPLACE_SERVICE_TOKEN must be set for the HTTP transport")
-    uvicorn.run(BearerAuth(mcp.streamable_http_app(), token),
+    uvicorn.run(BearerAuth(mcp.streamable_http_app(), token, require_user=True, health=_health),
                 host="0.0.0.0", port=int(os.environ.get("PORT", "8101")))
 
 
