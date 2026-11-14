@@ -27,7 +27,7 @@ ALLOWLIST: dict[str, set[str]] = {
     "verifier": {"portfolio.search_evidence"},
     "critic": {"portfolio.search_evidence"},
     "compliance": set(),
-    "approval": {"marketplace.create_proposal_draft", "marketplace.submit_proposal"},
+    "approval": {"marketplace.create_proposal_draft", "marketplace.send_message"},   # dry_run previews only
     "submit": {"marketplace.create_proposal_draft", "marketplace.submit_proposal"},
     "liaison": {"marketplace.list_messages", "portfolio.search_evidence", "workspace.free_slots"},
     "send": {"marketplace.send_message", "workspace.create_interview_hold"},
