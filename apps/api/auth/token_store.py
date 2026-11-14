@@ -1,27 +1,20 @@
 """Encrypted per-user OAuth token store (A4, E4).
 
-Tokens are Fernet-encrypted (TOKEN_ENCRYPTION_KEY) before they touch
-Postgres, are scoped by tenant on every query, and are never logged.
+Tokens are Fernet-encrypted (TOKEN_ENCRYPTION_KEY) before they reach the database, every query is scoped by
+tenant, and token values are never logged. Uses the app DB layer, so it works on Postgres (Neon) and SQLite.
 """
 from __future__ import annotations
 
 import os
 from datetime import datetime, timedelta, timezone
 
-import psycopg
 from cryptography.fernet import Fernet
 
-DDL = """
-CREATE TABLE IF NOT EXISTS oauth_tokens (
-    tenant_id   TEXT NOT NULL,
-    provider    TEXT NOT NULL,
-    access_ct   BYTEA NOT NULL,
-    refresh_ct  BYTEA,
-    expires_at  TIMESTAMPTZ NOT NULL,
-    updated_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
-    PRIMARY KEY (tenant_id, provider)
-);
-"""
+from apps.api import db
+
+DDL = """CREATE TABLE IF NOT EXISTS oauth_tokens (
+    tenant_id TEXT NOT NULL, provider TEXT NOT NULL, access_ct TEXT NOT NULL, refresh_ct TEXT,
+    expires_at TEXT NOT NULL, updated_at TEXT NOT NULL, PRIMARY KEY (tenant_id, provider))"""
 
 
 class TokenMissing(Exception):
@@ -35,49 +28,50 @@ def _fernet() -> Fernet:
     return Fernet(key.encode())
 
 
-async def _conn() -> psycopg.AsyncConnection:
-    return await psycopg.AsyncConnection.connect(os.environ["DATABASE_URL"], autocommit=True)
+def init() -> None:
+    db.q(DDL)
 
 
-async def init() -> None:
-    async with await _conn() as c:
-        await c.execute(DDL)
-
-
-async def save_tokens(tenant_id: str, provider: str, access_token: str,
-                      refresh_token: str | None, expires_in_s: int) -> None:
+def save_tokens(tenant_id: str, provider: str, access_token: str, refresh_token: str | None, expires_in_s: int) -> None:
+    init()
     f = _fernet()
-    expires_at = datetime.now(timezone.utc) + timedelta(seconds=expires_in_s)
-    async with await _conn() as c:
-        await c.execute(
-            """INSERT INTO oauth_tokens (tenant_id, provider, access_ct, refresh_ct, expires_at)
-               VALUES (%s, %s, %s, %s, %s)
-               ON CONFLICT (tenant_id, provider) DO UPDATE
-               SET access_ct = EXCLUDED.access_ct, refresh_ct = EXCLUDED.refresh_ct,
-                   expires_at = EXCLUDED.expires_at, updated_at = now()""",
-            (tenant_id, provider, f.encrypt(access_token.encode()),
-             f.encrypt(refresh_token.encode()) if refresh_token else None, expires_at),
-        )
+    vals = dict(t=tenant_id, p=provider, a=f.encrypt(access_token.encode()).decode(),
+                r=f.encrypt(refresh_token.encode()).decode() if refresh_token else None,
+                e=(datetime.now(timezone.utc) + timedelta(seconds=expires_in_s)).isoformat(), u=db.now())
+    if db.one("SELECT 1 AS x FROM oauth_tokens WHERE tenant_id=:t AND provider=:p", t=tenant_id, p=provider):
+        db.q("UPDATE oauth_tokens SET access_ct=:a, refresh_ct=:r, expires_at=:e, updated_at=:u "
+             "WHERE tenant_id=:t AND provider=:p", **vals)
+    else:
+        db.q("INSERT INTO oauth_tokens VALUES (:t,:p,:a,:r,:e,:u)", **vals)
 
 
-async def delete_tokens(tenant_id: str, provider: str) -> None:
-    async with await _conn() as c:
-        await c.execute("DELETE FROM oauth_tokens WHERE tenant_id=%s AND provider=%s", (tenant_id, provider))
+def delete_tokens(tenant_id: str, provider: str) -> None:
+    init()
+    db.q("DELETE FROM oauth_tokens WHERE tenant_id=:t AND provider=:p", t=tenant_id, p=provider)
+
+
+def status(tenant_id: str, provider: str) -> dict:
+    init()
+    row = db.one("SELECT expires_at, updated_at FROM oauth_tokens WHERE tenant_id=:t AND provider=:p", t=tenant_id, p=provider)
+    return {"connected": bool(row), "expires_at": row["expires_at"] if row else None}
+
+
+def refresh_token(tenant_id: str, provider: str) -> str | None:
+    init()
+    row = db.one("SELECT refresh_ct FROM oauth_tokens WHERE tenant_id=:t AND provider=:p", t=tenant_id, p=provider)
+    return _fernet().decrypt(row["refresh_ct"].encode()).decode() if row and row["refresh_ct"] else None
 
 
 async def get_access_token(tenant_id: str, provider: str) -> str:
-    async with await _conn() as c:
-        row = await (await c.execute(
-            "SELECT access_ct, expires_at FROM oauth_tokens WHERE tenant_id=%s AND provider=%s",
-            (tenant_id, provider),
-        )).fetchone()
+    init()
+    row = db.one("SELECT access_ct, expires_at FROM oauth_tokens WHERE tenant_id=:t AND provider=:p",
+                 t=tenant_id, p=provider)
     if row is None:
         raise TokenMissing(f"{provider} not connected")
-    access_ct, expires_at = row
-    if expires_at <= datetime.now(timezone.utc) + timedelta(seconds=30):
-        # Refresh is handled by the OAuth router (apps/api/routers/auth.py) once built.
-        raise TokenMissing(f"{provider} token expired; reconnect in Settings")
-    return _fernet().decrypt(access_ct).decode()
+    if datetime.fromisoformat(row["expires_at"]) <= datetime.now(timezone.utc) + timedelta(seconds=30):
+        from apps.api.auth import upwork_oauth
+        return await upwork_oauth.refresh(tenant_id)          # raises TokenMissing if refresh fails
+    return _fernet().decrypt(row["access_ct"].encode()).decode()
 
 
 async def get_upwork_access_token(tenant_id: str) -> str:

@@ -5,7 +5,9 @@ export default function SettingsPage() {
   const [s, setS] = useState<Settings | null>(null);
   const [mem, setMem] = useState<MemoryItem[]>([]);
   const [msg, setMsg] = useState<string | null>(null);
+  const [upwork, setUpwork] = useState<{ connected?: boolean; expires_at?: string | null } | null>(null);
   const load = async () => {
+    const u = await api.GET("/api/auth/upwork/status"); setUpwork((u.data as any) ?? null);
     const r = await api.GET("/api/settings"); setS(r.data ?? null);
     const m = await api.GET("/api/memory"); setMem(m.data ?? []);
   };
@@ -33,6 +35,20 @@ export default function SettingsPage() {
             <option value="gigsim">GigSim</option><option value="upwork">Upwork (official MCP, OAuth)</option></select></label>
         <label>Saved search keywords<input value={s.saved_searches?.[0]?.query ?? ""} onChange={(e) => setS({ ...s, saved_searches: [{ ...(s.saved_searches?.[0] ?? { name: "Default", skills: [], interval_min: 30 }), query: e.target.value } as any] })} /></label>
         <div><button className="primary" onClick={save}>Save settings</button></div>
+      </section>
+      <section className="card" style={{ marginTop: 12 }}><h2>Connected accounts</h2>
+        <div className="row">
+          <span>Upwork (official MCP server, OAuth — GigBid only ever creates drafts you confirm on Upwork):</span>
+          <span className={`badge ${upwork?.connected ? "ok" : ""}`}>{upwork?.connected ? "connected" : "not connected"}</span>
+          {upwork?.connected
+            ? <button onClick={async () => { await api.POST("/api/auth/upwork/disconnect"); load(); }}>Disconnect</button>
+            : <button onClick={async () => {
+                const r = await api.GET("/api/auth/upwork/start");
+                const e = (r as { error?: unknown }).error;
+                if (e || !(r.data as any)?.authorize_url) return setMsg(errText(e ?? "Upwork OAuth unavailable"));
+                location.href = (r.data as any).authorize_url;
+              }}>Connect Upwork</button>}
+        </div>
       </section>
       <section className="card" style={{ marginTop: 12 }} data-testid="memory-viewer"><h2>What GigBid has learned</h2>
         <p className="small muted">Only knowledge promoted by an explicit rule appears here (style: same edit seen in 3+ drafts across 2+ jobs; outcome: reply-rate lift over 5+ proposals). Delete anything you disagree with.</p>

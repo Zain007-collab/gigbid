@@ -111,6 +111,42 @@ async def upload_case_study(request: Request, user=CurrentUser):
     return Accepted(status="indexed", detail=f"upload-{name}")
 
 
+# ====================================================================== Upwork OAuth (live mode)
+@router.get("/auth/upwork/start", tags=["auth"])
+async def upwork_start(user=CurrentUser) -> dict:
+    """Authorization URL; the user signs in and consents on Upwork itself."""
+    from apps.api.auth import upwork_oauth
+    try:
+        return {"authorize_url": await upwork_oauth.start(user["id"])}
+    except Exception as e:  # noqa: BLE001
+        raise HTTPException(502, f"Upwork OAuth unavailable: {type(e).__name__}") from e
+
+
+@router.get("/auth/upwork/callback", tags=["auth"], include_in_schema=False)
+async def upwork_callback(code: str, state: str):
+    from fastapi.responses import RedirectResponse
+
+    from apps.api.auth import upwork_oauth
+    try:
+        await upwork_oauth.callback(code, state)
+    except PermissionError as e:
+        raise HTTPException(400, str(e)) from e
+    return RedirectResponse("/settings?connected=upwork")
+
+
+@router.get("/auth/upwork/status", tags=["auth"])
+def upwork_status(user=CurrentUser) -> dict:
+    from apps.api.auth import token_store
+    return token_store.status(user["id"], "upwork")
+
+
+@router.post("/auth/upwork/disconnect", response_model=Accepted, tags=["auth"])
+def upwork_disconnect(user=CurrentUser):
+    from apps.api.auth import token_store
+    token_store.delete_tokens(user["id"], "upwork")
+    return Accepted(status="disconnected")
+
+
 # ====================================================================== health (degraded-mode banner)
 @router.get("/health", response_model=Health, tags=["runs"])
 async def health():
