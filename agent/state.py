@@ -68,6 +68,7 @@ class BidState(TypedDict, total=False):
     status: Annotated[Status, last_wins]
     attention_reason: str
     force_bid: bool
+    strategy: str                                 # writer strategy override (X2 A/B experiments)
     # accumulators
     errors: Annotated[list[str], operator.add]
     trace: Annotated[list[dict], operator.add]

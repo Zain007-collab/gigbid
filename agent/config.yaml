@@ -142,7 +142,7 @@ thresholds:
   max_risk_to_bid: 0.40
   scam_block: 0.70
   evidence_min_score:               # cosine(requirement, best evidence) needed to count as supported;
-    fastembed: 0.55                 #   per embedder because similarity scales differ (tuned on dev)
+    fastembed: 0.65                 #   per embedder; swept on dev (decision_dev_shipped_t055.json), confirmed on holdout
     ollama: 0.55
     hash: 0.20                      #   CI only
   proposal_max_words: 220
@@ -151,10 +151,16 @@ autonomy:
   default_level: suggest            # suggest | auto_skip_low_fit   (never auto_send)
 
 # --------------------------------------------------------------------------
+# Writer strategy (signature extension X2: proposal experiments)
+# --------------------------------------------------------------------------
+writer:
+  strategy: evidence_first          # evidence_first | concise_question — see evals/results/ab_test_*.json
+
+# --------------------------------------------------------------------------
 # RAG (R6) — the shipped variant is chosen by evals/results, not by default.
 # --------------------------------------------------------------------------
 rag:
-  variant: v0_naive                 # replaced by the eval winner (see evals/results/rag_*.json)
+  variant: shipped                  # decompose + hybrid + multivector; chosen in evals/results/ablation_dev_round2.json
   crag_threshold: 0.0               # V8 grade threshold on reranker logits
   rerank_depth: 15                  # cross-encoder rescoring depth per query
   k: 8

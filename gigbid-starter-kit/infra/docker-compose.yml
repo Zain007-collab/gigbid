@@ -1,3 +1,0 @@
-# TODO: Define web, API, worker, MCP servers, GigSim, Postgres, Redis,
-# vector store and local model service as appropriate.
-services: {}

@@ -1,0 +1,17 @@
+name: eval
+on: [pull_request, workflow_dispatch]
+jobs:
+  smoke-eval:
+    runs-on: ubuntu-latest
+    env: { GIGBID_OFFLINE: "1", GIGBID_MCP_TRANSPORT: memory }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install --only-binary :all: -r requirements.lock.txt
+      - name: 30-job smoke eval (10 per persona, real open embeddings, deterministic nodes)
+        run: python -m evals.runners.decision_eval --limit 10 --tag ci_smoke
+      - name: Fail on regressions
+        run: python scripts/eval_gate.py evals/results/decision_dev_ci_smoke.json
+      - uses: actions/upload-artifact@v4
+        with: { name: smoke-eval, path: evals/results/decision_dev_ci_smoke.json }

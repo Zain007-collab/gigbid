@@ -13,7 +13,7 @@ from rag.pipeline import Pipeline
 
 PERSONA_ROOT = Path(__file__).resolve().parents[1] / "data" / "personas"
 VARIANTS = ["v0_naive", "v1_decompose", "v2_hybrid", "v3_rerank", "v4_outcome",
-            "v5_multivector", "v6_contextual", "v8_crag"]
+            "v5_multivector", "v6_contextual", "v8_crag", "shipped"]
 
 
 def embedder() -> Embedder:

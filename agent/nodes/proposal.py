@@ -145,7 +145,8 @@ async def writer(state: dict) -> dict:
         out, _ = llm.structured("writer", WriterOut, sys, user)
     texts: dict[str, str] = {e["id"]: e["text"] for e in pack}
     if out is None:
-        out = await template_writer(job, fit, pack, spec, style, texts)
+        strategy = state.get("strategy") or section("writer").get("strategy", "evidence_first")
+        out = await template_writer(job, fit, pack, spec, style, texts, strategy)
     claims = [Claim(text=s.text.strip(), evidence_ids=s.evidence_ids) for s in out.sentences if s.text.strip()]
     answers = [ScreeningAnswer(question_id=a.question_id, question=_q(spec, a.question_id), answer=a.answer,
                                claims=[Claim(text=a.answer, evidence_ids=a.evidence_ids)])
@@ -160,14 +161,21 @@ def _q(spec, qid: str) -> str:
     return next((q.text for q in (spec.screening_questions if spec else []) if q.id == qid), qid)
 
 
-async def template_writer(job: dict, fit, pack: list[dict], spec, style: list[str], texts: dict[str, str]) -> WriterOut:
-    """Deterministic writer (offline / fallback). Cites each project's case study and states only its result."""
+async def template_writer(job: dict, fit, pack: list[dict], spec, style: list[str], texts: dict[str, str],
+                          strategy: str = "evidence_first") -> WriterOut:
+    """Deterministic writer (offline / fallback). Cites each project's case study and states only its result.
+
+    Strategies (signature extension X2, A/B tested in GigSim):
+      evidence_first — restate the need, then up to 3 case studies with measured results
+      concise_question — restate the need, ONE strongest case study, then a scoping question
+    """
     sup = [m for m in fit.matches if m.supported]
     need = ", ".join(m.requirement for m in fit.matches[:3])
     s = [_Sentence(text=f"For “{job['title']}”, the core of the work is {need}.")]
     used, projects = set(), set()
+    max_projects = 1 if strategy == "concise_question" else 3
     for m in sup:
-        if len(projects) >= 3:
+        if len(projects) >= max_projects:
             break
         project = next((e.project for e in m.evidence if e.project and e.project not in projects), None)
         if not project:
@@ -184,9 +192,12 @@ async def template_writer(job: dict, fit, pack: list[dict], spec, style: list[st
             used.add(cs["id"])
             s.append(_Sentence(text=f"On “{title.group(1).strip()}” I {result.group(1).strip()}, which maps to your need for "
                                     f"{m.requirement}.", evidence_ids=[cs["id"]]))
-    if fit.gaps:
+    if fit.gaps and strategy != "concise_question":
         s.append(_Sentence(text=f"For {fit.gaps[0]}, I would start with a short spike and confirm the approach with you before building."))
-    s.append(_Sentence(text="Could you share what a successful first week looks like for you? I can send a one-page plan."))
+    if strategy == "concise_question":
+        s.append(_Sentence(text=f"Before I scope it: which matters most to you first — {need}?"))
+    else:
+        s.append(_Sentence(text="Could you share what a successful first week looks like for you? I can send a one-page plan."))
     answers = [_Answer(question_id=q.id, answer=f"I would answer this from the projects above ({', '.join(sorted(used)) or 'see portfolio'}).",
                        evidence_ids=sorted(used)) for q in (spec.screening_questions if spec else [])]
     out = WriterOut(sentences=s, screening_answers=answers)

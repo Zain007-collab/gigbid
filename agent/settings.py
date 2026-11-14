@@ -13,6 +13,12 @@ import yaml
 
 CONFIG_PATH = Path(os.environ.get("GIGBID_CONFIG", Path(__file__).with_name("config.yaml")))
 
+try:  # local development: secrets from the git-ignored .env at the repo root (never committed)
+    from dotenv import load_dotenv
+    load_dotenv(Path(__file__).resolve().parents[1] / ".env", override=False)
+except ImportError:
+    pass
+
 
 @lru_cache(maxsize=1)
 def load_config() -> dict[str, Any]:
