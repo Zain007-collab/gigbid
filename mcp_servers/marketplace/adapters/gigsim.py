@@ -47,7 +47,7 @@ class GigSimAdapter(MarketplacePort):
             transport=transport,
             base_url=os.environ.get(cfg["base_url_env"], "http://localhost:8080"),
             timeout=cfg["timeout_s"],
-            headers={"Authorization": f"Bearer {os.environ.get(cfg['api_key_env'], '')}"},
+            headers={"Authorization": f"Bearer {key}"} if (key := os.environ.get(cfg["api_key_env"])) else {},
         )
 
     # ------------------------------------------------------------------ http

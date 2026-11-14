@@ -147,3 +147,9 @@ async def test_audit_log_append_only_and_masked(fake):
         store.raw().execute("UPDATE audit_log SET status='x'")
     with pytest.raises(sqlite3.DatabaseError):
         store.raw().execute("DELETE FROM audit_log")
+
+
+def test_pii_mask_keeps_ips_and_masks_phones():
+    from shared.pii import mask
+    assert mask("Uvicorn running on http://127.0.0.1:8766") == "Uvicorn running on http://127.0.0.1:8766"
+    assert "[PHONE]" in mask("call +1 415 555 0100") and "[EMAIL]" in mask("a.b@c.io")

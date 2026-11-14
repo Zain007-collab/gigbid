@@ -71,6 +71,21 @@ class TokenBucketLimiter:
     _buckets: dict[str, _Bucket] = field(default_factory=dict)
     _lock: threading.Lock = field(default_factory=threading.Lock)
 
+    async def wait(self, user_id: str, max_wait_s: float) -> None:
+        """Queue politely: reserve a token and sleep until it is ours; refuse only if the queue is too long."""
+        import asyncio
+        now = time.monotonic()
+        with self._lock:
+            b = self._buckets.setdefault(user_id, _Bucket(self.burst, now))
+            b.tokens = min(self.burst, b.tokens + (now - b.updated) * self.rate)
+            b.updated = now
+            delay = 0.0 if b.tokens >= 1 else (1 - b.tokens) / self.rate
+            if delay > max_wait_s:
+                raise RateLimitExceeded(delay)
+            b.tokens -= 1                      # may go negative: later callers queue behind us
+        if delay:
+            await asyncio.sleep(delay)
+
     def acquire(self, user_id: str) -> None:
         now = time.monotonic()
         with self._lock:

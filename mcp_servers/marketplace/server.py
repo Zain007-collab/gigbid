@@ -45,6 +45,7 @@ mcp = FastMCP(
     ),
 )
 
+MAX_QUEUE_S = float(os.environ.get("MARKETPLACE_MAX_QUEUE_S", "15"))
 READ = ToolAnnotations(readOnlyHint=True, destructiveHint=False, idempotentHint=True, openWorldHint=True)
 
 
@@ -118,7 +119,7 @@ async def _read(ctx: Context, tool: str, args: dict[str, Any], fn: Callable[[str
     rt = runtime()
     user, trace = _caller(ctx)
     try:
-        rt.limiter.acquire(user)
+        await rt.limiter.wait(user, MAX_QUEUE_S)
         result = await fn(user)
     except (MarketplaceError, GuardError) as e:
         rt.store.audit(user, tool, args, {"error": str(e)}, "error", trace)
@@ -142,7 +143,7 @@ async def _write(
     user, trace = _caller(ctx)
     audit_args = {**args, "idempotency_key": idempotency_key, "dry_run": dry_run, "approval_id": approval_id}
     try:
-        rt.limiter.acquire(user)
+        await rt.limiter.wait(user, MAX_QUEUE_S)
         preview = await preview_fn(user)
         if dry_run:
             rt.store.audit(user, action, audit_args, preview.model_dump(), "dry_run", trace)

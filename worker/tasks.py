@@ -20,6 +20,16 @@ from agent.settings import section
 from apps.api import db, runtime
 
 _tasks: set[asyncio.Task] = set()
+_inline_slots: asyncio.Semaphore | None = None
+INLINE_CONCURRENCY = int(os.environ.get("INLINE_CONCURRENCY", "3"))   # mirrors WorkerSettings.max_jobs
+
+
+async def _bounded(coro):
+    global _inline_slots
+    if _inline_slots is None:
+        _inline_slots = asyncio.Semaphore(INLINE_CONCURRENCY)
+    async with _inline_slots:
+        return await coro
 
 
 async def enqueue(fn_name: str, job_key: str, **kwargs) -> str:
@@ -31,7 +41,7 @@ async def enqueue(fn_name: str, job_key: str, **kwargs) -> str:
         await pool.aclose()
         return "queued" if job else "duplicate"
     fn = FUNCTIONS[fn_name]
-    t = asyncio.create_task(fn({}, **kwargs))
+    t = asyncio.create_task(_bounded(fn({}, **kwargs)))
     _tasks.add(t)
     t.add_done_callback(_tasks.discard)
     return "inline"

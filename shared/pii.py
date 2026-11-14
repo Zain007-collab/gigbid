@@ -10,7 +10,8 @@ _PATTERNS: list[tuple[re.Pattern[str], str]] = [
     (re.compile(r"\b(?:\d[ -]?){13,19}\b"), "[CARD]"),
     (re.compile(r"\b[A-Z]{2}\d{2}[A-Z0-9]{11,30}\b"), "[IBAN]"),
     # phone: +country or long digit runs with separators
-    (re.compile(r"(?<!\w)\+?\d[\d\s().-]{7,}\d(?!\w)"), "[PHONE]"),
+    # phone: +country or 9+ digits with spaces/dashes/brackets (dots excluded so IPs and versions survive)
+    (re.compile(r"(?<![\w.])\+?\d[\d\s()-]{7,}\d(?![\w.])"), "[PHONE]"),
     (re.compile(r"(?i)\b(?:paypal\.me|wa\.me|t\.me|venmo\.com|cash\.app)/\S+"), "[PAYMENT_HANDLE]"),
     (re.compile(r"(?i)\b(?:skype|telegram|whatsapp)\s*[:@]\s*\S+"), "[CONTACT_HANDLE]"),
     (re.compile(r"(?i)\bbearer\s+[A-Za-z0-9._~+/=-]{8,}"), "Bearer [TOKEN]"),

@@ -32,11 +32,10 @@ class PIIMaskingFilter(logging.Filter):
     """Mask emails, phones, payment details and tokens in every log record (E4)."""
 
     def filter(self, record: logging.LogRecord) -> bool:
-        try:
-            record.msg = mask(record.getMessage())
-            record.args = ()
-        except Exception:  # noqa: BLE001
-            pass
+        if isinstance(record.msg, str):
+            record.msg = mask(record.msg)
+        if isinstance(record.args, tuple):  # keep arity: formatters (e.g. uvicorn.access) unpack args
+            record.args = tuple(mask(a) if isinstance(a, str) else a for a in record.args)
         return True
 
 

@@ -137,7 +137,12 @@ app = FastAPI(title="GigSim", version="1.0",
 @app.middleware("http")
 async def chaos_and_limits(request: Request, call_next):
     path = request.url.path
-    if path.startswith("/admin") or path in ("/health", "/docs", "/openapi.json"):
+    if path.startswith("/admin"):
+        token = os.environ.get("GIGSIM_ADMIN_TOKEN")
+        if token and request.headers.get("x-admin-token") != token:
+            return JSONResponse({"error": "admin token required"}, status_code=403)
+        return await call_next(request)
+    if path in ("/health", "/docs", "/openapi.json"):
         return await call_next(request)
     if SIM.down:
         return JSONResponse({"error": "service unavailable"}, status_code=503)

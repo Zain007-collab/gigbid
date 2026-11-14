@@ -13,6 +13,7 @@ import asyncio
 import json
 import os
 import random
+import re
 from contextvars import ContextVar
 from typing import Any
 
@@ -35,7 +36,7 @@ ALLOWLIST: dict[str, set[str]] = {
 }
 
 TIMEOUT_S = {"marketplace": 20, "portfolio": 30, "workspace": 10}
-RETRIES = 2
+RETRIES = 3
 
 # request-scoped identity, set by the API/worker before invoking a graph
 current_user: ContextVar[str] = ContextVar("current_user", default="local")
@@ -109,7 +110,10 @@ async def call(agent: str, qualified_tool: str, args: dict | None = None) -> dic
                 if any(code in text for code in ("MARKETPLACE_UNAVAILABLE", "RATE_LIMITED")):
                     last = MarketplaceDown(text) if "MARKETPLACE_UNAVAILABLE" in text else ToolFailed(text)
                     if attempt < RETRIES:
-                        await asyncio.sleep(min(4.0, 0.5 * 2 ** attempt) * (0.5 + random.random()))
+                        # polite: honour the server's retry-after hint when rate limited
+                        m = re.search(r"retry[ _]after[= ]?([\d.]+)", text)
+                        wait = float(m.group(1)) + 0.1 if m else 0.5 * 2 ** attempt
+                        await asyncio.sleep(min(8.0, wait) * (1 + 0.25 * random.random()))
                         continue
                     break
                 raise ToolFailed(text)

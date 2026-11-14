@@ -33,3 +33,4 @@ data/live/
 
 # os / editor
 .DS_Store
+apps/web/openapi.json
