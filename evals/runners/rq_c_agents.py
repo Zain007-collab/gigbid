@@ -14,6 +14,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import json
+import os
 import re
 import statistics
 import time
@@ -189,6 +190,7 @@ async def main_async(a) -> None:
                                 for c in sorted({r["category"] for r in rs})}}
 
     out = {"n_jobs": len(jobs), "model": f"{node_model(a.model)['provider']}/{node_model(a.model)['model']}",
+           "same_model_for_all_systems": bool(os.environ.get("GIGBID_MODEL_OVERRIDE")),
            "systems": {s: agg(rs) for s, rs in results.items()}, "jobs": results}
     for s, v in out["systems"].items():
         print(s, {k: v[k] for k in ("bid_accuracy", "unsupported_per_proposal", "reply_rate", "tokens_per_job", "p95_latency_s")})

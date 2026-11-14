@@ -79,6 +79,8 @@ async def run_job(graph, persona: str, row: dict) -> dict:
         "usage_by_node": usage,
         "llm_calls": sum(len(t.get("llm") or []) for t in v.get("trace") or []),
         "llm_fallbacks": sum(1 for t in v.get("trace") or [] for u in (t.get("llm") or []) if u.get("error")),
+        # nodes where every model attempt failed, so the deterministic path produced the output
+        "deterministic_nodes": sum(1 for t in v.get("trace") or [] if t.get("llm") and all(u.get("error") for u in t["llm"])),
     }
 
 
@@ -122,6 +124,7 @@ def score(rows: list[dict]) -> dict:
         "usd_per_proposal": round(statistics.mean(r["usd"] for r in proposals), 6) if proposals else None,
         "llm_calls": sum(r.get("llm_calls", 0) for r in rows),
         "llm_fallbacks": sum(r.get("llm_fallbacks", 0) for r in rows),
+        "deterministic_nodes": sum(r.get("deterministic_nodes", 0) for r in rows),
     }
 
 

@@ -38,10 +38,16 @@ def load_config() -> dict[str, Any]:
 
 
 def node_model(node: str) -> dict[str, Any]:
-    """Model settings for a graph node under the active profile."""
+    """Model settings for a graph node under the active profile.
+
+    GIGBID_MODEL_OVERRIDE="provider:model" forces one model for every node — for controlled experiments only
+    (e.g. R&D question C compares systems on the same model)."""
     cfg = load_config()
     profile = cfg["profiles"][cfg["active_profile"]]
-    return dict(profile["nodes"].get(node, profile["defaults"]))
+    spec = dict(profile["nodes"].get(node, profile["defaults"]))
+    if ov := os.environ.get("GIGBID_MODEL_OVERRIDE"):
+        spec["provider"], spec["model"] = ov.split(":", 1)
+    return spec
 
 
 def fallback_model() -> dict[str, Any]:
