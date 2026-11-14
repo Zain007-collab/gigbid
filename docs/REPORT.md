@@ -79,8 +79,14 @@ paraphrases evidence, so the "before" rate is low by construction; the LLM write
 **Where better retrieval did not translate:** V0 makes bid/skip decisions as well as the shipped pipeline (F1 0.947
 vs 0.943) despite 15.7 points less Recall@5. The Fit Matcher only needs the single most similar item per requirement
 to clear a threshold, and V0's small fixed chunks often produce *higher* top-1 similarity than whole-document
-chunks. Recall matters for what the writer can cite, not for the decision. Reply-rate impact: **[`gigsim_outcomes_*`
-— see §README table once the run completes]**.
+chunks. Recall matters for what the writer can cite, not for the decision.
+
+**Nor did it move reply rate** [`gigsim_outcomes_shipped_offline.json`, `gigsim_outcomes_v0_offline.json`; 100
+gold-bid jobs per persona, harness approves, 10 simulated days]: shipped 67.4% realised / 66.8% expected (n = 285)
+vs V0 67.3% / 66.5% (n = 291); hires 14.4% vs 12.0%. GigSim's clients reward must-have skill coverage, measured
+results and a specific opening; the writer cites the top projects under either retriever, so must-have coverage is
+the same (0.845 vs 0.846). Better recall only pays off when the writer *uses* the extra evidence — which the
+deterministic writer, by design, does not.
 
 **By persona and job type:** F1 by category on dev: ai_ml 0.959, data 0.964, web 0.957, devops 0.435 (13 false
 positives); off-domain categories (design, mobile, writing, other) contain no gold bids, so their F1 is 0 by
@@ -109,8 +115,11 @@ are spent.
 ## 7. Signature extension — X2 proposal experiments
 Two writer strategies (`evidence_first`: up to three case studies with measured results; `concise_question`: one
 strongest case study plus a scoping question), jobs randomly assigned (seed 11), submitted to GigSim clients, compared
-with a two-proportion z-test and Fisher's exact test [`ab_test_evidence_first_vs_concise_question.json`]. See
-`docs/EXTENSION.md`.
+with a two-proportion z-test and Fisher's exact test [`ab_test_evidence_first_vs_concise_question.json`]:
+evidence-first 65.6% (101/154) vs concise-question 63.4% (83/131), z = 0.39, p = 0.70 (Fisher p = 0.71) — **no
+significant difference**, so the default stays evidence-first. A first run reported 0 replies in both arms because the
+runner read statuses before GigSim applied due events; caught by the implausible zero, fixed, superseded result kept.
+See `docs/EXTENSION.md`.
 
 ## 8. Failure analysis (dev, shipped pipeline) [`decision_dev_shipped_offline.json`]
 40 of 600 dev decisions were wrong (24 false bids, 16 missed bids).

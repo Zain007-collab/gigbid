@@ -37,3 +37,5 @@
     the judge-calibration sheet. Fixed: the relevance clause is only added when the case study itself covers the
     requirement, and the verifier grades the whole sentence. All decision/outcome results produced before the fix were
     moved to `evals/results/superseded/` and regenerated.
+11. **A/B runner read GigSim statuses before due events were applied** (GigSim processes events lazily on the next
+    request), reporting 0 replies in both arms; the implausible zero gave it away. Fixed and re-run.

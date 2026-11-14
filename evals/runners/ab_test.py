@@ -62,6 +62,8 @@ async def main_async(args) -> None:
             if sub.get("proposal_id"):
                 arms[arm].append({"job_id": row["job_id"], "persona": persona, "proposal_id": sub["proposal_id"]})
     gs.SIM.tick_min += 60 * 24 * 10
+    with gs.SIM.lock:
+        gs.SIM.process_events()        # GigSim applies due client events lazily (normally on the next request)
     for arm, rs in arms.items():
         for r in rs:
             p = gs.SIM.proposals[r["proposal_id"]]

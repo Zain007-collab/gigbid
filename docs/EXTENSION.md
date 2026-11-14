@@ -14,8 +14,16 @@ would, ten simulated days pass, and reply rates are compared with a two-proporti
 The strategy is a config value (`writer.strategy`) and a per-thread override (`strategy` in the graph input), so the
 winner ships with a one-line change.
 
-**Results:** `evals/results/ab_test_evidence_first_vs_concise_question.json` (filled in by the run; see the README
-results section).
+**Results** (`evals/results/ab_test_evidence_first_vs_concise_question.json`, seed 11, deterministic writer):
+
+| Strategy | Proposals | Replies | Reply rate | Hires |
+|---|---|---|---|---|
+| evidence_first | 154 | 101 | 65.6% | 20 |
+| concise_question | 131 | 83 | 63.4% | 19 |
+
+Two-proportion z = 0.39, p = 0.70; Fisher exact p = 0.71. **No significant difference** at this sample size, so the
+default stays `evidence_first`. Rerun with the LLM writer (`GROQ_API_KEY` set) before drawing conclusions about
+wording, since the template strategies differ only in how much evidence they cite.
 
 **Threats to validity:** the client model is ours and transparent (`gigsim/app.py::score_proposal`), so the test
 measures which strategy fits *that* model; assignment is per job, so persona mix is balanced only in expectation;
