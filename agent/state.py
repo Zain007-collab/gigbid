@@ -66,6 +66,7 @@ class BidState(TypedDict, total=False):
     submission: dict
     status: Annotated[Status, last_wins]
     attention_reason: str
+    force_bid: bool
     # accumulators
     errors: Annotated[list[str], operator.add]
     trace: Annotated[list[dict], operator.add]

@@ -48,6 +48,8 @@ def decide_rule(fit: float, risk, job: dict, profile: dict) -> BidDecision:
 @node("decide")
 async def decide(state: dict) -> dict:
     d = decide_rule(state["fit"].fit_score, state["risk"], state["job"], persona_profile(state["persona"]))
+    if state.get("force_bid") and d.action != "bid" and state["risk"].risk_score < section("thresholds")["scam_block"]:
+        d = BidDecision(job_id=d.job_id, action="bid", reasons=["user chose to draft anyway", *d.reasons])
     status = {"bid": "running", "watch": "watch", "skip": "skipped"}[d.action]
     return {"decision": d, "status": status}
 
