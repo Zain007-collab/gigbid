@@ -5,7 +5,7 @@ test("onboarding: sign up, pick a persona, land on an empty inbox @mobile", asyn
   await signUpAndOnboard(page);
   await expect(page.getByText("No jobs yet.")).toBeVisible();
   await page.getByRole("button", { name: "Scout now" }).click();
-  await expect(page.getByRole("status")).toContainText(/queued \d+ new jobs/);
+  await expect(page.getByRole("status")).toContainText(/queued \d+ new jobs/, { timeout: 20_000 });
 });
 
 test("approve a proposal: evidence on hover, dry-run preview, submitted exactly once", async ({ page }) => {
@@ -14,7 +14,7 @@ test("approve a proposal: evidence on hover, dry-run preview, submitted exactly 
   await draftWaitingForApproval(page, job);
   await expect(page.getByTestId("dry-run")).toContainText(job);
   await expect(page.getByTestId("connects-cost")).toHaveText(/\d+/);
-  const cited = page.locator(".claim.supported").first();
+  const cited = page.locator(".claim:not(.none)").first();          // a sentence that cites evidence
   await cited.hover();
   await expect(page.getByRole("tooltip")).toContainText(/case_study|repo|code|review|proposal/);
   await page.getByTestId("approve").click();

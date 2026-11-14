@@ -25,7 +25,7 @@ ALLOWLIST: dict[str, set[str]] = {
     "fit_matcher": {"portfolio.search_evidence", "portfolio.list_skills"},
     "pricing": {"marketplace.get_connects_balance", "marketplace.get_market_stats"},
     "writer": {"portfolio.search_evidence", "portfolio.get_case_study"},
-    "verifier": {"portfolio.search_evidence"},
+    "verifier": {"portfolio.search_evidence", "portfolio.get_case_study"},
     "critic": {"portfolio.search_evidence"},
     "compliance": set(),
     "approval": {"marketplace.create_proposal_draft", "marketplace.send_message"},   # dry_run previews only
@@ -83,6 +83,21 @@ async def _call_http(server: str, tool: str, args: dict) -> Any:
                                             "url": os.environ[f"{env}_MCP_URL"], "headers": headers}})
     async with client.session(server) as session:
         return await session.call_tool(tool, args)
+
+
+async def marketplace_healthy(timeout_s: float = 3.0) -> bool:
+    """Degraded-mode probe for the UI banner: one fast check, no retry ladder."""
+    try:
+        if os.environ.get("GIGBID_MCP_TRANSPORT", "memory") == "memory":
+            from mcp_servers.marketplace.server import runtime
+            return await asyncio.wait_for(runtime().adapter.health(), timeout_s)
+        import httpx
+        base = os.environ["MARKETPLACE_MCP_URL"].rsplit("/mcp", 1)[0]
+        async with httpx.AsyncClient(timeout=timeout_s) as c:
+            r = await c.get(f"{base}/healthz")
+            return r.status_code == 200 and bool(r.json().get("marketplace_up", False))
+    except Exception:  # noqa: BLE001 - any failure means "not healthy"
+        return False
 
 
 async def call(agent: str, qualified_tool: str, args: dict | None = None) -> dict:

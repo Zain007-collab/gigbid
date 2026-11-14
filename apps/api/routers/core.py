@@ -115,13 +115,8 @@ async def upload_case_study(request: Request, user=CurrentUser):
 @router.get("/health", response_model=Health, tags=["runs"])
 async def health():
     mode = section("marketplace")["mode"]
-    up, detail = True, None
-    try:
-        await mcp_client.call("pricing", "marketplace.get_connects_balance", {})
-    except mcp_client.MarketplaceDown as e:
-        up, detail = False, "Marketplace unavailable — new work is queued and will resume automatically."
-    except Exception as e:  # noqa: BLE001
-        up, detail = False, f"Marketplace check failed: {type(e).__name__}"
+    up = await mcp_client.marketplace_healthy()
+    detail = None if up else "Marketplace unavailable — new work is queued and will resume automatically."
     return Health(ok=True, marketplace_up=up, marketplace_mode=mode, llm_online=llm.online("writer"), detail=detail)
 
 

@@ -34,3 +34,6 @@ data/live/
 # os / editor
 .DS_Store
 apps/web/openapi.json
+apps/web/playwright-report/
+apps/web/test-results/
+apps/web/dist/

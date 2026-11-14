@@ -63,6 +63,9 @@ def approval_payload(state: dict, text: str, preview: dict, note: str | None = N
     draft: ProposalDraft = state["drafts"][-1]
     ev = {e.id: {"id": e.id, "type": e.type, "project": e.project, "text": e.text[:600]}
           for m in state["fit"].matches for e in m.evidence}
+    for i, t in (state.get("evidence_texts") or {}).items():
+        ev.setdefault(i, {"id": i, "type": "case_study" if ":case:" in i else "evidence", "project": i.split(":")[-1],
+                          "text": t[:600]})
     return {
         "type": "proposal_approval", "job_id": state["job_id"], "job_title": state["job"]["title"],
         "text": text, "draft_version": draft.version,
@@ -101,7 +104,8 @@ async def approval(state: dict) -> Command:
     await promotion_rules.observe_edit(memory.get(), state["user_id"], state["job_id"], text, edited)
     old = {c.text: c.evidence_ids for c in state["drafts"][-1].claims}
     sentences = [s for s in _split(edited) if s]
-    claims = await check_claims([Claim(text=s, evidence_ids=old.get(s, [])) for s in sentences], state["fit"], False)
+    claims = await check_claims([Claim(text=s, evidence_ids=old.get(s, [])) for s in sentences], state["fit"], False,
+                                state.get("evidence_texts"))
     unsupported = [c.text for c in claims if c.status == "unsupported"]
     cleaned, violations = comply(edited)
     new_draft = state["drafts"][-1].model_copy(update={

@@ -136,7 +136,10 @@ app = FastAPI(title="GigSim", version="1.0",
 # ====================================================================== middleware: chaos + rate limit
 @app.middleware("http")
 async def chaos_and_limits(request: Request, call_next):
-    path = request.url.path
+    # path relative to wherever GigSim is mounted (it may run under /gigsim inside the API)
+    path, root = request.url.path, request.scope.get("root_path", "")
+    if root and path.startswith(root):
+        path = path[len(root):] or "/"
     if path.startswith("/admin"):
         token = os.environ.get("GIGSIM_ADMIN_TOKEN")
         if token and request.headers.get("x-admin-token") != token:

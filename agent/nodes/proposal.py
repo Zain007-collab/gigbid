@@ -143,8 +143,9 @@ async def writer(state: dict) -> dict:
                 + "\nSCREENING QUESTIONS:\n" + "\n".join(f"{q.id}: {q.text}" for q in qs)
                 + "\n\n" + prompting.untrusted("job_post", f"{job['title']}\n\n{job['description']}"))
         out, _ = llm.structured("writer", WriterOut, sys, user)
+    texts: dict[str, str] = {e["id"]: e["text"] for e in pack}
     if out is None:
-        out = template_writer(job, fit, pack, spec, style)
+        out = await template_writer(job, fit, pack, spec, style, texts)
     claims = [Claim(text=s.text.strip(), evidence_ids=s.evidence_ids) for s in out.sentences if s.text.strip()]
     answers = [ScreeningAnswer(question_id=a.question_id, question=_q(spec, a.question_id), answer=a.answer,
                                claims=[Claim(text=a.answer, evidence_ids=a.evidence_ids)])
@@ -152,31 +153,37 @@ async def writer(state: dict) -> dict:
     draft = ProposalDraft(job_id=job["job_id"], version=len(state.get("drafts", [])) + 1,
                           cover_letter=" ".join(c.text for c in claims), claims=claims,
                           screening_answers=answers, price=state.get("price"))
-    return {"drafts": [draft], "revision": revision}
+    return {"drafts": [draft], "revision": revision, "evidence_texts": texts}
 
 
 def _q(spec, qid: str) -> str:
     return next((q.text for q in (spec.screening_questions if spec else []) if q.id == qid), qid)
 
 
-def template_writer(job: dict, fit, pack: list[dict], spec, style: list[str]) -> WriterOut:
-    """Deterministic writer (offline / fallback). Only states what the evidence says."""
+async def template_writer(job: dict, fit, pack: list[dict], spec, style: list[str], texts: dict[str, str]) -> WriterOut:
+    """Deterministic writer (offline / fallback). Cites each project's case study and states only its result."""
     sup = [m for m in fit.matches if m.supported]
     need = ", ".join(m.requirement for m in fit.matches[:3])
     s = [_Sentence(text=f"For “{job['title']}”, the core of the work is {need}.")]
-    used = set()
-    for m in sup[:3]:
-        e = next((e for e in m.evidence if e.type == "case_study" and e.id not in used), None) or \
-            next((e for e in m.evidence if e.id not in used), None)
-        if not e:
+    used, projects = set(), set()
+    for m in sup:
+        if len(projects) >= 3:
+            break
+        project = next((e.project for e in m.evidence if e.project and e.project not in projects), None)
+        if not project:
             continue
-        used.add(e.id)
-        title = re.search(r"^#\s*(.+)$", e.text, re.M)
-        result = re.search(r"We (.+?)\.", e.text)
+        projects.add(project)
+        try:
+            cs = await tool("writer", "portfolio.get_case_study", {"id": project})
+        except Exception:  # noqa: BLE001 - no case study for this project: skip rather than invent
+            continue
+        title = re.search(r"^#\s*(.+)$", cs["text"], re.M)
+        result = re.search(r"We (.+?)\.", cs["text"])
         if title and result:
-            s.append(_Sentence(text=f"On “{title.group(1).strip()}” I {result.group(1).strip()}.", evidence_ids=[e.id]))
-        else:
-            s.append(_Sentence(text=f"My portfolio item {e.id} covers {m.requirement}.", evidence_ids=[e.id]))
+            texts[cs["id"]] = cs["text"]
+            used.add(cs["id"])
+            s.append(_Sentence(text=f"On “{title.group(1).strip()}” I {result.group(1).strip()}, which maps to your need for "
+                                    f"{m.requirement}.", evidence_ids=[cs["id"]]))
     if fit.gaps:
         s.append(_Sentence(text=f"For {fit.gaps[0]}, I would start with a short spike and confirm the approach with you before building."))
     s.append(_Sentence(text="Could you share what a successful first week looks like for you? I can send a one-page plan."))
@@ -215,6 +222,7 @@ def _content(t: str) -> set[str]:
 
 def lexical_check(claim: str, evidence_texts: list[str]) -> str:
     """Heuristic grounding: content-word coverage of the claim by its best evidence; numbers must appear."""
+    claim = re.split(r",? which maps to your need for", claim)[0]
     cw = _content(claim)
     if not cw:
         return "supported"
@@ -232,12 +240,12 @@ def is_claim(text: str) -> bool:
     return bool(EXPERIENCE.search(text)) and not text.rstrip().endswith("?")
 
 
-async def check_claims(claims: list[Claim], fit, use_llm: bool) -> list[Claim]:
-    ev_by_id = {e.id: e.text for m in fit.matches for e in m.evidence}
+async def check_claims(claims: list[Claim], fit, use_llm: bool, extra: dict[str, str] | None = None) -> list[Claim]:
+    ev_by_id = {e.id: e.text for m in fit.matches for e in m.evidence} | (extra or {})
     out = []
     pending = []
     for c in claims:
-        if not is_claim(c.text):
+        if not is_claim(c.text) and not c.evidence_ids:
             out.append(c.model_copy(update={"status": "supported", "note": "not a factual claim"}))
             continue
         texts = [ev_by_id[i] for i in c.evidence_ids if i in ev_by_id]
@@ -267,12 +275,13 @@ async def check_claims(claims: list[Claim], fit, use_llm: bool) -> list[Claim]:
 @node("verifier")
 async def verifier(state: dict) -> dict:
     draft: ProposalDraft = state["drafts"][-1]
-    checked = await check_claims(draft.claims, state["fit"], llm.online("verifier"))
+    extra = state.get("evidence_texts") or {}
+    checked = await check_claims(draft.claims, state["fit"], llm.online("verifier"), extra)
     before = sum(c.status == "unsupported" for c in checked)
     kept = [c for c in checked if c.status != "unsupported"]
     # re-check what remains (partials may have been rewritten) to measure "after"
     after = sum(c.status == "unsupported" for c in await check_claims(
-        [c.model_copy(update={"status": "unchecked"}) for c in kept], state["fit"], False))
+        [c.model_copy(update={"status": "unchecked"}) for c in kept], state["fit"], False, extra))
     verified = draft.model_copy(update={
         "claims": kept, "cover_letter": " ".join(c.text for c in kept),
         "unsupported_before_verify": before, "unsupported_after_verify": after})

@@ -178,10 +178,11 @@ class GigSimAdapter(MarketplacePort):
             return None
 
     async def health(self) -> bool:
+        """Fast probe: one request, no retries, reads GigSim's ok flag."""
         try:
-            await self._call("health")
-            return True
-        except MarketplaceError:
+            r = await self._client.get(ENDPOINTS["health"][1], timeout=3)
+            return r.status_code == 200 and bool(r.json().get("ok", True))
+        except (httpx.HTTPError, ValueError):
             return False
 
     async def aclose(self) -> None:

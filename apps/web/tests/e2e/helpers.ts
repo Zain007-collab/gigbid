@@ -1,8 +1,11 @@
 import { expect, type Page } from "@playwright/test";
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-const dev = fs.readFileSync(path.resolve(__dirname, "../../../../evals/datasets/dev/ai_ml.jsonl"), "utf8")
+const here = path.dirname(fileURLToPath(import.meta.url));
+
+const dev = fs.readFileSync(path.resolve(here, "../../../../evals/datasets/dev/ai_ml.jsonl"), "utf8")
   .trim().split("\n").map((l) => JSON.parse(l));
 export const bidJobs: string[] = dev.filter((r) => r.gold.bid && r.gold.coverage === 1 && !r.gold.injection).map((r) => r.job_id);
 

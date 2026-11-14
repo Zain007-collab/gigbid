@@ -58,6 +58,7 @@ class BidState(TypedDict, total=False):
     decision: BidDecision
     price: PriceQuote
     drafts: Annotated[list[ProposalDraft], operator.add]
+    evidence_texts: Annotated[dict, operator.or_]   # evidence id -> text, for verification and the approval UI
     critiques: Annotated[list[Critique], operator.add]
     revision: int
     compliance: ComplianceVerdict

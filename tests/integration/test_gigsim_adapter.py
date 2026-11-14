@@ -97,3 +97,18 @@ async def test_gigsim_429_surfaces_as_rate_limited(adapter, monkeypatch):
     results = [await call("get_market_stats", {"category": "web"}) for _ in range(4)]
     assert not results[0].isError
     assert any(r.isError and "RATE_LIMITED" in r.content[0].text for r in results[2:])
+
+
+async def test_admin_requires_token_even_when_mounted(monkeypatch):
+    """Regression: under a mount the middleware saw '/gigsim/admin/...' and skipped the token check."""
+    from fastapi import FastAPI
+    monkeypatch.setenv("GIGSIM_ADMIN_TOKEN", "secret")
+    host = FastAPI()
+    host.mount("/gigsim", gs.app)
+    gs.SIM.reset()
+    async with httpx.AsyncClient(transport=httpx.ASGITransport(app=host), base_url="http://t") as c:
+        assert (await c.post("/gigsim/admin/chaos", json={"down": True})).status_code == 403
+        ok = await c.post("/gigsim/admin/chaos", json={"down": True}, headers={"x-admin-token": "secret"})
+        assert ok.status_code == 200 and gs.SIM.down
+        back = await c.post("/gigsim/admin/chaos", json={"down": False}, headers={"x-admin-token": "secret"})
+        assert back.status_code == 200 and not gs.SIM.down     # admin still reachable while "down"
