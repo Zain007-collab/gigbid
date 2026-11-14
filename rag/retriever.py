@@ -40,4 +40,4 @@ def build(variant: str, persona: str, emb: Embedder | None = None, rr: Reranker 
 @lru_cache(maxsize=8)
 def for_persona(persona: str) -> Pipeline:
     """The shipped retriever for a persona (cached; call cache_clear() after re-indexing)."""
-    return build(section("rag")["variant"], persona)
+    return build(os.environ.get("RAG_VARIANT") or section("rag")["variant"], persona)

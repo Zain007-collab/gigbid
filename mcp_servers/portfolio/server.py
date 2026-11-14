@@ -100,14 +100,25 @@ def _persona_dir(ctx: Context | None = None) -> Path:
 
 
 _DOCS: dict[str, list[Doc]] = {}
+_SIG: dict[str, tuple] = {}
+
+
+def _signature(d: Path) -> tuple:
+    """Changes when the user adds work (uploads/), so the index refreshes without a restart."""
+    up = d / "uploads"
+    files = sorted(up.glob("*.md")) if up.exists() else []
+    return (len(files), max((f.stat().st_mtime for f in files), default=0.0))
 
 
 def _docs(ctx: Context | None = None) -> tuple[str, list[Doc]]:
     d = _persona_dir(ctx)
     if not d.exists():
         raise ToolError(f"portfolio not found: {d.name}")
-    if d.name not in _DOCS:
-        _DOCS[d.name] = load_persona(d)
+    sig = _signature(d)
+    if d.name not in _DOCS or _SIG.get(d.name) != sig:
+        if d.name in _DOCS:
+            reindex(d.name)          # incremental: unchanged chunks hit the embedding cache
+        _DOCS[d.name], _SIG[d.name] = load_persona(d), sig
     return d.name, _DOCS[d.name]
 
 
@@ -130,7 +141,7 @@ def search_evidence(
     """Find portfolio items that prove one requirement. Each item has type, source, date and outcome."""
     from rag import retriever
 
-    persona, _ = _docs(ctx)
+    persona, _ = _docs(ctx)          # also refreshes the index if new work was uploaded
     pipe = retriever.for_persona(persona)
     ev = pipe.retrieve(requirement, [requirement], k=max(k * 3, 10))
     items = []

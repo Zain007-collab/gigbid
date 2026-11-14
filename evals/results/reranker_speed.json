@@ -1,0 +1,8 @@
+{
+  "model": "BAAI/bge-reranker-base",
+  "hardware": "Intel Core i-series MacBook (x86_64), CPU only, ONNX Runtime 1.23.2",
+  "pairs_scored": 7610,
+  "wall_minutes": 21,
+  "pairs_per_second": 6.0,
+  "note": "measured during the first full RAG comparison (22:53-23:14 PKT); run stopped and the reranker switched to Xenova/ms-marco-MiniLM-L-6-v2"
+}

@@ -1,0 +1,78 @@
+# docker compose -f infra/docker-compose.yml up --build
+# Every service, wired over HTTP with bearer tokens. Secrets come from ../.env (copy .env.example).
+name: gigbid
+x-py: &py
+  env_file: ../.env
+  environment: &pyenv
+    DATABASE_URL: postgresql://gigbid:gigbid@postgres:5432/gigbid
+    REDIS_URL: redis://redis:6379/0
+    GIGSIM_BASE_URL: http://gigsim:8080
+    GIGBID_MCP_TRANSPORT: http
+    MARKETPLACE_MCP_URL: http://marketplace-mcp:8101/mcp
+    PORTFOLIO_MCP_URL: http://portfolio-mcp:8102/mcp
+    WORKSPACE_MCP_URL: http://workspace-mcp:8103/mcp
+    OLLAMA_BASE_URL: http://ollama:11434
+    MARKETPLACE_STATE_DB: /data/marketplace_state.sqlite3
+    WORKSPACE_DB: /data/workspace.sqlite3
+    MCP_TRANSPORT: streamable-http
+    FASTEMBED_CACHE_PATH: /models/fastembed
+    RAG_CACHE_DIR: /models/emb_cache
+  volumes:
+    - ../data/personas:/app/data/personas     # shared: API writes uploads, portfolio-mcp re-indexes them
+    - models:/models
+  restart: unless-stopped
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment: { POSTGRES_USER: gigbid, POSTGRES_PASSWORD: gigbid, POSTGRES_DB: gigbid }
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck: { test: ["CMD-SHELL", "pg_isready -U gigbid"], interval: 5s, retries: 20 }
+  redis:
+    image: redis:7-alpine
+    healthcheck: { test: ["CMD", "redis-cli", "ping"], interval: 5s, retries: 20 }
+  ollama:
+    image: ollama/ollama:0.5.7
+    volumes: [ollama:/root/.ollama]
+    profiles: ["local-llm"]          # docker compose --profile local-llm up  (open profile on your own hardware)
+  gigsim:
+    <<: *py
+    build: { context: .., dockerfile: infra/docker/gigsim.Dockerfile }
+    ports: ["8080:8080"]
+  marketplace-mcp:
+    <<: *py
+    build: { context: .., dockerfile: infra/docker/marketplace-mcp.Dockerfile }
+    environment: { <<: *pyenv, PORT: "8101" }
+    volumes: [state:/data, ../data/personas:/app/data/personas, models:/models]
+    depends_on: [gigsim]
+  portfolio-mcp:
+    <<: *py
+    build: { context: .., dockerfile: infra/docker/portfolio-mcp.Dockerfile }
+    environment: { <<: *pyenv, PORT: "8102" }
+  workspace-mcp:
+    <<: *py
+    build: { context: .., dockerfile: infra/docker/workspace-mcp.Dockerfile }
+    environment: { <<: *pyenv, PORT: "8103" }
+    volumes: [state:/data, ../data/personas:/app/data/personas, models:/models]
+  api:
+    <<: *py
+    build: { context: .., dockerfile: infra/docker/api.Dockerfile }
+    ports: ["8000:8000"]
+    depends_on:
+      postgres: { condition: service_healthy }
+      redis: { condition: service_healthy }
+      marketplace-mcp: { condition: service_started }
+      portfolio-mcp: { condition: service_started }
+      workspace-mcp: { condition: service_started }
+  worker:
+    <<: *py
+    build: { context: .., dockerfile: infra/docker/worker.Dockerfile }
+    depends_on:
+      postgres: { condition: service_healthy }
+      redis: { condition: service_healthy }
+  web:
+    build: { context: .., dockerfile: infra/docker/web.Dockerfile }
+    ports: ["5173:80"]
+    depends_on: [api]
+
+volumes: { pgdata: {}, ollama: {}, state: {}, models: {} }

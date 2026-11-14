@@ -58,8 +58,7 @@ class Embedder:
             for i, v in zip(idx, vecs):
                 self._cache[keys[i]] = [round(float(x), 6) for x in v]
         if missing:
-            self._cache_path.parent.mkdir(parents=True, exist_ok=True)
-            self._cache_path.write_text(json.dumps(self._cache))
+            _atomic_write(self._cache_path, self._cache)
         m = np.array([self._cache[k] for k in keys], dtype=np.float32)
         return m / (np.linalg.norm(m, axis=1, keepdims=True) + 1e-9)
 
@@ -93,9 +92,22 @@ class Reranker:
 
     def flush(self) -> None:
         if self._dirty:
-            self._cache_path.parent.mkdir(parents=True, exist_ok=True)
-            self._cache_path.write_text(json.dumps(self._cache))
+            _atomic_write(self._cache_path, self._cache)
             self._dirty = 0
+
+
+def _atomic_write(path: Path, data: dict) -> None:
+    """Merge with what another process may have written, then replace atomically."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        on_disk = json.loads(path.read_text()) if path.exists() else {}
+    except json.JSONDecodeError:
+        on_disk = {}
+    on_disk.update(data)
+    data.update(on_disk)
+    tmp = path.with_suffix(f".{os.getpid()}.tmp")
+    tmp.write_text(json.dumps(on_disk))
+    os.replace(tmp, path)
 
 
 def _tokens(t: str) -> list[str]:
