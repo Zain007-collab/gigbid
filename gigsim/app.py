@@ -186,6 +186,17 @@ def policy():
     return SIM.policy()
 
 
+_STATS = json.loads((SEED_DIR / "market_stats.json").read_text())
+
+
+@app.get("/market/stats/{category}")
+def market_stats(category: str):
+    s = _STATS.get(category)
+    if not s:
+        raise HTTPException(404, "unknown category")
+    return {"category": category, "fixed": s["fixed"], "hourly": s["hourly"], "source": s["source"]}
+
+
 @app.get("/jobs")
 def search_jobs(q: str = "", skills: str = "", limit: int = 20, min_budget: float | None = None,
                 posted_after: str | None = None, category: str | None = None):

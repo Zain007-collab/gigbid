@@ -11,7 +11,7 @@ from typing import Any
 
 from agent.marketplace_port import (
     ClientHistory, ClientSummary, ConnectsBalance, DraftReceipt, Job, JobQuery, JobSummary,
-    MarketplaceError, MarketplacePort, MarketplaceUnavailable, Message, MessageReceipt, NotFound,
+    MarketStats, Percentiles, ProposalStatus, MarketplaceError, MarketplacePort, MarketplaceUnavailable, Message, MessageReceipt, NotFound,
     ProposalPayload, SubmitReceipt,
 )
 
@@ -74,6 +74,16 @@ class FakeMarketplace(MarketplacePort):
     async def list_messages(self, user_id: str, thread_id: str | None = None, since: datetime | None = None) -> list[Message]:
         self._check()
         return [m for m in self.messages if thread_id is None or m.thread_id == thread_id]
+
+    async def get_market_stats(self, user_id: str, category: str) -> MarketStats:
+        self._check()
+        return MarketStats(category=category, fixed=Percentiles(p25=500, p50=900, p75=1400),
+                           hourly=Percentiles(p25=25, p50=40, p75=60), source="fake")
+
+    async def list_proposals(self, user_id: str) -> list[ProposalStatus]:
+        self._check()
+        return [ProposalStatus(proposal_id=r.proposal_id, job_id=r.job_id, status="submitted",
+                               connects_spent=r.connects_spent) for r in self.submitted.values()]
 
     async def create_proposal_draft(self, user_id: str, payload: ProposalPayload, idempotency_key: str) -> DraftReceipt:
         self._check()

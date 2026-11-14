@@ -99,6 +99,8 @@ marketplace:
       get_client_history: ""
       get_connects_balance: ""
       list_messages: ""
+      get_market_stats: ""          # not offered upstream -> computed from search results if unmapped
+      list_proposals: ""
       create_proposal_draft: ""
       submit_proposal: ""           # Upwork creates a draft the user confirms on-platform
       send_message: ""

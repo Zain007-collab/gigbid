@@ -32,8 +32,8 @@ from mcp_servers.marketplace.guards import (
 )
 from mcp_servers.marketplace.schemas import (
     ApprovalId, ClientHistoryResult, ClientId, ConnectsResult, DraftId, DryRun, IdempotencyKey,
-    JobId, JobResult, JobSearchResult, MessagesResult, Preview, ScreeningAnswerIn, ThreadId,
-    WriteResult,
+    JobId, JobResult, JobSearchResult, MarketStatsResult, MessagesResult, Preview, ProposalsResult,
+    ScreeningAnswerIn, ThreadId, WriteResult,
 )
 
 mcp = FastMCP(
@@ -235,6 +235,24 @@ async def list_messages(
     msgs = await _read(ctx, "list_messages", {"thread_id": thread_id, "since": since},
                        lambda u: runtime().adapter.list_messages(u, thread_id, since))
     return MessagesResult(messages=msgs)
+
+
+@mcp.tool(annotations=READ)
+async def get_market_stats(
+    ctx: Context,
+    category: Annotated[str, Field(pattern=r"^[a-z_]{2,20}$", description="job category, e.g. 'ai_ml', 'web', 'data'")],
+) -> MarketStatsResult:
+    """Price percentiles (fixed budgets and hourly rates) for a job category."""
+    s = await _read(ctx, "get_market_stats", {"category": category},
+                    lambda u: runtime().adapter.get_market_stats(u, category))
+    return MarketStatsResult(stats=s)
+
+
+@mcp.tool(annotations=READ)
+async def list_proposals(ctx: Context) -> ProposalsResult:
+    """The freelancer's submitted proposals and their pipeline status (viewed, replied, interview, hired, lost)."""
+    ps = await _read(ctx, "list_proposals", {}, lambda u: runtime().adapter.list_proposals(u))
+    return ProposalsResult(proposals=ps)
 
 
 # ---------------------------------------------------------------- write tools

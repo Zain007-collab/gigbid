@@ -80,6 +80,30 @@ class Message(BaseModel):
     sent_at: datetime
 
 
+class Percentiles(BaseModel):
+    p25: float
+    p50: float
+    p75: float
+
+
+class MarketStats(BaseModel):
+    category: str
+    fixed: Percentiles
+    hourly: Percentiles
+    source: str = "unknown"
+
+
+class ProposalStatus(BaseModel):
+    proposal_id: str
+    job_id: str
+    thread_id: str | None = None
+    status: Literal["submitted", "viewed", "replied", "interview", "hired", "lost",
+                    "pending_user_confirmation"]
+    connects_spent: int = 0
+    bid_amount: float | None = None
+    submitted_at: datetime | None = None
+
+
 class JobQuery(BaseModel):
     query: str = ""
     skills: list[str] = []
@@ -154,6 +178,12 @@ class MarketplacePort(abc.ABC):
     async def list_messages(
         self, user_id: str, thread_id: str | None = None, since: datetime | None = None
     ) -> list[Message]: ...
+
+    @abc.abstractmethod
+    async def get_market_stats(self, user_id: str, category: str) -> MarketStats: ...
+
+    @abc.abstractmethod
+    async def list_proposals(self, user_id: str) -> list[ProposalStatus]: ...
 
     # writes — every write carries an idempotency key the adapter forwards upstream
     @abc.abstractmethod

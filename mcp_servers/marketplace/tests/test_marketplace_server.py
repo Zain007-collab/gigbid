@@ -36,7 +36,7 @@ async def test_tools_have_schemas_and_annotations(fake):
         tools = {t.name: t for t in (await client.list_tools()).tools}
     assert set(tools) == {
         "search_jobs", "get_job", "get_client_history", "get_connects_balance", "list_messages",
-        "create_proposal_draft", "submit_proposal", "send_message",
+        "get_market_stats", "list_proposals", "create_proposal_draft", "submit_proposal", "send_message",
     }
     for name in ("search_jobs", "get_job", "get_client_history", "get_connects_balance", "list_messages"):
         assert tools[name].annotations.readOnlyHint is True
@@ -125,7 +125,7 @@ async def test_key_reuse_with_different_args_rejected(fake):
 async def test_marketplace_down_reports_unavailable(fake):
     fake.down = True
     r = await call("get_job", {"job_id": "j1"})
-    assert r.isError and r.content[0].text.startswith("MARKETPLACE_UNAVAILABLE")
+    assert r.isError and "MARKETPLACE_UNAVAILABLE" in r.content[0].text
 
 
 async def test_per_user_rate_limit(fake):

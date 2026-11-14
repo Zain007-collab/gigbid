@@ -1,0 +1,248 @@
+{
+  "create_email_draft": {
+    "annotations": {
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false,
+      "readOnlyHint": false
+    },
+    "inputSchema": {
+      "properties": {
+        "body": {
+          "maxLength": 10000,
+          "minLength": 1,
+          "title": "Body",
+          "type": "string"
+        },
+        "idempotency_key": {
+          "maxLength": 128,
+          "minLength": 8,
+          "pattern": "^[A-Za-z0-9_.:-]+$",
+          "title": "Idempotency Key",
+          "type": "string"
+        },
+        "recipient_label": {
+          "description": "name or address; stored, never sent",
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Recipient Label",
+          "type": "string"
+        },
+        "subject": {
+          "maxLength": 300,
+          "minLength": 1,
+          "title": "Subject",
+          "type": "string"
+        }
+      },
+      "required": [
+        "recipient_label",
+        "subject",
+        "body",
+        "idempotency_key"
+      ],
+      "title": "create_email_draftArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "properties": {
+        "draft_id": {
+          "title": "Draft Id",
+          "type": "string"
+        },
+        "recipient": {
+          "title": "Recipient",
+          "type": "string"
+        },
+        "replayed": {
+          "default": false,
+          "title": "Replayed",
+          "type": "boolean"
+        },
+        "subject": {
+          "title": "Subject",
+          "type": "string"
+        }
+      },
+      "required": [
+        "draft_id",
+        "recipient",
+        "subject"
+      ],
+      "title": "DraftResult",
+      "type": "object"
+    }
+  },
+  "create_interview_hold": {
+    "annotations": {
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false,
+      "readOnlyHint": false
+    },
+    "inputSchema": {
+      "properties": {
+        "duration_min": {
+          "default": 30,
+          "maximum": 180,
+          "minimum": 15,
+          "title": "Duration Min",
+          "type": "integer"
+        },
+        "idempotency_key": {
+          "maxLength": 128,
+          "minLength": 8,
+          "pattern": "^[A-Za-z0-9_.:-]+$",
+          "title": "Idempotency Key",
+          "type": "string"
+        },
+        "start": {
+          "format": "date-time",
+          "title": "Start",
+          "type": "string"
+        },
+        "title": {
+          "default": "Client interview (tentative)",
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "idempotency_key"
+      ],
+      "title": "create_interview_holdArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "properties": {
+        "end": {
+          "format": "date-time",
+          "title": "End",
+          "type": "string"
+        },
+        "event_id": {
+          "title": "Event Id",
+          "type": "string"
+        },
+        "replayed": {
+          "default": false,
+          "title": "Replayed",
+          "type": "boolean"
+        },
+        "start": {
+          "format": "date-time",
+          "title": "Start",
+          "type": "string"
+        },
+        "status": {
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "event_id",
+        "start",
+        "end",
+        "status"
+      ],
+      "title": "HoldResult",
+      "type": "object"
+    }
+  },
+  "free_slots": {
+    "annotations": {
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false,
+      "readOnlyHint": true
+    },
+    "inputSchema": {
+      "properties": {
+        "days": {
+          "default": 5,
+          "maximum": 14,
+          "minimum": 1,
+          "title": "Days",
+          "type": "integer"
+        },
+        "duration_min": {
+          "default": 30,
+          "maximum": 180,
+          "minimum": 15,
+          "title": "Duration Min",
+          "type": "integer"
+        },
+        "from_date": {
+          "format": "date",
+          "title": "From Date",
+          "type": "string"
+        },
+        "max_slots": {
+          "default": 6,
+          "maximum": 20,
+          "minimum": 1,
+          "title": "Max Slots",
+          "type": "integer"
+        },
+        "tz": {
+          "default": "UTC",
+          "description": "IANA timezone, e.g. 'Asia/Karachi'",
+          "maxLength": 64,
+          "title": "Tz",
+          "type": "string"
+        }
+      },
+      "required": [
+        "from_date"
+      ],
+      "title": "free_slotsArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "$defs": {
+        "Slot": {
+          "properties": {
+            "end": {
+              "format": "date-time",
+              "title": "End",
+              "type": "string"
+            },
+            "start": {
+              "format": "date-time",
+              "title": "Start",
+              "type": "string"
+            }
+          },
+          "required": [
+            "start",
+            "end"
+          ],
+          "title": "Slot",
+          "type": "object"
+        }
+      },
+      "properties": {
+        "slots": {
+          "items": {
+            "$ref": "#/$defs/Slot"
+          },
+          "title": "Slots",
+          "type": "array"
+        },
+        "timezone": {
+          "title": "Timezone",
+          "type": "string"
+        }
+      },
+      "required": [
+        "timezone",
+        "slots"
+      ],
+      "title": "SlotsResult",
+      "type": "object"
+    }
+  }
+}

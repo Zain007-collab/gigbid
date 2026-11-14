@@ -20,7 +20,8 @@ from datetime import datetime
 from typing import Any
 
 from agent.marketplace_port import (
-    ClientHistory, ConnectsBalance, DraftReceipt, Job, JobQuery, JobSummary, MarketplaceError,
+    ClientHistory, ConnectsBalance, DraftReceipt, Job, JobQuery, JobSummary, MarketplaceError, MarketStats,
+    ProposalStatus,
     MarketplacePort, MarketplaceUnavailable, Message, MessageReceipt, ProposalPayload, SubmitReceipt,
 )
 
@@ -84,6 +85,14 @@ class UpworkLiveAdapter(MarketplacePort):
         args: dict[str, Any] = {"thread_id": thread_id} if thread_id else {}
         data = await self._call(user_id, "list_messages", args)
         return [Message.model_validate(m) for m in data.get("messages", [])]
+
+    async def get_market_stats(self, user_id: str, category: str) -> MarketStats:
+        return MarketStats.model_validate({**await self._call(user_id, "get_market_stats", {"category": category}),
+                                           "category": category})
+
+    async def list_proposals(self, user_id: str) -> list[ProposalStatus]:
+        data = await self._call(user_id, "list_proposals", {})
+        return [ProposalStatus.model_validate(p) for p in data.get("proposals", [])]
 
     async def create_proposal_draft(self, user_id: str, payload: ProposalPayload, idempotency_key: str) -> DraftReceipt:
         d = await self._call(user_id, "create_proposal_draft", payload.model_dump())

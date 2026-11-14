@@ -5,7 +5,9 @@ from typing import Annotated, Any, Literal
 
 from pydantic import BaseModel, Field
 
-from agent.marketplace_port import ClientHistory, ConnectsBalance, Job, JobSummary, Message
+from agent.marketplace_port import (
+    ClientHistory, ConnectsBalance, Job, JobSummary, MarketStats, Message, ProposalStatus,
+)
 
 JobId = Annotated[str, Field(min_length=1, max_length=64, pattern=r"^[A-Za-z0-9_-]+$",
                              description="Marketplace job id, e.g. 'j_123'")]
@@ -49,6 +51,14 @@ class ConnectsResult(BaseModel):
 
 class MessagesResult(BaseModel):
     messages: list[Message]
+
+
+class MarketStatsResult(BaseModel):
+    stats: MarketStats
+
+
+class ProposalsResult(BaseModel):
+    proposals: list[ProposalStatus]
 
 
 class Preview(BaseModel):

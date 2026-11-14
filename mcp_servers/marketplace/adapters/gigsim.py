@@ -20,7 +20,7 @@ import httpx
 
 from agent.marketplace_port import (
     ClientHistory, ClientSummary, ConnectsBalance, DraftReceipt, Job, JobQuery, JobSummary,
-    MarketplaceError, MarketplacePort, MarketplaceUnavailable, Message, MessageReceipt, NotFound,
+    MarketStats, ProposalStatus, MarketplaceError, MarketplacePort, MarketplaceUnavailable, Message, MessageReceipt, NotFound,
     PastContract, ProposalPayload, RateLimited, SubmitReceipt,
 )
 
@@ -33,6 +33,8 @@ ENDPOINTS = {
     "create_draft": ("POST", "/freelancers/{user_id}/proposals/drafts"),
     "submit_proposal": ("POST", "/freelancers/{user_id}/proposals/drafts/{draft_id}/submit"),
     "send_message": ("POST", "/freelancers/{user_id}/threads/{thread_id}/messages"),
+    "market_stats": ("GET", "/market/stats/{category}"),
+    "list_proposals": ("GET", "/freelancers/{user_id}/proposals"),
     "lookup_idempotency": ("GET", "/freelancers/{user_id}/idempotency/{key}"),
     "health": ("GET", "/health"),
 }
@@ -128,6 +130,14 @@ class GigSimAdapter(MarketplacePort):
             params["since"] = since.isoformat()
         data = await self._call("list_messages", path_params={"user_id": user_id}, params=params)
         return [Message(**_pick(m, Message)) for m in _items(data)]
+
+    async def get_market_stats(self, user_id: str, category: str) -> MarketStats:
+        d = await self._call("market_stats", path_params={"category": category})
+        return MarketStats(category=category, fixed=d["fixed"], hourly=d["hourly"], source=d.get("source", "gigsim"))
+
+    async def list_proposals(self, user_id: str) -> list[ProposalStatus]:
+        data = await self._call("list_proposals", path_params={"user_id": user_id})
+        return [ProposalStatus(**_pick(p, ProposalStatus)) for p in _items(data)]
 
     # ---------------------------------------------------------------- writes
     async def create_proposal_draft(
