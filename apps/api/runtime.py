@@ -210,7 +210,18 @@ async def run_bid(user_id: str, job_id: str, resume: dict | None = None, force_b
         inp: Any = {"job_id": job_id, "user_id": user_id, "persona": persona, "force_bid": force_bid}
         db.upsert_inbox(user_id, job_id, status="running")
     elif resume.get("retry"):
-        inp = None                              # resume the node that failed (degraded mode recovery)
+        snap = await BID.aget_state({"configurable": {"thread_id": tid}})
+        if not snap.values:                     # died before the first checkpoint: start over
+            inp = {"job_id": job_id, "user_id": user_id, "persona": persona}
+        elif not snap.next:                     # already finished (or waiting at an interrupt): just re-project it
+            vals, pending = snap.values, [i.value for t in snap.tasks for i in t.interrupts]
+            usage = vals.get("usage") or {}
+            project_bid(user_id, job_id, vals, "awaiting_approval" if pending else vals.get("status", "done"),
+                        sum(u.get("tokens_in", 0) + u.get("tokens_out", 0) for u in usage.values()),
+                        round(sum(u.get("usd", 0) for u in usage.values()), 6), 0.0)
+            return {"status": "recovered", "error": None, "pending": bool(pending), "trace_id": None}
+        else:
+            inp = None                          # resume the node that was running when the process died
     else:
         inp = Command(resume=resume)
     return await _execute(BID, "bid", user_id, persona, tid, inp, job_id)

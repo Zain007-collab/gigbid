@@ -73,10 +73,27 @@ async def _warm_reviewer(uid: str) -> None:
     await tasks.scout({}, user_id=uid)
 
 
+async def recover_orphans() -> dict:
+    """After a restart (deploy, crash, free-tier recycle) nothing executes runs the DB still marks running/queued.
+    Running threads resume from their last Postgres checkpoint; queued jobs are re-enqueued. Idempotency keys make
+    any resumed submit exactly-once."""
+    from worker import tasks
+    rows = db.q("SELECT user_id, job_id, status FROM inbox WHERE status IN ('running', 'queued', 'degraded_queued')")
+    for r in rows:
+        if r["status"] == "queued":
+            await tasks.enqueue("analyze_job", f"recover:{r['user_id']}:{r['job_id']}", user_id=r["user_id"], job_id=r["job_id"])
+        else:
+            await tasks.enqueue("retry_bid", f"recover:{r['user_id']}:{r['job_id']}", user_id=r["user_id"], job_id=r["job_id"])
+    db.q("UPDATE runs SET status='interrupted', ended_at=:e WHERE status='running'", e=db.now())
+    return {"resumed": sum(r["status"] != "queued" for r in rows), "requeued": sum(r["status"] == "queued" for r in rows)}
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     db.init()
     await runtime.startup()
+    if os.environ.get("RECOVER_ON_START", "1") == "1":
+        logging.getLogger("gigbid").info("startup recovery: %s", await recover_orphans())
     uid = seed_reviewer()
     if uid and os.environ.get("WARM_REVIEWER", "1") == "1":
         asyncio.create_task(_warm_reviewer(uid))
