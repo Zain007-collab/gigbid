@@ -103,6 +103,8 @@ def load_persona(persona_dir: Path) -> list[Doc]:
 
 
 def _project_for_repo(persona_dir: Path, repo: str) -> str | None:
-    """Repo -> project id via the repo name's numeric suffix, which matches the case-study id."""
+    """Repo -> project id. Synthetic repos end in the case-study number; GitHub-ingested repos are their own project."""
+    if repo.startswith("gh-"):
+        return repo
     m = re.search(r"-(\d+)$", repo)
     return f"{persona_dir.name}-p{int(m.group(1)):02d}" if m else None
