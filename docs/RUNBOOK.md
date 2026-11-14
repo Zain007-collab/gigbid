@@ -47,3 +47,13 @@ if it is a content rule, `data/policy_pack/` + the rule list in `agent/nodes/pro
 ## Secrets
 Only from environment variables; `.env` is git-ignored and CI fails on committed secrets. OAuth tokens are
 Fernet-encrypted per user (`apps/api/auth/token_store.py`) and masked in every log line.
+
+## Deploy (public URL)
+1. **Database:** create a free Neon Postgres; copy the `postgresql://…` URL (checkpointer, memory store, app tables).
+2. **Space:** create a *Docker* Space on Hugging Face (free CPU, 16 GB RAM — enough for the open embedding models).
+3. **Secrets** (Space → Settings → Variables and secrets): `DATABASE_URL`, `GROQ_API_KEY`, `SESSION_SECRET`,
+   `TOKEN_ENCRYPTION_KEY`, `REVIEWER_EMAIL`, `REVIEWER_PASSWORD`, `GIGSIM_ADMIN_TOKEN`.
+4. `HF_USER=<you> HF_SPACE=gigbid HF_TOKEN=<write token> ./scripts/deploy_hf_space.sh`
+5. Open `https://<you>-gigbid.hf.space`, sign in with the reviewer account, and check `/api/health`.
+The image (`infra/docker/app.Dockerfile`) serves the built UI, the API, the embedded GigSim at `/gigsim` and runs the
+worker inline (bounded to 3 concurrent runs). Keep the Space running until grades are released.
