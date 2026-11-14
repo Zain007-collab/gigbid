@@ -1,9 +1,7 @@
 """GigSim REST adapter.
 
-!! The endpoint paths and field names below are PROVISIONAL — the GigSim
-!! starter kit was not available when this was written. Verify ENDPOINTS and
-!! the _to_* mappers against gigsim/'s API docs; nothing outside this file
-!! depends on GigSim's wire format.
+Targets the GigSim REST API in gigsim/app.py. Nothing outside this file
+depends on GigSim's wire format (endpoints in ENDPOINTS, mapping in _to_*).
 
 Handles GigSim's rate limits (429 + Retry-After) and occasional 5xx errors
 with bounded exponential backoff and jitter.
@@ -43,9 +41,10 @@ ENDPOINTS = {
 class GigSimAdapter(MarketplacePort):
     name = "gigsim"
 
-    def __init__(self, cfg: dict[str, Any]):
+    def __init__(self, cfg: dict[str, Any], transport: httpx.AsyncBaseTransport | None = None):
         self._cfg = cfg
         self._client = httpx.AsyncClient(
+            transport=transport,
             base_url=os.environ.get(cfg["base_url_env"], "http://localhost:8080"),
             timeout=cfg["timeout_s"],
             headers={"Authorization": f"Bearer {os.environ.get(cfg['api_key_env'], '')}"},
