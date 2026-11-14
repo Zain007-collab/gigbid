@@ -1,0 +1,34 @@
+{
+  "seed": 7,
+  "kaggle_used": false,
+  "kaggle_files": [],
+  "kaggle_rows": 0,
+  "personas": {
+    "ai_ml": 22,
+    "fullstack": 20,
+    "data_analyst": 20
+  },
+  "jobs_total": 1066,
+  "stream_jobs": 316,
+  "clients": 320,
+  "dev": {
+    "ai_ml": {
+      "n": 200,
+      "bid": 122,
+      "scam": 22,
+      "injection": 16
+    },
+    "fullstack": {
+      "n": 200,
+      "bid": 114,
+      "scam": 27,
+      "injection": 18
+    },
+    "data_analyst": {
+      "n": 200,
+      "bid": 112,
+      "scam": 30,
+      "injection": 17
+    }
+  }
+}

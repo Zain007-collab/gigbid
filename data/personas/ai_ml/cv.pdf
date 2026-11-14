@@ -1,0 +1,32 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [4 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 5 0 R >>
+endobj
+5 0 obj
+<< /Length 1303 >>
+stream
+BT /F1 10 Tf 50 800 Td 14 TL ( Sana Qureshi \(synthetic\)) ' () ' (AI/ML Engineer ? RAG systems, LLM agents and ML pipelines) ' () ' (Lahore, PK \(synthetic\) · 5 years freelancing) ' () ' ( Skills) ' (Hugging Face, PyTorch, FastAPI, Python, Pinecone, RAG, Airflow, LangGraph, LLM evaluation, Docker) ' () ' ( Selected work) ' (- 2026: Fine-tuned open model for fintech ticket classification ? lifted macro-F1 from 0.54 to 0.28.) ' (- 2026: Multi-step support agent with human approval for a non-profit company ? resolved 61% of tier-1 tickets without escalation.) ' (- 2026: Nightly feature pipeline for e-commerce analytics ? reduced pipeline failures from 8 per week to 1.) ' (- 2026: Document Q&A assistant for a e-commerce team ? cut average lookup time from 5 minutes to 1 seconds.) ' (- 2025: Document Q&A assistant for a non-profit team ? cut average lookup time from 6 minutes to 2 seconds.) ' (- 2025: Churn prediction model for a fintech subscription business ? raised recall on churners from 45% to 52%.) ' (- 2024: Multi-step support agent with human approval for a SaaS company ? resolved 57% of tier-1 tickets without escalation.) ' (- 2024: Nightly feature pipeline for SaaS analytics ? reduced pipeline failures from 6 per week to 2.) ' () ' (_This CV is synthetic \(synthetic\)._) ' ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000185 00000 n 
+0000000311 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1666
+%%EOF

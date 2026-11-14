@@ -1,0 +1,540 @@
+{
+  "persona_id": "ai_ml",
+  "projects": [
+    {
+      "project_id": "ai_ml-p01",
+      "archetype": "rag_bot",
+      "title": "Document Q&A assistant for a non-profit team",
+      "industry": "non-profit",
+      "year": 2025,
+      "explicit": [
+        "rag",
+        "langchain",
+        "fastapi"
+      ],
+      "implied": [
+        "pinecone",
+        "llm-evaluation"
+      ],
+      "skills": [
+        "fastapi",
+        "langchain",
+        "llm-evaluation",
+        "pinecone",
+        "rag"
+      ],
+      "metric": "cut average lookup time from 6 minutes to 2 seconds",
+      "repo": "rag-bot-non-profit-1",
+      "client_industry": "non-profit"
+    },
+    {
+      "project_id": "ai_ml-p02",
+      "archetype": "agent_workflow",
+      "title": "Multi-step support agent with human approval for a SaaS company",
+      "industry": "SaaS",
+      "year": 2024,
+      "explicit": [
+        "langgraph",
+        "python"
+      ],
+      "implied": [
+        "fastapi",
+        "pgvector",
+        "docker"
+      ],
+      "skills": [
+        "docker",
+        "fastapi",
+        "langgraph",
+        "pgvector",
+        "python"
+      ],
+      "metric": "resolved 57% of tier-1 tickets without escalation",
+      "repo": "agent-workflow-saas-2",
+      "client_industry": "SaaS"
+    },
+    {
+      "project_id": "ai_ml-p03",
+      "archetype": "churn",
+      "title": "Churn prediction model for a fintech subscription business",
+      "industry": "fintech",
+      "year": 2025,
+      "explicit": [
+        "scikit-learn",
+        "python"
+      ],
+      "implied": [
+        "mlflow",
+        "sql"
+      ],
+      "skills": [
+        "mlflow",
+        "python",
+        "scikit-learn",
+        "sql"
+      ],
+      "metric": "raised recall on churners from 45% to 52%",
+      "repo": "churn-fintech-3",
+      "client_industry": "fintech"
+    },
+    {
+      "project_id": "ai_ml-p04",
+      "archetype": "cv_defects",
+      "title": "Visual defect detection for a e-commerce line",
+      "industry": "e-commerce",
+      "year": 2021,
+      "explicit": [
+        "pytorch"
+      ],
+      "implied": [
+        "docker",
+        "fastapi"
+      ],
+      "skills": [
+        "docker",
+        "fastapi",
+        "pytorch"
+      ],
+      "metric": "reached 44% precision at 55% recall on held-out images",
+      "repo": "cv-defects-e-commerce-4",
+      "client_industry": "e-commerce"
+    },
+    {
+      "project_id": "ai_ml-p05",
+      "archetype": "finetune",
+      "title": "Fine-tuned open model for fintech ticket classification",
+      "industry": "fintech",
+      "year": 2026,
+      "explicit": [
+        "huggingface",
+        "pytorch"
+      ],
+      "implied": [
+        "mlflow",
+        "llm-evaluation"
+      ],
+      "skills": [
+        "huggingface",
+        "llm-evaluation",
+        "mlflow",
+        "pytorch"
+      ],
+      "metric": "lifted macro-F1 from 0.54 to 0.28",
+      "repo": "finetune-fintech-5",
+      "client_industry": "fintech"
+    },
+    {
+      "project_id": "ai_ml-p06",
+      "archetype": "pipeline",
+      "title": "Nightly feature pipeline for SaaS analytics",
+      "industry": "SaaS",
+      "year": 2024,
+      "explicit": [
+        "airflow",
+        "sql"
+      ],
+      "implied": [
+        "celery",
+        "docker"
+      ],
+      "skills": [
+        "airflow",
+        "celery",
+        "docker",
+        "sql"
+      ],
+      "metric": "reduced pipeline failures from 6 per week to 2",
+      "repo": "pipeline-saas-6",
+      "client_industry": "SaaS"
+    },
+    {
+      "project_id": "ai_ml-p07",
+      "archetype": "semantic_search",
+      "title": "Semantic product search for a SaaS catalogue",
+      "industry": "SaaS",
+      "year": 2024,
+      "explicit": [
+        "pgvector",
+        "fastapi"
+      ],
+      "implied": [
+        "huggingface",
+        "redis"
+      ],
+      "skills": [
+        "fastapi",
+        "huggingface",
+        "pgvector",
+        "redis"
+      ],
+      "metric": "improved click-through on search by 53%",
+      "repo": "semantic-search-saas-7",
+      "client_industry": "SaaS"
+    },
+    {
+      "project_id": "ai_ml-p08",
+      "archetype": "eval_harness",
+      "title": "LLM evaluation harness for a legal chatbot",
+      "industry": "legal",
+      "year": 2022,
+      "explicit": [
+        "llm-evaluation",
+        "python"
+      ],
+      "implied": [
+        "langchain",
+        "celery"
+      ],
+      "skills": [
+        "celery",
+        "langchain",
+        "llm-evaluation",
+        "python"
+      ],
+      "metric": "caught 4 regressions before release in the first month",
+      "repo": "eval-harness-legal-8",
+      "client_industry": "legal"
+    },
+    {
+      "project_id": "ai_ml-p09",
+      "archetype": "rag_bot",
+      "title": "Document Q&A assistant for a e-commerce team",
+      "industry": "e-commerce",
+      "year": 2022,
+      "explicit": [
+        "rag",
+        "langchain",
+        "fastapi"
+      ],
+      "implied": [
+        "pinecone",
+        "llm-evaluation"
+      ],
+      "skills": [
+        "fastapi",
+        "langchain",
+        "llm-evaluation",
+        "pinecone",
+        "rag"
+      ],
+      "metric": "cut average lookup time from 9 minutes to 1 seconds",
+      "repo": "rag-bot-e-commerce-9",
+      "client_industry": "e-commerce"
+    },
+    {
+      "project_id": "ai_ml-p10",
+      "archetype": "agent_workflow",
+      "title": "Multi-step support agent with human approval for a non-profit company",
+      "industry": "non-profit",
+      "year": 2026,
+      "explicit": [
+        "langgraph",
+        "python"
+      ],
+      "implied": [
+        "fastapi",
+        "pgvector",
+        "docker"
+      ],
+      "skills": [
+        "docker",
+        "fastapi",
+        "langgraph",
+        "pgvector",
+        "python"
+      ],
+      "metric": "resolved 61% of tier-1 tickets without escalation",
+      "repo": "agent-workflow-non-profit-10",
+      "client_industry": "non-profit"
+    },
+    {
+      "project_id": "ai_ml-p11",
+      "archetype": "churn",
+      "title": "Churn prediction model for a SaaS subscription business",
+      "industry": "SaaS",
+      "year": 2023,
+      "explicit": [
+        "scikit-learn",
+        "python"
+      ],
+      "implied": [
+        "mlflow",
+        "sql"
+      ],
+      "skills": [
+        "mlflow",
+        "python",
+        "scikit-learn",
+        "sql"
+      ],
+      "metric": "raised recall on churners from 65% to 28%",
+      "repo": "churn-saas-11",
+      "client_industry": "SaaS"
+    },
+    {
+      "project_id": "ai_ml-p12",
+      "archetype": "cv_defects",
+      "title": "Visual defect detection for a marketing agency line",
+      "industry": "marketing agency",
+      "year": 2021,
+      "explicit": [
+        "pytorch"
+      ],
+      "implied": [
+        "docker",
+        "fastapi"
+      ],
+      "skills": [
+        "docker",
+        "fastapi",
+        "pytorch"
+      ],
+      "metric": "reached 37% precision at 49% recall on held-out images",
+      "repo": "cv-defects-marketing-agency-12",
+      "client_industry": "marketing agency"
+    },
+    {
+      "project_id": "ai_ml-p13",
+      "archetype": "finetune",
+      "title": "Fine-tuned open model for edtech ticket classification",
+      "industry": "edtech",
+      "year": 2022,
+      "explicit": [
+        "huggingface",
+        "pytorch"
+      ],
+      "implied": [
+        "mlflow",
+        "llm-evaluation"
+      ],
+      "skills": [
+        "huggingface",
+        "llm-evaluation",
+        "mlflow",
+        "pytorch"
+      ],
+      "metric": "lifted macro-F1 from 0.43 to 0.26",
+      "repo": "finetune-edtech-13",
+      "client_industry": "edtech"
+    },
+    {
+      "project_id": "ai_ml-p14",
+      "archetype": "pipeline",
+      "title": "Nightly feature pipeline for e-commerce analytics",
+      "industry": "e-commerce",
+      "year": 2026,
+      "explicit": [
+        "airflow",
+        "sql"
+      ],
+      "implied": [
+        "celery",
+        "docker"
+      ],
+      "skills": [
+        "airflow",
+        "celery",
+        "docker",
+        "sql"
+      ],
+      "metric": "reduced pipeline failures from 8 per week to 1",
+      "repo": "pipeline-e-commerce-14",
+      "client_industry": "e-commerce"
+    },
+    {
+      "project_id": "ai_ml-p15",
+      "archetype": "semantic_search",
+      "title": "Semantic product search for a legal catalogue",
+      "industry": "legal",
+      "year": 2023,
+      "explicit": [
+        "pgvector",
+        "fastapi"
+      ],
+      "implied": [
+        "huggingface",
+        "redis"
+      ],
+      "skills": [
+        "fastapi",
+        "huggingface",
+        "pgvector",
+        "redis"
+      ],
+      "metric": "improved click-through on search by 59%",
+      "repo": "semantic-search-legal-15",
+      "client_industry": "legal"
+    },
+    {
+      "project_id": "ai_ml-p16",
+      "archetype": "eval_harness",
+      "title": "LLM evaluation harness for a non-profit chatbot",
+      "industry": "non-profit",
+      "year": 2021,
+      "explicit": [
+        "llm-evaluation",
+        "python"
+      ],
+      "implied": [
+        "langchain",
+        "celery"
+      ],
+      "skills": [
+        "celery",
+        "langchain",
+        "llm-evaluation",
+        "python"
+      ],
+      "metric": "caught 4 regressions before release in the first month",
+      "repo": "eval-harness-non-profit-16",
+      "client_industry": "non-profit"
+    },
+    {
+      "project_id": "ai_ml-p17",
+      "archetype": "rag_bot",
+      "title": "Document Q&A assistant for a e-commerce team",
+      "industry": "e-commerce",
+      "year": 2026,
+      "explicit": [
+        "rag",
+        "langchain",
+        "fastapi"
+      ],
+      "implied": [
+        "pinecone",
+        "llm-evaluation"
+      ],
+      "skills": [
+        "fastapi",
+        "langchain",
+        "llm-evaluation",
+        "pinecone",
+        "rag"
+      ],
+      "metric": "cut average lookup time from 5 minutes to 1 seconds",
+      "repo": "rag-bot-e-commerce-17",
+      "client_industry": "e-commerce"
+    },
+    {
+      "project_id": "ai_ml-p18",
+      "archetype": "agent_workflow",
+      "title": "Multi-step support agent with human approval for a manufacturing company",
+      "industry": "manufacturing",
+      "year": 2023,
+      "explicit": [
+        "langgraph",
+        "python"
+      ],
+      "implied": [
+        "fastapi",
+        "pgvector",
+        "docker"
+      ],
+      "skills": [
+        "docker",
+        "fastapi",
+        "langgraph",
+        "pgvector",
+        "python"
+      ],
+      "metric": "resolved 45% of tier-1 tickets without escalation",
+      "repo": "agent-workflow-manufacturing-18",
+      "client_industry": "manufacturing"
+    },
+    {
+      "project_id": "ai_ml-p19",
+      "archetype": "churn",
+      "title": "Churn prediction model for a SaaS subscription business",
+      "industry": "SaaS",
+      "year": 2023,
+      "explicit": [
+        "scikit-learn",
+        "python"
+      ],
+      "implied": [
+        "mlflow",
+        "sql"
+      ],
+      "skills": [
+        "mlflow",
+        "python",
+        "scikit-learn",
+        "sql"
+      ],
+      "metric": "raised recall on churners from 56% to 57%",
+      "repo": "churn-saas-19",
+      "client_industry": "SaaS"
+    },
+    {
+      "project_id": "ai_ml-p20",
+      "archetype": "cv_defects",
+      "title": "Visual defect detection for a healthcare line",
+      "industry": "healthcare",
+      "year": 2023,
+      "explicit": [
+        "pytorch"
+      ],
+      "implied": [
+        "docker",
+        "fastapi"
+      ],
+      "skills": [
+        "docker",
+        "fastapi",
+        "pytorch"
+      ],
+      "metric": "reached 61% precision at 54% recall on held-out images",
+      "repo": "cv-defects-healthcare-20",
+      "client_industry": "healthcare"
+    },
+    {
+      "project_id": "ai_ml-p21",
+      "archetype": "finetune",
+      "title": "Fine-tuned open model for fintech ticket classification",
+      "industry": "fintech",
+      "year": 2024,
+      "explicit": [
+        "huggingface",
+        "pytorch"
+      ],
+      "implied": [
+        "mlflow",
+        "llm-evaluation"
+      ],
+      "skills": [
+        "huggingface",
+        "llm-evaluation",
+        "mlflow",
+        "pytorch"
+      ],
+      "metric": "lifted macro-F1 from 0.57 to 0.23",
+      "repo": "finetune-fintech-21",
+      "client_industry": "fintech"
+    },
+    {
+      "project_id": "ai_ml-p22",
+      "archetype": "pipeline",
+      "title": "Nightly feature pipeline for legal analytics",
+      "industry": "legal",
+      "year": 2022,
+      "explicit": [
+        "airflow",
+        "sql"
+      ],
+      "implied": [
+        "celery",
+        "docker"
+      ],
+      "skills": [
+        "airflow",
+        "celery",
+        "docker",
+        "sql"
+      ],
+      "metric": "reduced pipeline failures from 9 per week to 2",
+      "repo": "pipeline-legal-22",
+      "client_industry": "legal"
+    }
+  ],
+  "note": "GROUND TRUTH for evaluation only. Never ingest this file."
+}

@@ -1,0 +1,101 @@
+[
+  {
+    "review_id": "ai_ml-p03-rev",
+    "project_id": "ai_ml-p03",
+    "rating": 5,
+    "text": "Great communication. The churn works and our team actually uses it.",
+    "date": "2025-11-15",
+    "client_industry": "fintech",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "ai_ml-p04-rev",
+    "project_id": "ai_ml-p04",
+    "rating": 5,
+    "text": "Sana delivered our cv defects on time and explained every step.",
+    "date": "2021-01-15",
+    "client_industry": "e-commerce",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "ai_ml-p05-rev",
+    "project_id": "ai_ml-p05",
+    "rating": 4,
+    "text": "Great communication. The finetune works and our team actually uses it.",
+    "date": "2026-09-15",
+    "client_industry": "fintech",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "ai_ml-p06-rev",
+    "project_id": "ai_ml-p06",
+    "rating": 3,
+    "text": "Sana delivered our pipeline on time and explained every step.",
+    "date": "2024-03-15",
+    "client_industry": "SaaS",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "ai_ml-p08-rev",
+    "project_id": "ai_ml-p08",
+    "rating": 5,
+    "text": "Solid work on the eval harness, a few delays but good result.",
+    "date": "2022-01-15",
+    "client_industry": "legal",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "ai_ml-p09-rev",
+    "project_id": "ai_ml-p09",
+    "rating": 5,
+    "text": "Great communication. The rag bot works and our team actually uses it.",
+    "date": "2022-10-15",
+    "client_industry": "e-commerce",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "ai_ml-p12-rev",
+    "project_id": "ai_ml-p12",
+    "rating": 5,
+    "text": "Sana delivered our cv defects on time and explained every step.",
+    "date": "2021-07-15",
+    "client_industry": "marketing agency",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "ai_ml-p13-rev",
+    "project_id": "ai_ml-p13",
+    "rating": 3,
+    "text": "Sana delivered our finetune on time and explained every step.",
+    "date": "2022-09-15",
+    "client_industry": "edtech",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "ai_ml-p16-rev",
+    "project_id": "ai_ml-p16",
+    "rating": 3,
+    "text": "Solid work on the eval harness, a few delays but good result.",
+    "date": "2021-09-15",
+    "client_industry": "non-profit",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "ai_ml-p17-rev",
+    "project_id": "ai_ml-p17",
+    "rating": 4,
+    "text": "Sana understood the e-commerce context quickly; the rag bot saved us real time.",
+    "date": "2026-09-15",
+    "client_industry": "e-commerce",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "ai_ml-p21-rev",
+    "project_id": "ai_ml-p21",
+    "rating": 4,
+    "text": "Great communication. The finetune works and our team actually uses it.",
+    "date": "2024-08-15",
+    "client_industry": "fintech",
+    "provenance": "synthetic"
+  }
+]

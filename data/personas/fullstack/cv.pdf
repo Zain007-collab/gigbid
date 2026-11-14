@@ -1,0 +1,32 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [4 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 5 0 R >>
+endobj
+5 0 obj
+<< /Length 1153 >>
+stream
+BT /F1 10 Tf 50 800 Td 14 TL ( Bilal Ahmed \(synthetic\)) ' () ' (Full-stack developer ? React/Next.js, Node and Python backends) ' () ' (Karachi, PK \(synthetic\) · 6 years freelancing) ' () ' ( Skills) ' (FastAPI, Stripe, PostgreSQL, Celery, AWS, Next.js, Tailwind, Websockets, Prisma, Playwright) ' () ' ( Selected work) ' (- 2026: AWS migration for a edtech web app ? cut hosting cost by 31%.) ' (- 2026: Customer dashboard for a edtech SaaS ? cut page load from 4s to 1s.) ' (- 2026: Real-time collaboration board for a travel team ? supported 700 concurrent editors with sub-second sync.) ' (- 2025: Booking backend for a manufacturing platform ? cut double-bookings to zero across 7,000 bookings.) ' (- 2025: Test automation for a SaaS web app ? raised release frequency from 2 to 5 per month.) ' (- 2025: Test automation for a healthcare web app ? raised release frequency from 1 to 7 per month.) ' (- 2024: Public GraphQL API for a fintech marketplace ? served 9 million requests a month at p95 under 200 ms.) ' (- 2024: Customer dashboard for a logistics SaaS ? cut page load from 5s to 2s.) ' () ' (_This CV is synthetic \(synthetic\)._) ' ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000185 00000 n 
+0000000311 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1516
+%%EOF

@@ -1,0 +1,492 @@
+{
+  "persona_id": "data_analyst",
+  "projects": [
+    {
+      "project_id": "data_analyst-p01",
+      "archetype": "sales_dash",
+      "title": "Sales performance dashboard for a marketing agency company",
+      "industry": "marketing agency",
+      "year": 2021,
+      "explicit": [
+        "power-bi",
+        "sql"
+      ],
+      "implied": [
+        "excel",
+        "snowflake"
+      ],
+      "skills": [
+        "excel",
+        "power-bi",
+        "snowflake",
+        "sql"
+      ],
+      "metric": "replaced 6 weekly manual reports",
+      "repo": "sales-dash-marketing-agency-1",
+      "client_industry": "marketing agency"
+    },
+    {
+      "project_id": "data_analyst-p02",
+      "archetype": "dbt_models",
+      "title": "Warehouse modelling for a e-commerce team",
+      "industry": "e-commerce",
+      "year": 2026,
+      "explicit": [
+        "dbt",
+        "snowflake"
+      ],
+      "implied": [
+        "sql",
+        "airflow"
+      ],
+      "skills": [
+        "airflow",
+        "dbt",
+        "snowflake",
+        "sql"
+      ],
+      "metric": "cut dashboard refresh from 3 hours to 1 minutes",
+      "repo": "dbt-models-e-commerce-2",
+      "client_industry": "e-commerce"
+    },
+    {
+      "project_id": "data_analyst-p03",
+      "archetype": "ab_test",
+      "title": "Checkout experiment analysis for a manufacturing store",
+      "industry": "manufacturing",
+      "year": 2021,
+      "explicit": [
+        "ab-testing",
+        "statistics"
+      ],
+      "implied": [
+        "python",
+        "pandas",
+        "bigquery"
+      ],
+      "skills": [
+        "ab-testing",
+        "bigquery",
+        "pandas",
+        "python",
+        "statistics"
+      ],
+      "metric": "identified a 54% conversion uplift at 95% confidence",
+      "repo": "ab-test-manufacturing-3",
+      "client_industry": "manufacturing"
+    },
+    {
+      "project_id": "data_analyst-p04",
+      "archetype": "forecast",
+      "title": "Demand forecast for a marketing agency distributor",
+      "industry": "marketing agency",
+      "year": 2023,
+      "explicit": [
+        "forecasting",
+        "python"
+      ],
+      "implied": [
+        "pandas",
+        "statistics"
+      ],
+      "skills": [
+        "forecasting",
+        "pandas",
+        "python",
+        "statistics"
+      ],
+      "metric": "reduced stock-outs by 61%",
+      "repo": "forecast-marketing-agency-4",
+      "client_industry": "marketing agency"
+    },
+    {
+      "project_id": "data_analyst-p05",
+      "archetype": "marketing",
+      "title": "Marketing attribution report for a healthcare brand",
+      "industry": "healthcare",
+      "year": 2021,
+      "explicit": [
+        "looker-studio",
+        "bigquery"
+      ],
+      "implied": [
+        "sql",
+        "google-sheets"
+      ],
+      "skills": [
+        "bigquery",
+        "google-sheets",
+        "looker-studio",
+        "sql"
+      ],
+      "metric": "showed 62% of spend went to low-return channels",
+      "repo": "marketing-healthcare-5",
+      "client_industry": "healthcare"
+    },
+    {
+      "project_id": "data_analyst-p06",
+      "archetype": "cleanup",
+      "title": "Data clean-up and KPI pack for a non-profit non-profit",
+      "industry": "non-profit",
+      "year": 2024,
+      "explicit": [
+        "excel",
+        "pandas"
+      ],
+      "implied": [
+        "python",
+        "google-sheets"
+      ],
+      "skills": [
+        "excel",
+        "google-sheets",
+        "pandas",
+        "python"
+      ],
+      "metric": "deduplicated 3,000 records",
+      "repo": "cleanup-non-profit-6",
+      "client_industry": "non-profit"
+    },
+    {
+      "project_id": "data_analyst-p07",
+      "archetype": "tableau_exec",
+      "title": "Executive KPI workbook for a travel group",
+      "industry": "travel",
+      "year": 2026,
+      "explicit": [
+        "tableau",
+        "sql"
+      ],
+      "implied": [
+        "snowflake",
+        "excel"
+      ],
+      "skills": [
+        "excel",
+        "snowflake",
+        "sql",
+        "tableau"
+      ],
+      "metric": "cut monthly reporting time by 49%",
+      "repo": "tableau-exec-travel-7",
+      "client_industry": "travel"
+    },
+    {
+      "project_id": "data_analyst-p08",
+      "archetype": "sheets_auto",
+      "title": "Automated reporting in Google Sheets for a legal agency",
+      "industry": "legal",
+      "year": 2022,
+      "explicit": [
+        "google-sheets",
+        "excel"
+      ],
+      "implied": [
+        "python",
+        "bigquery"
+      ],
+      "skills": [
+        "bigquery",
+        "excel",
+        "google-sheets",
+        "python"
+      ],
+      "metric": "saved 5 hours of manual work per week",
+      "repo": "sheets-auto-legal-8",
+      "client_industry": "legal"
+    },
+    {
+      "project_id": "data_analyst-p09",
+      "archetype": "sales_dash",
+      "title": "Sales performance dashboard for a non-profit company",
+      "industry": "non-profit",
+      "year": 2023,
+      "explicit": [
+        "power-bi",
+        "sql"
+      ],
+      "implied": [
+        "excel",
+        "snowflake"
+      ],
+      "skills": [
+        "excel",
+        "power-bi",
+        "snowflake",
+        "sql"
+      ],
+      "metric": "replaced 7 weekly manual reports",
+      "repo": "sales-dash-non-profit-9",
+      "client_industry": "non-profit"
+    },
+    {
+      "project_id": "data_analyst-p10",
+      "archetype": "dbt_models",
+      "title": "Warehouse modelling for a SaaS team",
+      "industry": "SaaS",
+      "year": 2025,
+      "explicit": [
+        "dbt",
+        "snowflake"
+      ],
+      "implied": [
+        "sql",
+        "airflow"
+      ],
+      "skills": [
+        "airflow",
+        "dbt",
+        "snowflake",
+        "sql"
+      ],
+      "metric": "cut dashboard refresh from 4 hours to 2 minutes",
+      "repo": "dbt-models-saas-10",
+      "client_industry": "SaaS"
+    },
+    {
+      "project_id": "data_analyst-p11",
+      "archetype": "ab_test",
+      "title": "Checkout experiment analysis for a non-profit store",
+      "industry": "non-profit",
+      "year": 2022,
+      "explicit": [
+        "ab-testing",
+        "statistics"
+      ],
+      "implied": [
+        "python",
+        "pandas",
+        "bigquery"
+      ],
+      "skills": [
+        "ab-testing",
+        "bigquery",
+        "pandas",
+        "python",
+        "statistics"
+      ],
+      "metric": "identified a 42% conversion uplift at 95% confidence",
+      "repo": "ab-test-non-profit-11",
+      "client_industry": "non-profit"
+    },
+    {
+      "project_id": "data_analyst-p12",
+      "archetype": "forecast",
+      "title": "Demand forecast for a fintech distributor",
+      "industry": "fintech",
+      "year": 2025,
+      "explicit": [
+        "forecasting",
+        "python"
+      ],
+      "implied": [
+        "pandas",
+        "statistics"
+      ],
+      "skills": [
+        "forecasting",
+        "pandas",
+        "python",
+        "statistics"
+      ],
+      "metric": "reduced stock-outs by 62%",
+      "repo": "forecast-fintech-12",
+      "client_industry": "fintech"
+    },
+    {
+      "project_id": "data_analyst-p13",
+      "archetype": "marketing",
+      "title": "Marketing attribution report for a fintech brand",
+      "industry": "fintech",
+      "year": 2023,
+      "explicit": [
+        "looker-studio",
+        "bigquery"
+      ],
+      "implied": [
+        "sql",
+        "google-sheets"
+      ],
+      "skills": [
+        "bigquery",
+        "google-sheets",
+        "looker-studio",
+        "sql"
+      ],
+      "metric": "showed 62% of spend went to low-return channels",
+      "repo": "marketing-fintech-13",
+      "client_industry": "fintech"
+    },
+    {
+      "project_id": "data_analyst-p14",
+      "archetype": "cleanup",
+      "title": "Data clean-up and KPI pack for a real estate non-profit",
+      "industry": "real estate",
+      "year": 2021,
+      "explicit": [
+        "excel",
+        "pandas"
+      ],
+      "implied": [
+        "python",
+        "google-sheets"
+      ],
+      "skills": [
+        "excel",
+        "google-sheets",
+        "pandas",
+        "python"
+      ],
+      "metric": "deduplicated 7,000 records",
+      "repo": "cleanup-real-estate-14",
+      "client_industry": "real estate"
+    },
+    {
+      "project_id": "data_analyst-p15",
+      "archetype": "tableau_exec",
+      "title": "Executive KPI workbook for a fintech group",
+      "industry": "fintech",
+      "year": 2022,
+      "explicit": [
+        "tableau",
+        "sql"
+      ],
+      "implied": [
+        "snowflake",
+        "excel"
+      ],
+      "skills": [
+        "excel",
+        "snowflake",
+        "sql",
+        "tableau"
+      ],
+      "metric": "cut monthly reporting time by 22%",
+      "repo": "tableau-exec-fintech-15",
+      "client_industry": "fintech"
+    },
+    {
+      "project_id": "data_analyst-p16",
+      "archetype": "sheets_auto",
+      "title": "Automated reporting in Google Sheets for a edtech agency",
+      "industry": "edtech",
+      "year": 2022,
+      "explicit": [
+        "google-sheets",
+        "excel"
+      ],
+      "implied": [
+        "python",
+        "bigquery"
+      ],
+      "skills": [
+        "bigquery",
+        "excel",
+        "google-sheets",
+        "python"
+      ],
+      "metric": "saved 6 hours of manual work per week",
+      "repo": "sheets-auto-edtech-16",
+      "client_industry": "edtech"
+    },
+    {
+      "project_id": "data_analyst-p17",
+      "archetype": "sales_dash",
+      "title": "Sales performance dashboard for a logistics company",
+      "industry": "logistics",
+      "year": 2025,
+      "explicit": [
+        "power-bi",
+        "sql"
+      ],
+      "implied": [
+        "excel",
+        "snowflake"
+      ],
+      "skills": [
+        "excel",
+        "power-bi",
+        "snowflake",
+        "sql"
+      ],
+      "metric": "replaced 9 weekly manual reports",
+      "repo": "sales-dash-logistics-17",
+      "client_industry": "logistics"
+    },
+    {
+      "project_id": "data_analyst-p18",
+      "archetype": "dbt_models",
+      "title": "Warehouse modelling for a healthcare team",
+      "industry": "healthcare",
+      "year": 2022,
+      "explicit": [
+        "dbt",
+        "snowflake"
+      ],
+      "implied": [
+        "sql",
+        "airflow"
+      ],
+      "skills": [
+        "airflow",
+        "dbt",
+        "snowflake",
+        "sql"
+      ],
+      "metric": "cut dashboard refresh from 4 hours to 1 minutes",
+      "repo": "dbt-models-healthcare-18",
+      "client_industry": "healthcare"
+    },
+    {
+      "project_id": "data_analyst-p19",
+      "archetype": "ab_test",
+      "title": "Checkout experiment analysis for a legal store",
+      "industry": "legal",
+      "year": 2021,
+      "explicit": [
+        "ab-testing",
+        "statistics"
+      ],
+      "implied": [
+        "python",
+        "pandas",
+        "bigquery"
+      ],
+      "skills": [
+        "ab-testing",
+        "bigquery",
+        "pandas",
+        "python",
+        "statistics"
+      ],
+      "metric": "identified a 55% conversion uplift at 95% confidence",
+      "repo": "ab-test-legal-19",
+      "client_industry": "legal"
+    },
+    {
+      "project_id": "data_analyst-p20",
+      "archetype": "forecast",
+      "title": "Demand forecast for a travel distributor",
+      "industry": "travel",
+      "year": 2024,
+      "explicit": [
+        "forecasting",
+        "python"
+      ],
+      "implied": [
+        "pandas",
+        "statistics"
+      ],
+      "skills": [
+        "forecasting",
+        "pandas",
+        "python",
+        "statistics"
+      ],
+      "metric": "reduced stock-outs by 62%",
+      "repo": "forecast-travel-20",
+      "client_industry": "travel"
+    }
+  ],
+  "note": "GROUND TRUTH for evaluation only. Never ingest this file."
+}

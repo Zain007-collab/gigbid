@@ -1,0 +1,11 @@
+{
+  "persona_id": "data_analyst",
+  "name": "Ayesha Malik (synthetic)",
+  "headline": "Data analyst \u2014 SQL, dbt, BI dashboards and experiment analysis",
+  "hourly_rate": 28,
+  "min_project": 150,
+  "years": 4,
+  "location": "Islamabad, PK (synthetic)",
+  "category": "data",
+  "provenance": "synthetic"
+}

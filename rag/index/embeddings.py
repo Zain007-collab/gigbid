@@ -1,0 +1,89 @@
+"""Open embedding + reranker backends (CPU-friendly, no torch required).
+
+backend (config rag.embedding_backend or env RAG_EMBED_BACKEND):
+  fastembed  ONNX models (default; works on Linux and macOS without torch)
+  ollama     Ollama /api/embed (e.g. nomic-embed-text)
+  hash       deterministic hashed bag-of-words — CI/smoke only, NOT for reported results
+Embeddings are cached on disk keyed by (model, text hash).
+"""
+from __future__ import annotations
+
+import hashlib
+import json
+import os
+import re
+from pathlib import Path
+
+import numpy as np
+
+CACHE_DIR = Path(os.environ.get("RAG_CACHE_DIR", Path(__file__).resolve().parents[2] / "data" / "processed" / "emb_cache"))
+
+
+class Embedder:
+    def __init__(self, backend: str, model: str):
+        self.backend, self.model = backend, model
+        self._impl = None
+        self._cache: dict[str, list[float]] = {}
+        self._cache_path = CACHE_DIR / f"{backend}_{re.sub(r'[^A-Za-z0-9]+', '_', model)}.json"
+        if self._cache_path.exists():
+            self._cache = json.loads(self._cache_path.read_text())
+
+    @property
+    def name(self) -> str:
+        return f"{self.backend}:{self.model}"
+
+    def _raw(self, texts: list[str], is_query: bool) -> np.ndarray:
+        if self.backend == "hash":
+            return np.stack([_hash_vec(t) for t in texts])
+        if self.backend == "fastembed":
+            if self._impl is None:
+                from fastembed import TextEmbedding
+                self._impl = TextEmbedding(model_name=self.model)
+            fn = self._impl.query_embed if is_query else self._impl.passage_embed
+            return np.stack(list(fn(texts)))
+        if self.backend == "ollama":
+            import httpx
+            url = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434") + "/api/embed"
+            r = httpx.post(url, json={"model": self.model, "input": texts}, timeout=120)
+            r.raise_for_status()
+            return np.array(r.json()["embeddings"], dtype=np.float32)
+        raise ValueError(f"unknown embedding backend {self.backend}")
+
+    def embed(self, texts: list[str], is_query: bool = False) -> np.ndarray:
+        keys = [("q:" if is_query else "p:") + hashlib.sha1(t.encode()).hexdigest() for t in texts]
+        missing = [i for i, k in enumerate(keys) if k not in self._cache]
+        for start in range(0, len(missing), 64):
+            idx = missing[start:start + 64]
+            vecs = self._raw([texts[i] for i in idx], is_query)
+            for i, v in zip(idx, vecs):
+                self._cache[keys[i]] = [round(float(x), 6) for x in v]
+        if missing:
+            self._cache_path.parent.mkdir(parents=True, exist_ok=True)
+            self._cache_path.write_text(json.dumps(self._cache))
+        m = np.array([self._cache[k] for k in keys], dtype=np.float32)
+        return m / (np.linalg.norm(m, axis=1, keepdims=True) + 1e-9)
+
+
+class Reranker:
+    def __init__(self, backend: str, model: str):
+        self.backend, self.model, self._impl = backend, model, None
+
+    def score(self, query: str, passages: list[str]) -> list[float]:
+        if self.backend == "hash":   # lexical overlap stand-in for CI
+            q = set(_tokens(query))
+            return [len(q & set(_tokens(p))) / (1 + len(q)) for p in passages]
+        if self._impl is None:
+            from fastembed.rerank.cross_encoder import TextCrossEncoder
+            self._impl = TextCrossEncoder(model_name=self.model)
+        return [float(s) for s in self._impl.rerank(query, passages)]
+
+
+def _tokens(t: str) -> list[str]:
+    return re.findall(r"[a-z0-9]+", t.lower())
+
+
+def _hash_vec(t: str, dim: int = 512) -> np.ndarray:
+    v = np.zeros(dim, dtype=np.float32)
+    for tok in _tokens(t):
+        v[int(hashlib.md5(tok.encode()).hexdigest(), 16) % dim] += 1
+    return v

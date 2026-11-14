@@ -60,11 +60,13 @@ profiles:
       judge:    { provider: anthropic, model: claude-sonnet-5-5, temperature: 0.0, timeout_s: 60, max_retries: 2 }
 
 # Embeddings and reranker are open models in BOTH profiles (CPU-friendly).
+# backend: fastembed (ONNX, no torch) | ollama | hash (CI smoke only, never reported)
 embeddings:
-  model: BAAI/bge-m3
-  dim: 1024
+  backend: fastembed
+  model: BAAI/bge-small-en-v1.5
 reranker:
-  model: BAAI/bge-reranker-v2-m3
+  backend: fastembed
+  model: BAAI/bge-reranker-base
 
 # Price table for cost reporting (USD per 1M tokens). Update from provider pages.
 pricing_usd_per_mtok:
@@ -147,7 +149,8 @@ autonomy:
 # RAG (R6) — the shipped variant is chosen by evals/results, not by default.
 # --------------------------------------------------------------------------
 rag:
-  variant: v0_naive
+  variant: v0_naive                 # replaced by the eval winner (see evals/results/rag_*.json)
+  crag_threshold: 0.0               # V8 grade threshold on reranker logits
   k: 8
   chunk_size: 600
   chunk_overlap: 80

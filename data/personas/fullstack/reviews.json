@@ -1,0 +1,110 @@
+[
+  {
+    "review_id": "fullstack-p02-rev",
+    "project_id": "fullstack-p02",
+    "rating": 4,
+    "text": "Great communication. The billing works and our team actually uses it.",
+    "date": "2023-11-15",
+    "client_industry": "real estate",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "fullstack-p03-rev",
+    "project_id": "fullstack-p03",
+    "rating": 5,
+    "text": "Bilal understood the marketing agency context quickly; the realtime saved us real time.",
+    "date": "2021-12-15",
+    "client_industry": "marketing agency",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "fullstack-p04-rev",
+    "project_id": "fullstack-p04",
+    "rating": 3,
+    "text": "Great communication. The api works and our team actually uses it.",
+    "date": "2024-04-15",
+    "client_industry": "fintech",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "fullstack-p05-rev",
+    "project_id": "fullstack-p05",
+    "rating": 5,
+    "text": "Solid work on the python backend, a few delays but good result.",
+    "date": "2025-06-15",
+    "client_industry": "manufacturing",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "fullstack-p06-rev",
+    "project_id": "fullstack-p06",
+    "rating": 5,
+    "text": "Great communication. The e2e works and our team actually uses it.",
+    "date": "2025-08-15",
+    "client_industry": "SaaS",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "fullstack-p07-rev",
+    "project_id": "fullstack-p07",
+    "rating": 5,
+    "text": "Solid work on the landing, a few delays but good result.",
+    "date": "2022-01-15",
+    "client_industry": "SaaS",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "fullstack-p09-rev",
+    "project_id": "fullstack-p09",
+    "rating": 5,
+    "text": "Bilal delivered our saas dash on time and explained every step.",
+    "date": "2024-07-15",
+    "client_industry": "logistics",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "fullstack-p10-rev",
+    "project_id": "fullstack-p10",
+    "rating": 5,
+    "text": "Great communication. The billing works and our team actually uses it.",
+    "date": "2022-03-15",
+    "client_industry": "real estate",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "fullstack-p11-rev",
+    "project_id": "fullstack-p11",
+    "rating": 3,
+    "text": "Bilal understood the logistics context quickly; the realtime saved us real time.",
+    "date": "2024-09-15",
+    "client_industry": "logistics",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "fullstack-p17-rev",
+    "project_id": "fullstack-p17",
+    "rating": 5,
+    "text": "Bilal understood the edtech context quickly; the saas dash saved us real time.",
+    "date": "2026-08-15",
+    "client_industry": "edtech",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "fullstack-p18-rev",
+    "project_id": "fullstack-p18",
+    "rating": 5,
+    "text": "Bilal understood the SaaS context quickly; the billing saved us real time.",
+    "date": "2024-02-15",
+    "client_industry": "SaaS",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "fullstack-p20-rev",
+    "project_id": "fullstack-p20",
+    "rating": 4,
+    "text": "Solid work on the api, a few delays but good result.",
+    "date": "2021-02-15",
+    "client_industry": "fintech",
+    "provenance": "synthetic"
+  }
+]

@@ -1,0 +1,119 @@
+[
+  {
+    "review_id": "data_analyst-p01-rev",
+    "project_id": "data_analyst-p01",
+    "rating": 3,
+    "text": "Ayesha understood the marketing agency context quickly; the sales dash saved us real time.",
+    "date": "2021-12-15",
+    "client_industry": "marketing agency",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "data_analyst-p02-rev",
+    "project_id": "data_analyst-p02",
+    "rating": 5,
+    "text": "Solid work on the dbt models, a few delays but good result.",
+    "date": "2026-05-15",
+    "client_industry": "e-commerce",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "data_analyst-p03-rev",
+    "project_id": "data_analyst-p03",
+    "rating": 5,
+    "text": "Ayesha understood the manufacturing context quickly; the ab test saved us real time.",
+    "date": "2021-09-15",
+    "client_industry": "manufacturing",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "data_analyst-p04-rev",
+    "project_id": "data_analyst-p04",
+    "rating": 4,
+    "text": "Solid work on the forecast, a few delays but good result.",
+    "date": "2023-04-15",
+    "client_industry": "marketing agency",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "data_analyst-p06-rev",
+    "project_id": "data_analyst-p06",
+    "rating": 4,
+    "text": "Solid work on the cleanup, a few delays but good result.",
+    "date": "2024-04-15",
+    "client_industry": "non-profit",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "data_analyst-p07-rev",
+    "project_id": "data_analyst-p07",
+    "rating": 4,
+    "text": "Solid work on the tableau exec, a few delays but good result.",
+    "date": "2026-04-15",
+    "client_industry": "travel",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "data_analyst-p08-rev",
+    "project_id": "data_analyst-p08",
+    "rating": 4,
+    "text": "Great communication. The sheets auto works and our team actually uses it.",
+    "date": "2022-09-15",
+    "client_industry": "legal",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "data_analyst-p10-rev",
+    "project_id": "data_analyst-p10",
+    "rating": 5,
+    "text": "Great communication. The dbt models works and our team actually uses it.",
+    "date": "2025-04-15",
+    "client_industry": "SaaS",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "data_analyst-p11-rev",
+    "project_id": "data_analyst-p11",
+    "rating": 4,
+    "text": "Ayesha understood the non-profit context quickly; the ab test saved us real time.",
+    "date": "2022-09-15",
+    "client_industry": "non-profit",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "data_analyst-p12-rev",
+    "project_id": "data_analyst-p12",
+    "rating": 4,
+    "text": "Ayesha delivered our forecast on time and explained every step.",
+    "date": "2025-06-15",
+    "client_industry": "fintech",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "data_analyst-p13-rev",
+    "project_id": "data_analyst-p13",
+    "rating": 4,
+    "text": "Ayesha understood the fintech context quickly; the marketing saved us real time.",
+    "date": "2023-08-15",
+    "client_industry": "fintech",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "data_analyst-p14-rev",
+    "project_id": "data_analyst-p14",
+    "rating": 5,
+    "text": "Ayesha understood the real estate context quickly; the cleanup saved us real time.",
+    "date": "2021-04-15",
+    "client_industry": "real estate",
+    "provenance": "synthetic"
+  },
+  {
+    "review_id": "data_analyst-p17-rev",
+    "project_id": "data_analyst-p17",
+    "rating": 5,
+    "text": "Ayesha understood the logistics context quickly; the sales dash saved us real time.",
+    "date": "2025-09-15",
+    "client_industry": "logistics",
+    "provenance": "synthetic"
+  }
+]

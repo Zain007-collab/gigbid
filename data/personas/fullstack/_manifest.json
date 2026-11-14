@@ -1,0 +1,492 @@
+{
+  "persona_id": "fullstack",
+  "projects": [
+    {
+      "project_id": "fullstack-p01",
+      "archetype": "saas_dash",
+      "title": "Customer dashboard for a e-commerce SaaS",
+      "industry": "e-commerce",
+      "year": 2023,
+      "explicit": [
+        "nextjs",
+        "typescript"
+      ],
+      "implied": [
+        "prisma",
+        "postgresql",
+        "tailwind"
+      ],
+      "skills": [
+        "nextjs",
+        "postgresql",
+        "prisma",
+        "tailwind",
+        "typescript"
+      ],
+      "metric": "cut page load from 6s to 2s",
+      "repo": "saas-dash-e-commerce-1",
+      "client_industry": "e-commerce"
+    },
+    {
+      "project_id": "fullstack-p02",
+      "archetype": "billing",
+      "title": "Subscription billing for a real estate product",
+      "industry": "real estate",
+      "year": 2023,
+      "explicit": [
+        "stripe",
+        "nodejs"
+      ],
+      "implied": [
+        "postgresql",
+        "redis"
+      ],
+      "skills": [
+        "nodejs",
+        "postgresql",
+        "redis",
+        "stripe"
+      ],
+      "metric": "recovered 50% of failed payments with dunning emails",
+      "repo": "billing-real-estate-2",
+      "client_industry": "real estate"
+    },
+    {
+      "project_id": "fullstack-p03",
+      "archetype": "realtime",
+      "title": "Real-time collaboration board for a marketing agency team",
+      "industry": "marketing agency",
+      "year": 2021,
+      "explicit": [
+        "react",
+        "websockets"
+      ],
+      "implied": [
+        "redis",
+        "nodejs"
+      ],
+      "skills": [
+        "nodejs",
+        "react",
+        "redis",
+        "websockets"
+      ],
+      "metric": "supported 400 concurrent editors with sub-second sync",
+      "repo": "realtime-marketing-agency-3",
+      "client_industry": "marketing agency"
+    },
+    {
+      "project_id": "fullstack-p04",
+      "archetype": "api",
+      "title": "Public GraphQL API for a fintech marketplace",
+      "industry": "fintech",
+      "year": 2024,
+      "explicit": [
+        "graphql",
+        "nodejs"
+      ],
+      "implied": [
+        "postgresql",
+        "docker"
+      ],
+      "skills": [
+        "docker",
+        "graphql",
+        "nodejs",
+        "postgresql"
+      ],
+      "metric": "served 9 million requests a month at p95 under 200 ms",
+      "repo": "api-fintech-4",
+      "client_industry": "fintech"
+    },
+    {
+      "project_id": "fullstack-p05",
+      "archetype": "python_backend",
+      "title": "Booking backend for a manufacturing platform",
+      "industry": "manufacturing",
+      "year": 2025,
+      "explicit": [
+        "fastapi",
+        "postgresql"
+      ],
+      "implied": [
+        "celery",
+        "redis"
+      ],
+      "skills": [
+        "celery",
+        "fastapi",
+        "postgresql",
+        "redis"
+      ],
+      "metric": "cut double-bookings to zero across 7,000 bookings",
+      "repo": "python-backend-manufacturing-5",
+      "client_industry": "manufacturing"
+    },
+    {
+      "project_id": "fullstack-p06",
+      "archetype": "e2e",
+      "title": "Test automation for a SaaS web app",
+      "industry": "SaaS",
+      "year": 2025,
+      "explicit": [
+        "playwright",
+        "typescript"
+      ],
+      "implied": [
+        "docker",
+        "aws"
+      ],
+      "skills": [
+        "aws",
+        "docker",
+        "playwright",
+        "typescript"
+      ],
+      "metric": "raised release frequency from 2 to 5 per month",
+      "repo": "e2e-saas-6",
+      "client_industry": "SaaS"
+    },
+    {
+      "project_id": "fullstack-p07",
+      "archetype": "landing",
+      "title": "Marketing site rebuild for a SaaS startup",
+      "industry": "SaaS",
+      "year": 2022,
+      "explicit": [
+        "nextjs",
+        "tailwind"
+      ],
+      "implied": [
+        "aws",
+        "typescript"
+      ],
+      "skills": [
+        "aws",
+        "nextjs",
+        "tailwind",
+        "typescript"
+      ],
+      "metric": "lifted organic sign-ups by 61%",
+      "repo": "landing-saas-7",
+      "client_industry": "SaaS"
+    },
+    {
+      "project_id": "fullstack-p08",
+      "archetype": "cloud",
+      "title": "AWS migration for a edtech web app",
+      "industry": "edtech",
+      "year": 2026,
+      "explicit": [
+        "aws",
+        "docker"
+      ],
+      "implied": [
+        "nodejs",
+        "postgresql"
+      ],
+      "skills": [
+        "aws",
+        "docker",
+        "nodejs",
+        "postgresql"
+      ],
+      "metric": "cut hosting cost by 31%",
+      "repo": "cloud-edtech-8",
+      "client_industry": "edtech"
+    },
+    {
+      "project_id": "fullstack-p09",
+      "archetype": "saas_dash",
+      "title": "Customer dashboard for a logistics SaaS",
+      "industry": "logistics",
+      "year": 2024,
+      "explicit": [
+        "nextjs",
+        "typescript"
+      ],
+      "implied": [
+        "prisma",
+        "postgresql",
+        "tailwind"
+      ],
+      "skills": [
+        "nextjs",
+        "postgresql",
+        "prisma",
+        "tailwind",
+        "typescript"
+      ],
+      "metric": "cut page load from 5s to 2s",
+      "repo": "saas-dash-logistics-9",
+      "client_industry": "logistics"
+    },
+    {
+      "project_id": "fullstack-p10",
+      "archetype": "billing",
+      "title": "Subscription billing for a real estate product",
+      "industry": "real estate",
+      "year": 2022,
+      "explicit": [
+        "stripe",
+        "nodejs"
+      ],
+      "implied": [
+        "postgresql",
+        "redis"
+      ],
+      "skills": [
+        "nodejs",
+        "postgresql",
+        "redis",
+        "stripe"
+      ],
+      "metric": "recovered 39% of failed payments with dunning emails",
+      "repo": "billing-real-estate-10",
+      "client_industry": "real estate"
+    },
+    {
+      "project_id": "fullstack-p11",
+      "archetype": "realtime",
+      "title": "Real-time collaboration board for a logistics team",
+      "industry": "logistics",
+      "year": 2024,
+      "explicit": [
+        "react",
+        "websockets"
+      ],
+      "implied": [
+        "redis",
+        "nodejs"
+      ],
+      "skills": [
+        "nodejs",
+        "react",
+        "redis",
+        "websockets"
+      ],
+      "metric": "supported 300 concurrent editors with sub-second sync",
+      "repo": "realtime-logistics-11",
+      "client_industry": "logistics"
+    },
+    {
+      "project_id": "fullstack-p12",
+      "archetype": "api",
+      "title": "Public GraphQL API for a fintech marketplace",
+      "industry": "fintech",
+      "year": 2021,
+      "explicit": [
+        "graphql",
+        "nodejs"
+      ],
+      "implied": [
+        "postgresql",
+        "docker"
+      ],
+      "skills": [
+        "docker",
+        "graphql",
+        "nodejs",
+        "postgresql"
+      ],
+      "metric": "served 6 million requests a month at p95 under 200 ms",
+      "repo": "api-fintech-12",
+      "client_industry": "fintech"
+    },
+    {
+      "project_id": "fullstack-p13",
+      "archetype": "python_backend",
+      "title": "Booking backend for a SaaS platform",
+      "industry": "SaaS",
+      "year": 2023,
+      "explicit": [
+        "fastapi",
+        "postgresql"
+      ],
+      "implied": [
+        "celery",
+        "redis"
+      ],
+      "skills": [
+        "celery",
+        "fastapi",
+        "postgresql",
+        "redis"
+      ],
+      "metric": "cut double-bookings to zero across 4,000 bookings",
+      "repo": "python-backend-saas-13",
+      "client_industry": "SaaS"
+    },
+    {
+      "project_id": "fullstack-p14",
+      "archetype": "e2e",
+      "title": "Test automation for a healthcare web app",
+      "industry": "healthcare",
+      "year": 2025,
+      "explicit": [
+        "playwright",
+        "typescript"
+      ],
+      "implied": [
+        "docker",
+        "aws"
+      ],
+      "skills": [
+        "aws",
+        "docker",
+        "playwright",
+        "typescript"
+      ],
+      "metric": "raised release frequency from 1 to 7 per month",
+      "repo": "e2e-healthcare-14",
+      "client_industry": "healthcare"
+    },
+    {
+      "project_id": "fullstack-p15",
+      "archetype": "landing",
+      "title": "Marketing site rebuild for a fintech startup",
+      "industry": "fintech",
+      "year": 2023,
+      "explicit": [
+        "nextjs",
+        "tailwind"
+      ],
+      "implied": [
+        "aws",
+        "typescript"
+      ],
+      "skills": [
+        "aws",
+        "nextjs",
+        "tailwind",
+        "typescript"
+      ],
+      "metric": "lifted organic sign-ups by 64%",
+      "repo": "landing-fintech-15",
+      "client_industry": "fintech"
+    },
+    {
+      "project_id": "fullstack-p16",
+      "archetype": "cloud",
+      "title": "AWS migration for a marketing agency web app",
+      "industry": "marketing agency",
+      "year": 2022,
+      "explicit": [
+        "aws",
+        "docker"
+      ],
+      "implied": [
+        "nodejs",
+        "postgresql"
+      ],
+      "skills": [
+        "aws",
+        "docker",
+        "nodejs",
+        "postgresql"
+      ],
+      "metric": "cut hosting cost by 54%",
+      "repo": "cloud-marketing-agency-16",
+      "client_industry": "marketing agency"
+    },
+    {
+      "project_id": "fullstack-p17",
+      "archetype": "saas_dash",
+      "title": "Customer dashboard for a edtech SaaS",
+      "industry": "edtech",
+      "year": 2026,
+      "explicit": [
+        "nextjs",
+        "typescript"
+      ],
+      "implied": [
+        "prisma",
+        "postgresql",
+        "tailwind"
+      ],
+      "skills": [
+        "nextjs",
+        "postgresql",
+        "prisma",
+        "tailwind",
+        "typescript"
+      ],
+      "metric": "cut page load from 4s to 1s",
+      "repo": "saas-dash-edtech-17",
+      "client_industry": "edtech"
+    },
+    {
+      "project_id": "fullstack-p18",
+      "archetype": "billing",
+      "title": "Subscription billing for a SaaS product",
+      "industry": "SaaS",
+      "year": 2024,
+      "explicit": [
+        "stripe",
+        "nodejs"
+      ],
+      "implied": [
+        "postgresql",
+        "redis"
+      ],
+      "skills": [
+        "nodejs",
+        "postgresql",
+        "redis",
+        "stripe"
+      ],
+      "metric": "recovered 53% of failed payments with dunning emails",
+      "repo": "billing-saas-18",
+      "client_industry": "SaaS"
+    },
+    {
+      "project_id": "fullstack-p19",
+      "archetype": "realtime",
+      "title": "Real-time collaboration board for a travel team",
+      "industry": "travel",
+      "year": 2026,
+      "explicit": [
+        "react",
+        "websockets"
+      ],
+      "implied": [
+        "redis",
+        "nodejs"
+      ],
+      "skills": [
+        "nodejs",
+        "react",
+        "redis",
+        "websockets"
+      ],
+      "metric": "supported 700 concurrent editors with sub-second sync",
+      "repo": "realtime-travel-19",
+      "client_industry": "travel"
+    },
+    {
+      "project_id": "fullstack-p20",
+      "archetype": "api",
+      "title": "Public GraphQL API for a fintech marketplace",
+      "industry": "fintech",
+      "year": 2021,
+      "explicit": [
+        "graphql",
+        "nodejs"
+      ],
+      "implied": [
+        "postgresql",
+        "docker"
+      ],
+      "skills": [
+        "docker",
+        "graphql",
+        "nodejs",
+        "postgresql"
+      ],
+      "metric": "served 9 million requests a month at p95 under 100 ms",
+      "repo": "api-fintech-20",
+      "client_industry": "fintech"
+    }
+  ],
+  "note": "GROUND TRUTH for evaluation only. Never ingest this file."
+}
