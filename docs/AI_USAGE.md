@@ -31,3 +31,9 @@
 8. **Picked bge-reranker-base without checking CPU cost** — measured at ~6 pairs/s on this laptop
    (`evals/results/reranker_speed.json`), replaced by a MiniLM cross-encoder, which then *lowered* recall anyway.
 9. `git add -A` committed the instructor's starter-kit folder that had been copied into the project; untracked it.
+10. **Grounding bug (R5):** the template writer appended "…, which maps to your need for X" to every cited result and
+    the verifier was told to ignore that tail as a "plan". It is a claim of relevance, and it was often false
+    (a semantic-search project "mapping to" a model registry). Caught by reading sampled proposals while preparing
+    the judge-calibration sheet. Fixed: the relevance clause is only added when the case study itself covers the
+    requirement, and the verifier grades the whole sentence. All decision/outcome results produced before the fix were
+    moved to `evals/results/superseded/` and regenerated.

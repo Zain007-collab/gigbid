@@ -18,6 +18,7 @@ def setup_gigsim(error_rate: float = 0.0):
     from mcp_servers.marketplace.guards import StateStore, TokenBucketLimiter
 
     gs.BURST, gs.RPS = 100_000, 100_000
+    gs.INITIAL_CONNECTS = 100_000      # evals measure proposal quality, not Connects budgeting (that has its own tests)
     gs.SIM.reset()
     gs.SIM.error_rate = error_rate
     cfg = {"base_url_env": "X_UNSET", "api_key_env": "X_UNSET", "timeout_s": 10, "max_retries": 3,

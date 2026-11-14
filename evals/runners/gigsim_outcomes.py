@@ -61,6 +61,7 @@ async def main_async(args) -> None:
         return {"jobs": len(rs), "submitted": len(sub),
                 "reply_rate": round(len(replied) / len(sub), 4) if sub else None,
                 "hire_rate": round(sum(r.get("status") == "hired" for r in sub) / len(sub), 4) if sub else None,
+                "expected_reply_rate": round(statistics.mean(r["client_model"].get("p_reply", 0) for r in sub), 4) if sub else None,
                 "mean_p_reply_client_model": round(statistics.mean(r["client_model"].get("p_reply", 0) for r in sub), 4) if sub else None,
                 "generic_opening_rate": round(statistics.mean(bool(r["client_model"].get("generic_opening")) for r in sub), 4) if sub else None,
                 "must_have_coverage": round(statistics.mean(r["client_model"].get("coverage", 0) for r in sub), 4) if sub else None}

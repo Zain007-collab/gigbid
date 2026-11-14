@@ -41,7 +41,7 @@ def rag_table() -> str:
 
 
 def headline_table() -> str:
-    rows = ["| Variant | Evidence Recall@5 | nDCG@10 | Unsupported claims / proposal (after verify) | Judge score | GigSim reply rate | p95 latency per proposal (s) | Cost per proposal (USD) |",
+    rows = ["| Variant | Evidence Recall@5 | nDCG@10 | Unsupported claims / proposal (after verify) | Judge score | GigSim reply rate (expected) | p95 latency per proposal (s) | Cost per proposal (USD) |",
             "|---|---|---|---|---|---|---|---|"]
     rag = load("rag_dev_fastembed.json") or {"variants": {}}
     abl = load("ablation_dev_round2.json") or {"configs": {}}
@@ -56,7 +56,8 @@ def headline_table() -> str:
         o = (load(f"gigsim_outcomes_{tag}.json") or {}).get("overall", {})
         j = (load(f"judge_{tag}.json") or {}).get("mean_score")
         rows.append(f"| {label} | {f(r5)} | {f(nd)} | {f(d.get('unsupported_per_proposal_after'), 2)} | {f(j, 2)} | "
-                    f"{f(o.get('reply_rate'), pct=True)} | {f((d.get('latency_proposal_s') or {}).get('p95'), 2)} | "
+                    f"{f(o.get('reply_rate'), pct=True)} ({f(o.get('expected_reply_rate'), pct=True)}, n={o.get('submitted', 'n/a')}) | "
+                    f"{f((d.get('latency_proposal_s') or {}).get('p95'), 2)} | "
                     f"{f(d.get('usd_per_proposal'), 4)} |")
     return "\n".join(rows)
 
@@ -86,9 +87,21 @@ def agents_table() -> str:
     return "\n".join(rows) + f"\n\n_Source: `evals/results/rq_c_agents.json` ({c.get('n_jobs')} dev jobs, model {c.get('model')})._"
 
 
+def ab_table() -> str:
+    a = load("ab_test_evidence_first_vs_concise_question.json")
+    if not a:
+        return "_A/B test not generated yet._"
+    rows = ["| Strategy | Proposals | Replies | Reply rate | Hires |", "|---|---|---|---|---|"]
+    for arm, s in a["arms"].items():
+        rows.append(f"| {arm} | {s['n']} | {s['replies']} | {f(s['reply_rate'], pct=True)} | {s['hires']} |")
+    return "\n".join(rows) + (f"\n\nTwo-proportion z = {a['z']}, p = {a['p_value_z']}; Fisher exact p = {a['p_value_fisher']} "
+                              f"(seed {a['seed']}). _Source: `evals/results/ab_test_evidence_first_vs_concise_question.json`._")
+
+
 def render() -> str:
     return "\n\n".join([START, "### Headline (V0 vs shipped)", headline_table(), "### Retrieval variants", rag_table(),
                         "### Decisions and safety (shipped pipeline)", decision_table(),
+                        "### Proposal strategy A/B test (signature extension X2)", ab_table(),
                         "### Single agent vs supervisor vs hand-built graph", agents_table(), END])
 
 

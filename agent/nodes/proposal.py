@@ -197,8 +197,11 @@ async def template_writer(job: dict, fit, pack: list[dict], spec, style: list[st
         if title and result:
             texts[cs["id"]] = cs["text"]
             used.add(cs["id"])
-            s.append(_Sentence(text=f"On “{title.group(1).strip()}” I {result.group(1).strip()}, which maps to your need for "
-                                    f"{m.requirement}.", evidence_ids=[cs["id"]]))
+            sentence = f"On “{title.group(1).strip()}” I {result.group(1).strip()}"
+            # Saying a project "covers" a requirement is itself a claim: only make it if the case study says so.
+            if _covers(cs["text"], m.requirement):
+                sentence += f", which covered {m.requirement}"
+            s.append(_Sentence(text=sentence + ".", evidence_ids=[cs["id"]]))
     if fit.gaps and strategy != "concise_question":
         s.append(_Sentence(text=f"For {fit.gaps[0]}, I would start with a short spike and confirm the approach with you before building."))
     if strategy == "concise_question":
@@ -238,9 +241,14 @@ def _content(t: str) -> set[str]:
     return {w for w in re.findall(r"[a-z0-9%.+#-]+", t.lower()) if w not in STOP and len(w) > 2}
 
 
+def _covers(evidence_text: str, requirement: str) -> bool:
+    """Does the evidence itself mention most of the requirement's content words?"""
+    req = _content(requirement)
+    return bool(req) and len(req & _content(evidence_text)) / len(req) >= 0.6
+
+
 def lexical_check(claim: str, evidence_texts: list[str]) -> str:
     """Heuristic grounding: content-word coverage of the claim by its best evidence; numbers must appear."""
-    claim = re.split(r",? which maps to your need for", claim)[0]
     cw = _content(claim)
     if not cw:
         return "supported"
