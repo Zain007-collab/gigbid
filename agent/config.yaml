@@ -17,9 +17,9 @@ profiles:
       temperature: 0.0
       timeout_s: 30
       max_retries: 2
-    fallback:                       # used when a cheap node's primary model fails
-      provider: openrouter
-      model: qwen/qwen3-8b
+    fallback:                       # used when a node's primary model fails (rate limit / outage).
+      provider: groq                #   Groq limits are per model, so this has its own tokens-per-minute budget.
+      model: qwen/qwen3.8-27b       #   (OpenRouter's qwen3-8b was deprecated Oct 2026 — found by the live run.)
     nodes:
       scout:        *open_small
       job_analyst:  *open_small
@@ -73,7 +73,7 @@ reranker:
 pricing_usd_per_mtok:
   "groq/openai/gpt-oss-20b":   { input: 0.10, output: 0.50 }
   "groq/openai/gpt-oss-120b":  { input: 0.15, output: 0.75 }
-  "openrouter/qwen/qwen3-8b":  { input: 0.035, output: 0.138 }
+  "groq/qwen/qwen3.8-27b":     { input: 0.29, output: 0.59 }
   "ollama/*":                  { input: 0.0, output: 0.0 }
 
 # --------------------------------------------------------------------------

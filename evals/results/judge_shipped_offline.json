@@ -1,0 +1,187 @@
+{
+ "tag": "shipped_offline",
+ "n": 25,
+ "mean_score": 4.08,
+ "items": [
+  {
+   "job_id": "dev-ai_ml-001",
+   "persona": "ai_ml",
+   "score": 3,
+   "why": "The proposal highlights relevant RAG experience but does not specifically address async job workers or MLflow, and lacks concrete evidence for those requirements, making it only partially aligned."
+  },
+  {
+   "job_id": "dev-ai_ml-003",
+   "persona": "ai_ml",
+   "score": 5,
+   "why": "The proposal directly addresses all required skills with concrete past results, outlines a clear initial approach, and asks for the next step, showing specificity and relevance."
+  },
+  {
+   "job_id": "dev-ai_ml-004",
+   "persona": "ai_ml",
+   "score": 4,
+   "why": "The proposal is specific and cites relevant Airflow successes, but it omits evidence for LLM orchestration, MLflow, and RAG, leaving minor gaps."
+  },
+  {
+   "job_id": "dev-ai_ml-007",
+   "persona": "ai_ml",
+   "score": 5,
+   "why": "The proposal directly addresses all listed requirements with concrete, relevant achievements and offers a clear next step by requesting details for the first week and offering a one-page plan."
+  },
+  {
+   "job_id": "dev-ai_ml-009",
+   "persona": "ai_ml",
+   "score": 4,
+   "why": "The proposal directly addresses LangChain and PDF RAG, cites a concrete relevant result, and offers a concrete next step, but omits mention of a test suite and explicit commitment to weekly updates."
+  },
+  {
+   "job_id": "dev-ai_ml-010",
+   "persona": "ai_ml",
+   "score": 4,
+   "why": "The proposal addresses LLM evaluation with concrete examples and asks clarifying questions, but does not explicitly mention Docker experience, leaving a minor gap."
+  },
+  {
+   "job_id": "dev-ai_ml-015",
+   "persona": "ai_ml",
+   "score": 3,
+   "why": "The proposal references fine\u2011tuning, PyTorch and evaluation harness experience, but omits key requirements like containerised deployment, RAG, and the dashboard deliverable, making it relevant yet incomplete."
+  },
+  {
+   "job_id": "dev-ai_ml-016",
+   "persona": "ai_ml",
+   "score": 4,
+   "why": "The proposal is specific and cites concrete achievements relevant to Airflow, SQL, and embeddings, but it does not explicitly address Kubernetes or Hugging Face, leaving minor gaps."
+  },
+  {
+   "job_id": "dev-ai_ml-019",
+   "persona": "ai_ml",
+   "score": 3,
+   "why": "The proposal is relevant and cites prior success, but it lacks concrete evidence for PyTorch work, does not address Pinecone specifically, and omits mention of the required dashboard and test suite."
+  },
+  {
+   "job_id": "dev-ai_ml-021",
+   "persona": "ai_ml",
+   "score": 4,
+   "why": "The proposal is specific, cites relevant experience and offers a concrete next step, but it does not address the experiment tracking requirement."
+  },
+  {
+   "job_id": "dev-ai_ml-024",
+   "persona": "ai_ml",
+   "score": 4,
+   "why": "The proposal is specific, cites concrete results for related tasks, and addresses most requirements, but omits explicit mention of Hugging Face, a minor gap."
+  },
+  {
+   "job_id": "dev-ai_ml-025",
+   "persona": "ai_ml",
+   "score": 4,
+   "why": "The proposal is specific to the client's needs, cites relevant experience with reproducible containers, Hugging Face, and evaluation harnesses, but omits mention of scheduled background jobs and the handover document, leaving minor gaps."
+  },
+  {
+   "job_id": "dev-ai_ml-026",
+   "persona": "ai_ml",
+   "score": 4,
+   "why": "The proposal addresses all listed requirements with relevant past achievements and a clear next step, but lacks concrete evidence of prior scikit-learn chatbot work and domain-specific experience, resulting in a minor gap."
+  },
+  {
+   "job_id": "dev-ai_ml-029",
+   "persona": "ai_ml",
+   "score": 3,
+   "why": "The proposal addresses pgvector, managed vector database, and PyTorch with concrete experience, but omits Celery and Airflow and offers limited detail on deliverables, making it partially generic and missing key requirements."
+  },
+  {
+   "job_id": "dev-ai_ml-032",
+   "persona": "ai_ml",
+   "score": 4,
+   "why": "The proposal is specific, cites concrete past results and addresses SQL, container setup, evaluation harness, and WordPress, but it does not mention DAG-based scheduling, leaving a minor gap."
+  },
+  {
+   "job_id": "dev-ai_ml-033",
+   "persona": "ai_ml",
+   "score": 3,
+   "why": "The proposal mentions relevant experience with SQL, classical ML, and PyTorch and hints at vector search, but it omits explicit mention of MLflow, Python, and the required deliverables, making it only partially specific."
+  },
+  {
+   "job_id": "dev-ai_ml-035",
+   "persona": "ai_ml",
+   "score": 5,
+   "why": "The proposal directly addresses each listed requirement with concrete past achievements, outlines an approach for the vector database, and proposes a clear next step."
+  },
+  {
+   "job_id": "dev-ai_ml-036",
+   "persona": "ai_ml",
+   "score": 5,
+   "why": "The proposal directly addresses Docker, Kubernetes, and Amazon cloud deployment, provides concrete evidence of relevant pipeline reliability work, and offers a clear next step with a short spike and request for first-week expectations."
+  },
+  {
+   "job_id": "dev-ai_ml-040",
+   "persona": "ai_ml",
+   "score": 3,
+   "why": "The proposal mentions relevant experience with MLflow, Celery, and SQL and provides performance metrics, but it omits key requirements like PyTorch, RAG, and Airflow, making it only partially aligned with the job."
+  },
+  {
+   "job_id": "dev-ai_ml-041",
+   "persona": "ai_ml",
+   "score": 5,
+   "why": "The proposal directly addresses all listed requirements with concrete, quantified experience, offers a clear next step, and is concise and specific to the client's problem."
+  },
+  {
+   "job_id": "dev-ai_ml-042",
+   "persona": "ai_ml",
+   "score": 5,
+   "why": "The proposal directly addresses all client requirements with concrete metrics, a clear plan, and a concise next step."
+  },
+  {
+   "job_id": "dev-ai_ml-043",
+   "persona": "ai_ml",
+   "score": 5,
+   "why": "The proposal directly addresses Docker and LLM evaluation with specific past results and offers a clear next step, meeting all requirements."
+  },
+  {
+   "job_id": "dev-ai_ml-045",
+   "persona": "ai_ml",
+   "score": 4,
+   "why": "The proposal directly addresses all required technologies with concrete past results and offers a clear next step, though it lacks detailed deliverable specifics, earning a solid 4."
+  },
+  {
+   "job_id": "dev-ai_ml-046",
+   "persona": "ai_ml",
+   "score": null,
+   "why": "OpenAIModelNotFoundError: Error code: 404 - Qwen3 8B was deprecated on Oct 9, 2026. We recommend migrating to Qwen3.7 Plus (openrouter.ai/qwen/qwen3.7-plus)."
+  },
+  {
+   "job_id": "dev-ai_ml-047",
+   "persona": "ai_ml",
+   "score": 4,
+   "why": "The proposal directly references Hugging Face, LangGraph, and LLM orchestration with concrete past results, but lacks a detailed plan or clear next step for the client."
+  },
+  {
+   "job_id": "dev-ai_ml-048",
+   "persona": "ai_ml",
+   "score": null,
+   "why": "OpenAIModelNotFoundError: Error code: 404 - Qwen3 8B was deprecated on Oct 9, 2026. We recommend migrating to Qwen3.7 Plus (openrouter.ai/qwen/qwen3.7-plus)."
+  },
+  {
+   "job_id": "dev-ai_ml-049",
+   "persona": "ai_ml",
+   "score": 5,
+   "why": "The proposal directly addresses all listed requirements with concrete, relevant experience and evidence, and ends with a clear next step."
+  },
+  {
+   "job_id": "dev-ai_ml-050",
+   "persona": "ai_ml",
+   "score": null,
+   "why": "OpenAIModelNotFoundError: Error code: 404 - Qwen3 8B was deprecated on Oct 9, 2026. We recommend migrating to Qwen3.7 Plus (openrouter.ai/qwen/qwen3.7-plus)."
+  },
+  {
+   "job_id": "dev-ai_ml-051",
+   "persona": "ai_ml",
+   "score": null,
+   "why": "OpenAIModelNotFoundError: Error code: 404 - Qwen3 8B was deprecated on Oct 9, 2026. We recommend migrating to Qwen3.7 Plus (openrouter.ai/qwen/qwen3.7-plus)."
+  },
+  {
+   "job_id": "dev-ai_ml-052",
+   "persona": "ai_ml",
+   "score": null,
+   "why": "OpenAIModelNotFoundError: Error code: 404 - Qwen3 8B was deprecated on Oct 9, 2026. We recommend migrating to Qwen3.7 Plus (openrouter.ai/qwen/qwen3.7-plus)."
+  }
+ ]
+}

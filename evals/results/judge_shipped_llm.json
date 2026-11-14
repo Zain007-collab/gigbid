@@ -1,0 +1,103 @@
+{
+ "tag": "shipped_llm",
+ "n": 16,
+ "mean_score": 3.812,
+ "items": [
+  {
+   "job_id": "dev-ai_ml-001",
+   "persona": "ai_ml",
+   "score": 4,
+   "why": "The proposal is specific, cites relevant experience, and covers most requirements and deliverables, but omits any mention of MLflow, a required component."
+  },
+  {
+   "job_id": "dev-ai_ml-003",
+   "persona": "ai_ml",
+   "score": 4,
+   "why": "The proposal is specific to the Pinecone pipeline, mentions async Python backend, weekly updates, and a dashboard, but fails to address the Docker requirement and provides limited concrete evidence of prior work."
+  },
+  {
+   "job_id": "dev-ai_ml-004",
+   "persona": "ai_ml",
+   "score": 3,
+   "why": "The proposal addresses Airflow, Docker, LLM orchestration, test suite, and dashboard but omits several key requirements (FastAPI, MLflow, RAG), making it relevant yet incomplete."
+  },
+  {
+   "job_id": "dev-ai_ml-007",
+   "persona": "ai_ml",
+   "score": 5,
+   "why": "The proposal directly addresses every listed requirement with concrete past experience, offers the requested deliverables, and includes a clear next step to schedule a call."
+  },
+  {
+   "job_id": "dev-ai_ml-009",
+   "persona": "ai_ml",
+   "score": 4,
+   "why": "The proposal directly addresses all listed requirements\u2014LangChain, PDF RAG, weekly updates, and a test suite\u2014and offers a clear next step, but it lacks concrete evidence of prior experience."
+  },
+  {
+   "job_id": "dev-ai_ml-010",
+   "persona": "ai_ml",
+   "score": 4,
+   "why": "The proposal is specific and offers relevant deliverables, but it does not address the required Docker component, leaving a minor gap."
+  },
+  {
+   "job_id": "dev-fullstack-001",
+   "persona": "fullstack",
+   "score": 5,
+   "why": "The proposal directly addresses all listed requirements (Python, scikit-learn, managed vector DB), provides concrete past results, outlines weekly updates and testing, and proposes a clear next step."
+  },
+  {
+   "job_id": "dev-fullstack-006",
+   "persona": "fullstack",
+   "score": 3,
+   "why": "The proposal is specific and shows relevant experience with FastAPI and testing, but it fails to address key requirements like Tailwind and in\u2011memory caching, leaving notable gaps."
+  },
+  {
+   "job_id": "dev-fullstack-007",
+   "persona": "fullstack",
+   "score": 3,
+   "why": "The proposal addresses FastAPI and testing but omits React and the 3D game prototype, missing key requirements."
+  },
+  {
+   "job_id": "dev-data_analyst-001",
+   "persona": "data_analyst",
+   "score": 4,
+   "why": "The proposal addresses most requirements with concrete evidence and clear next steps, but omits explicit mention of Power BI or Looker Studio, leaving a minor gap."
+  },
+  {
+   "job_id": "dev-data_analyst-002",
+   "persona": "data_analyst",
+   "score": 4,
+   "why": "The proposal is specific, cites relevant experience with dbt, Snowflake, and Google Sheets, and offers a clear next step, but it fails to address the required video editing skill."
+  },
+  {
+   "job_id": "dev-data_analyst-003",
+   "persona": "data_analyst",
+   "score": 4,
+   "why": "The proposal is specific and cites relevant experience, but it omits mention of weekly progress updates and the handover document required by the client."
+  },
+  {
+   "job_id": "dev-data_analyst-004",
+   "persona": "data_analyst",
+   "score": 4,
+   "why": "The proposal is specific and grounded, showing relevant experience and concrete plans, but it does not explicitly address predicting next quarter's numbers or warehouse cost tuning."
+  },
+  {
+   "job_id": "dev-data_analyst-005",
+   "persona": "data_analyst",
+   "score": 3,
+   "why": "The proposal covers cloud data warehouse and spreadsheet automation well, but lacks concrete experience with significance testing, Solidity, complex queries, and delivering a test suite, making it only partially meeting the requirements."
+  },
+  {
+   "job_id": "dev-data_analyst-007",
+   "persona": "data_analyst",
+   "score": 3,
+   "why": "The proposal is specific to Google Sheets automation and shares relevant experience, but it fails to address the required marketing report in Google's BI tool and Tableau, missing key deliverables."
+  },
+  {
+   "job_id": "dev-data_analyst-010",
+   "persona": "data_analyst",
+   "score": 4,
+   "why": "The proposal addresses all client requirements with concrete examples for forecasting and uplift measurement and offers the requested deliverables, but lacks specific evidence of BigQuery experience."
+  }
+ ]
+}
