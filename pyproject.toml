@@ -1,0 +1,48 @@
+[project]
+name = "gigbid"
+version = "0.1.0"
+description = "Multi-agent freelancer copilot (LangGraph + MCP + advanced RAG)"
+requires-python = ">=3.11"
+# Lower bounds here; exact pins live in uv.lock (commit it). `make lock` regenerates.
+dependencies = [
+  "pydantic>=2.8",
+  "pyyaml>=6.0",
+  "httpx>=0.27",
+  "mcp>=1.10",
+  "langchain-mcp-adapters>=0.1.9",
+  "langgraph>=0.6",
+  "langgraph-checkpoint-postgres>=2.0",
+  "langchain-openai>=0.3",
+  "langchain-ollama>=0.3",
+  "fastapi>=0.115",
+  "uvicorn[standard]>=0.30",
+  "sse-starlette>=2.1",
+  "psycopg[binary,pool]>=3.2",
+  "pgvector>=0.3",
+  "redis>=5.0",
+  "arq>=0.26",
+  "rank-bm25>=0.2.2",
+  "sentence-transformers>=3.0",
+  "pypdf>=4.0",
+  "cryptography>=43",
+  "langfuse>=2.50",
+]
+
+[dependency-groups]
+dev = [
+  "pytest>=8",
+  "anyio>=4",
+  "ruff>=0.6",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests", "mcp_servers"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = ["gigsim"]

@@ -1,0 +1,164 @@
+# GigBid runtime configuration.
+# Every model, budget, threshold and platform rule lives here, never in code.
+# Override the active profile with GIGBID_PROFILE and the marketplace with MARKETPLACE_MODE.
+
+active_profile: open          # open (required, deployed) | paid (optional)
+
+# --------------------------------------------------------------------------
+# Model profiles: one entry per node. Cheap/frequent nodes -> small model,
+# writer/critic/liaison -> strongest affordable model.
+# provider: groq | openrouter | ollama | openai | anthropic
+# --------------------------------------------------------------------------
+profiles:
+  open:
+    defaults: &open_small
+      provider: groq
+      model: openai/gpt-oss-20b
+      temperature: 0.0
+      timeout_s: 30
+      max_retries: 2
+    fallback:                       # used when a cheap node's primary model fails
+      provider: openrouter
+      model: qwen/qwen3-8b
+    nodes:
+      scout:        *open_small
+      job_analyst:  *open_small
+      risk:         *open_small
+      fit_matcher:  *open_small
+      pricing:      *open_small
+      compliance:   *open_small
+      intent:       *open_small
+      writer:       { provider: groq, model: openai/gpt-oss-120b, temperature: 0.4, timeout_s: 60, max_retries: 2 }
+      verifier:     { provider: groq, model: openai/gpt-oss-120b, temperature: 0.0, timeout_s: 60, max_retries: 2 }
+      critic:       { provider: groq, model: openai/gpt-oss-120b, temperature: 0.0, timeout_s: 60, max_retries: 2 }
+      liaison:      { provider: groq, model: openai/gpt-oss-120b, temperature: 0.3, timeout_s: 60, max_retries: 2 }
+      judge:        { provider: groq, model: openai/gpt-oss-120b, temperature: 0.0, timeout_s: 60, max_retries: 2 }
+    local:                          # docker-compose Ollama service (laptop / CPU)
+      small: { provider: ollama, model: "qwen3:8b" }
+      strong: { provider: ollama, model: "gpt-oss:20b" }
+
+  paid:
+    defaults: &paid_small
+      provider: openai
+      model: gpt-5-mini
+      temperature: 0.0
+      timeout_s: 30
+      max_retries: 2
+    fallback: { provider: groq, model: openai/gpt-oss-20b }
+    nodes:
+      scout: *paid_small
+      job_analyst: *paid_small
+      risk: *paid_small
+      fit_matcher: *paid_small
+      pricing: *paid_small
+      compliance: *paid_small
+      intent: *paid_small
+      writer:   { provider: anthropic, model: claude-sonnet-5-5, temperature: 0.4, timeout_s: 60, max_retries: 2 }
+      verifier: { provider: anthropic, model: claude-sonnet-5-5, temperature: 0.0, timeout_s: 60, max_retries: 2 }
+      critic:   { provider: anthropic, model: claude-sonnet-5-5, temperature: 0.0, timeout_s: 60, max_retries: 2 }
+      liaison:  { provider: anthropic, model: claude-sonnet-5-5, temperature: 0.3, timeout_s: 60, max_retries: 2 }
+      judge:    { provider: anthropic, model: claude-sonnet-5-5, temperature: 0.0, timeout_s: 60, max_retries: 2 }
+
+# Embeddings and reranker are open models in BOTH profiles (CPU-friendly).
+embeddings:
+  model: BAAI/bge-m3
+  dim: 1024
+reranker:
+  model: BAAI/bge-reranker-v2-m3
+
+# Price table for cost reporting (USD per 1M tokens). Update from provider pages.
+pricing_usd_per_mtok:
+  "groq/openai/gpt-oss-20b":   { input: 0.10, output: 0.50 }
+  "groq/openai/gpt-oss-120b":  { input: 0.15, output: 0.75 }
+  "openrouter/qwen/qwen3-8b":  { input: 0.035, output: 0.138 }
+  "ollama/*":                  { input: 0.0, output: 0.0 }
+
+# --------------------------------------------------------------------------
+# Marketplace port (R1). The graph never knows which adapter is active.
+# --------------------------------------------------------------------------
+marketplace:
+  mode: gigsim                      # gigsim | upwork
+  gigsim:
+    base_url_env: GIGSIM_BASE_URL
+    api_key_env: GIGSIM_API_KEY
+    timeout_s: 10
+    max_retries: 4
+    backoff_base_s: 0.5
+    backoff_max_s: 8
+  upwork:
+    url_env: UPWORK_MCP_URL
+    transport: streamable_http
+    timeout_s: 20
+    # Map our port operations onto the official Upwork MCP tool names.
+    # Fill in from the server's tools/list once OAuth is connected.
+    tool_map:
+      search_jobs: ""
+      get_job: ""
+      get_client_history: ""
+      get_connects_balance: ""
+      list_messages: ""
+      create_proposal_draft: ""
+      submit_proposal: ""           # Upwork creates a draft the user confirms on-platform
+      send_message: ""
+  rate_limit:                       # per user, kept below GigSim's published limits
+    requests_per_second: 2.0
+    burst: 5
+
+# --------------------------------------------------------------------------
+# Platform policy. The 2 Nov change request lands HERE, not in code.
+# --------------------------------------------------------------------------
+policy:
+  policy_pack_dir: data/policy_pack
+  connects:
+    extra_per_proposal: 0           # flat surcharge added by platform policy
+    multiplier: 1.0                 # scales the job's listed Connects cost
+  bidding_rules: []                 # e.g. {rule: max_proposals_per_client_per_week, value: 2}
+
+# --------------------------------------------------------------------------
+# Scheduling (worker). Live mode is deliberately conservative — see RUNBOOK.
+# --------------------------------------------------------------------------
+scheduling:
+  gigsim_scout_interval_min: 30
+  upwork_scout_interval_min: 180
+  max_jobs_per_scout_run: 25
+
+# --------------------------------------------------------------------------
+# Graph limits and decision thresholds
+# --------------------------------------------------------------------------
+budgets:
+  max_steps_per_thread: 40
+  max_tokens_per_thread: 60000
+  critic_max_revisions: 2
+  declared_p95_latency_s: { job_analysed: 20, proposal: 60 }
+  declared_cost_usd: { job_analysed: 0.002, proposal: 0.01 }
+
+thresholds:
+  bid_min_fit: 0.60
+  watch_min_fit: 0.45
+  max_risk_to_bid: 0.40
+  scam_block: 0.70
+  evidence_min_score: 0.35          # below this a requirement counts as unsupported
+  proposal_max_words: 220
+
+autonomy:
+  default_level: suggest            # suggest | auto_skip_low_fit   (never auto_send)
+
+# --------------------------------------------------------------------------
+# RAG (R6) — the shipped variant is chosen by evals/results, not by default.
+# --------------------------------------------------------------------------
+rag:
+  variant: v0_naive
+  k: 8
+  chunk_size: 600
+  chunk_overlap: 80
+
+# --------------------------------------------------------------------------
+# Long-term memory promotion (R7)
+# --------------------------------------------------------------------------
+memory:
+  style:
+    min_occurrences: 3              # same edit pattern seen in >= N approved drafts
+    min_distinct_jobs: 2
+  outcome:
+    min_samples_per_category: 5
+    min_reply_rate_lift: 0.10
