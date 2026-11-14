@@ -53,7 +53,7 @@ Fernet-encrypted per user (`apps/api/auth/token_store.py`) and masked in every l
 2. **Space:** create a *Docker* Space on Hugging Face (free CPU, 16 GB RAM — enough for the open embedding models).
 3. **Secrets** (Space → Settings → Variables and secrets): `DATABASE_URL`, `GROQ_API_KEY`, `SESSION_SECRET`,
    `TOKEN_ENCRYPTION_KEY`, `REVIEWER_EMAIL`, `REVIEWER_PASSWORD`, `GIGSIM_ADMIN_TOKEN`.
-4. `HF_USER=<you> HF_SPACE=gigbid HF_TOKEN=<write token> ./scripts/deploy_hf_space.sh`
+4. `python scripts/deploy_hf_space.py` (reads `.env`; sets the secrets above through the HF API; uploads committed files only)
 5. Open `https://<you>-gigbid.hf.space`, sign in with the reviewer account, and check `/api/health`.
 The image (`infra/docker/app.Dockerfile`) serves the built UI, the API, the embedded GigSim at `/gigsim` and runs the
 worker inline (bounded to 3 concurrent runs). Keep the Space running until grades are released.

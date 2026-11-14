@@ -114,14 +114,17 @@ class WriterOut(BaseModel):
     screening_answers: list[_Answer] = []
 
 
-def evidence_pack(fit) -> list[dict]:
+def evidence_pack(fit, per_requirement: int = 2, chars: int = 380) -> list[dict]:
+    """Top evidence per supported requirement, trimmed: keeps the writer prompt small (free-tier TPM limits)."""
     seen, pack = set(), []
     for m in fit.matches:
-        for e in m.evidence:
-            if m.supported and e.id not in seen:
+        if not m.supported:
+            continue
+        for e in m.evidence[:per_requirement]:
+            if e.id not in seen:
                 seen.add(e.id)
                 pack.append({"id": e.id, "type": e.type, "project": e.project, "requirement": m.requirement,
-                             "text": e.text[:500]})
+                             "text": e.text[:chars]})
     return pack
 
 
@@ -247,6 +250,11 @@ def _covers(evidence_text: str, requirement: str) -> bool:
     return bool(req) and len(req & _content(evidence_text)) / len(req) >= 0.6
 
 
+def _numbers_grounded(claim: str, evidence_texts: list[str]) -> bool:
+    nums = set(re.findall(r"\d+(?:\.\d+)?", re.split(r",? which covered", claim)[0]))
+    return not nums or any(nums <= set(re.findall(r"\d+(?:\.\d+)?", t)) for t in evidence_texts)
+
+
 def lexical_check(claim: str, evidence_texts: list[str]) -> str:
     """Heuristic grounding: content-word coverage of the claim by its best evidence; numbers must appear."""
     cw = _content(claim)
@@ -289,11 +297,16 @@ async def check_claims(claims: list[Claim], fit, use_llm: bool, extra: dict[str,
         user = "\n\n".join(f"CLAIM {k}: {out[k].text}\nEVIDENCE: " + " | ".join(t[:400] for t in texts)
                            for k, texts in pending)
         res, _ = llm.structured("verifier", VerifyOut, sys, user)
+        texts_by_idx = dict(pending)
         for v in (res.verdicts if res else []):
             if 0 <= v.index < len(out) and v.status in ("supported", "partial", "unsupported"):
                 upd = {"status": v.status}
                 if v.status == "partial" and v.rewrite:
                     upd.update(text=v.rewrite, note="rewritten to match evidence")
+                # hard rule on top of the LLM: every number in a claim must appear in its evidence
+                claim_text = upd.get("text", out[v.index].text)
+                if not _numbers_grounded(claim_text, texts_by_idx.get(v.index, [])):
+                    upd.update(status="unsupported", note="number not found in evidence")
                 out[v.index] = out[v.index].model_copy(update=upd)
     return out
 
@@ -302,12 +315,13 @@ async def check_claims(claims: list[Claim], fit, use_llm: bool, extra: dict[str,
 async def verifier(state: dict) -> dict:
     draft: ProposalDraft = state["drafts"][-1]
     extra = state.get("evidence_texts") or {}
-    checked = await check_claims(draft.claims, state["fit"], llm.online("verifier"), extra)
+    use_llm = llm.online("verifier")
+    checked = await check_claims(draft.claims, state["fit"], use_llm, extra)
     before = sum(c.status == "unsupported" for c in checked)
     kept = [c for c in checked if c.status != "unsupported"]
-    # re-check what remains (partials may have been rewritten) to measure "after"
+    # "after": the SAME verifier re-checks the final text (rewritten partials included)
     after = sum(c.status == "unsupported" for c in await check_claims(
-        [c.model_copy(update={"status": "unchecked"}) for c in kept], state["fit"], False, extra))
+        [c.model_copy(update={"status": "unchecked"}) for c in kept], state["fit"], use_llm, extra))
     verified = draft.model_copy(update={
         "claims": kept, "cover_letter": " ".join(c.text for c in kept),
         "unsupported_before_verify": before, "unsupported_after_verify": after})

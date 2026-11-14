@@ -69,7 +69,8 @@ async def grade(persona: str, proposal: str | None) -> dict:
     if not proposal:
         return {"unsupported": None, "violations": None}
     sents = [s for s in re.split(r"(?<=[.!?])\s+", proposal.strip()) if s]
-    checked = await check_claims([Claim(text=s) for s in sents], FitReport(job_id="x", fit_score=0, matches=[]), False)
+    # same LLM verifier for every system (lexical checking would penalise any paraphrase)
+    checked = await check_claims([Claim(text=s) for s in sents], FitReport(job_id="x", fit_score=0, matches=[]), True)
     _, viol = comply(proposal)
     return {"unsupported": sum(c.status == "unsupported" for c in checked), "violations": len(viol),
             "violation_rules": [v.rule for v in viol]}
@@ -88,21 +89,25 @@ async def run_prebuilt(kind: str, llm, tools, persona: str, row: dict) -> dict:
                                         prompt="You read jobs, client histories and market prices. Report facts only.")
         evidence = create_react_agent(llm, tools["portfolio"], name="portfolio_expert",
                                       prompt="You find portfolio evidence for each job requirement and quote it.")
-        writer = create_react_agent(llm, [], name="proposal_writer",
-                                    prompt="You write short proposals using ONLY evidence given to you.")
+        writer = create_react_agent(llm, tools["portfolio"], name="proposal_writer",
+                                    prompt="You write short proposals using ONLY portfolio evidence (look it up if needed).")
         app = create_supervisor([researcher, evidence, writer], model=llm,
                                 prompt="You coordinate a freelancing team. Delegate, then give the final JSON answer.").compile()
     t0 = time.perf_counter()
-    try:
-        res = await app.ainvoke({"messages": [("user", TASK.format(persona=persona, job_id=row["job_id"]))]},
-                                {"callbacks": [cb], "recursion_limit": 40})
-        final = parse_final(res["messages"][-1].content if isinstance(res["messages"][-1].content, str) else "")
-        err = None
-    except Exception as e:  # noqa: BLE001
-        final, err = {}, f"{type(e).__name__}: {str(e)[:200]}"
+    final, err, attempts = {}, None, 0
+    for attempts in range(1, 4):           # same retry budget for every system (provider tool-call parse errors)
+        try:
+            res = await app.ainvoke({"messages": [("user", TASK.format(persona=persona, job_id=row["job_id"]))]},
+                                    {"callbacks": [cb], "recursion_limit": 40})
+            final = parse_final(res["messages"][-1].content if isinstance(res["messages"][-1].content, str) else "")
+            err = None if final else "no final JSON answer"
+            if final:
+                break
+        except Exception as e:  # noqa: BLE001
+            err = f"{type(e).__name__}: {str(e)[:200]}"
     tokens = sum(u.get("total_tokens", 0) for u in cb.usage_metadata.values())
     return {"decision": final.get("decision"), "price": final.get("price"), "proposal": final.get("proposal"),
-            "latency_s": time.perf_counter() - t0, "tokens": tokens, "error": err}
+            "latency_s": time.perf_counter() - t0, "tokens": tokens, "error": err, "attempts": attempts}
 
 
 async def run_graph(graph, persona: str, row: dict) -> dict:
@@ -163,6 +168,8 @@ async def main_async(a) -> None:
             results[system].append(r)
         print(row["job_id"], {s: (rs[-1]["decision"], rs[-1].get("unsupported")) for s, rs in results.items()}, flush=True)
     gs.SIM.tick_min += 60 * 24 * 10
+    with gs.SIM.lock:
+        gs.SIM.process_events()            # GigSim applies due client events lazily
     status = {pid: p["status"] for pid, p in gs.SIM.proposals.items()}
 
     def agg(rs):
@@ -176,6 +183,7 @@ async def main_async(a) -> None:
                 "reply_rate": round(sum(status.get(r["proposal_id"]) in ("replied", "interview", "hired") for r in sub) / len(sub), 4) if sub else None,
                 "tokens_per_job": round(statistics.mean(r["tokens"] for r in rs), 1),
                 "p95_latency_s": pct([r["latency_s"] for r in rs], .95), "errors": sum(bool(r["error"]) for r in rs),
+                "retries": sum(max(0, r.get("attempts", 1) - 1) for r in rs),
                 "by_category": {c: round(statistics.mean((r["decision"] == "bid") == r["gold_bid"] for r in rs if r["category"] == c), 3)
                                 for c in sorted({r["category"] for r in rs})}}
 

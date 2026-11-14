@@ -29,8 +29,9 @@ profiles:
       compliance:   *open_small
       intent:       *open_small
       writer:       { provider: groq, model: openai/gpt-oss-120b, temperature: 0.4, timeout_s: 60, max_retries: 2 }
-      verifier:     { provider: groq, model: openai/gpt-oss-120b, temperature: 0.0, timeout_s: 60, max_retries: 2 }
-      critic:       { provider: groq, model: openai/gpt-oss-120b, temperature: 0.0, timeout_s: 60, max_retries: 2 }
+      # verifier/critic on 20b: per-claim checks need precision, not prose; also a separate free-tier rate limit
+      verifier:     { provider: groq, model: openai/gpt-oss-20b, temperature: 0.0, timeout_s: 60, max_retries: 3 }
+      critic:       { provider: groq, model: openai/gpt-oss-20b, temperature: 0.0, timeout_s: 60, max_retries: 3 }
       liaison:      { provider: groq, model: openai/gpt-oss-120b, temperature: 0.3, timeout_s: 60, max_retries: 2 }
       judge:        { provider: groq, model: openai/gpt-oss-120b, temperature: 0.0, timeout_s: 60, max_retries: 2 }
     local:                          # docker-compose Ollama service (laptop / CPU)

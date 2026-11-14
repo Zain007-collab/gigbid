@@ -1,0 +1,12 @@
+.env
+.env.*
+!.env.example
+.venv
+.git
+**/node_modules
+**/__pycache__
+apps/web/dist
+apps/web/playwright-report
+apps/web/test-results
+data/processed
+gigbid-starter-kit
