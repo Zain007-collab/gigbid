@@ -77,6 +77,8 @@ async def run_job(graph, persona: str, row: dict) -> dict:
         "tokens": sum(u.get("tokens_in", 0) + u.get("tokens_out", 0) for u in usage.values()),
         "usd": round(sum(u.get("usd", 0.0) for u in usage.values()), 6),
         "usage_by_node": usage,
+        "llm_calls": sum(len(t.get("llm") or []) for t in v.get("trace") or []),
+        "llm_fallbacks": sum(1 for t in v.get("trace") or [] for u in (t.get("llm") or []) if u.get("error")),
     }
 
 
@@ -118,6 +120,8 @@ def score(rows: list[dict]) -> dict:
         "tokens_per_job": round(statistics.mean(r["tokens"] for r in rows), 1) if rows else None,
         "usd_per_job": round(statistics.mean(r["usd"] for r in rows), 6) if rows else None,
         "usd_per_proposal": round(statistics.mean(r["usd"] for r in proposals), 6) if proposals else None,
+        "llm_calls": sum(r.get("llm_calls", 0) for r in rows),
+        "llm_fallbacks": sum(r.get("llm_fallbacks", 0) for r in rows),
     }
 
 

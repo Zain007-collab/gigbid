@@ -38,7 +38,7 @@ def tools_for_agents():
     def mk(qualified: str, desc: str, **params):
         async def f(**kw):
             try:
-                return json.dumps(await mcp_client.call("rqc", qualified, kw))[:3000]
+                return json.dumps(await mcp_client.call("rqc", qualified, kw))[:1200]
             except Exception as e:  # noqa: BLE001 - surfaced to the agent like a tool error
                 return f"ERROR: {e}"
         return StructuredTool.from_function(coroutine=f, name=qualified.split(".")[1], description=desc,
@@ -166,7 +166,8 @@ async def main_async(a) -> None:
                 except Exception as e:  # noqa: BLE001
                     r["submit_error"] = str(e)[:200]
             results[system].append(r)
-        print(row["job_id"], {s: (rs[-1]["decision"], rs[-1].get("unsupported")) for s, rs in results.items()}, flush=True)
+        print(row["job_id"], {s: (rs[-1]["decision"], rs[-1].get("unsupported"), bool(rs[-1]["error"])) for s, rs in results.items()}, flush=True)
+        await asyncio.sleep(a.pause)                       # stay under the free tier's tokens-per-minute cap
     gs.SIM.tick_min += 60 * 24 * 10
     with gs.SIM.lock:
         gs.SIM.process_events()            # GigSim applies due client events lazily
@@ -199,6 +200,7 @@ def main() -> None:
     ap.add_argument("--n", type=int, default=50)
     ap.add_argument("--model", default="scout")
     ap.add_argument("--personas", default="ai_ml,fullstack,data_analyst")
+    ap.add_argument("--pause", type=float, default=20.0)
     asyncio.run(main_async(ap.parse_args()))
 
 

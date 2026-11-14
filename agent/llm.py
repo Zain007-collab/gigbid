@@ -35,9 +35,9 @@ def _chat(spec: dict):
     from langchain_openai import ChatOpenAI
 
     base, key_env = PROVIDERS[spec["provider"]]
+    retries = int(os.environ.get("LLM_MAX_RETRIES", spec.get("max_retries", 2)))   # client honours Retry-After
     return ChatOpenAI(model=spec["model"], base_url=base, api_key=os.environ.get(key_env or "", "ollama") or "none",
-                      temperature=spec.get("temperature", 0), timeout=spec.get("timeout_s", 30),
-                      max_retries=spec.get("max_retries", 2))
+                      temperature=spec.get("temperature", 0), timeout=spec.get("timeout_s", 30), max_retries=retries)
 
 
 def cost_usd(spec: dict, tin: int, tout: int) -> float:
