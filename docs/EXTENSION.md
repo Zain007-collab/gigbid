@@ -18,12 +18,11 @@ winner ships with a one-line change.
 
 | Strategy | Proposals | Replies | Reply rate | Hires |
 |---|---|---|---|---|
-| evidence_first | 154 | 101 | 65.6% | 20 |
-| concise_question | 131 | 83 | 63.4% | 19 |
+| evidence_first | 143 | 94 | 65.7% | 21 |
+| concise_question | 114 | 65 | 57.0% | 11 |
 
-Two-proportion z = 0.39, p = 0.70; Fisher exact p = 0.71. **No significant difference** at this sample size, so the
-default stays `evidence_first`. Rerun with the LLM writer (`GROQ_API_KEY` set) before drawing conclusions about
-wording, since the template strategies differ only in how much evidence they cite.
+Two-proportion z = 1.43, p = 0.15; Fisher exact p = 0.16. **Not significant** at this sample size, so the default
+stays `evidence_first`; earlier runs pointed the same way, which argues for more samples rather than a claim.
 
 **Threats to validity:** the client model is ours and transparent (`gigsim/app.py::score_proposal`), so the test
 measures which strategy fits *that* model; assignment is per job, so persona mix is balanced only in expectation;

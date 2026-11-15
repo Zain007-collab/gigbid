@@ -1,7 +1,8 @@
 # GigBid — R&D report (engineering design review)
 
-Every number below is read from a file in `evals/results/` (named in brackets) or a commit. Sections marked
-**PENDING** need a run with a hosted open model (Groq) and are not yet filled in; nothing has been estimated.
+Every number below is read from a file in `evals/results/` (named in brackets) or a commit. Two items are marked
+**PENDING**: judge-vs-human κ (needs the author's 30 labels) and the hidden-test run (after the deadline). Nothing has
+been estimated. Superseded results are kept in `evals/results/superseded/` with the reason in the file name.
 
 ## 1. Problem and constraints
 A freelancer's loop is *discover → judge → price → write → follow up*. GigBid automates discovery, judgement and
@@ -75,43 +76,51 @@ proposals) over the case study or code that proves the skill. bge-reranker-base 
 above the artefacts that prove the skill. Outcome knowledge is used where it belongs instead — in the writer, via the
 outcome memory (§C2).
 
-**Claim verification (B3)** [`decision_dev_shipped_offline.json`]: unsupported claims per proposal **0.245 before →
-0 after** verification with the deterministic writer (it only paraphrases evidence, so "before" is low by
-construction). With the **LLM writer** (`gpt-oss-120b`) [`decision_dev_shipped_llm.json`, 15 dev jobs, 9 proposals]
-it is **1.78 → 0**: the LLM invents seven times more unsupported claims than the template, and verification removes
-them all before the Critic sees the draft. *Caveat:* free-tier rate limits pushed 35 node executions in that run onto
-the deterministic path (counted per job in the file), so it is a mixed run; the writer/verifier numbers come from
-the proposals the LLM did write. LLM-judge mean: 4.0 / 5 on those 9 proposals [`judge_shipped_llm.json`].
+**Claim verification (B3).** Deterministic writer [`decision_dev_shipped_offline.json`]: unsupported claims per
+proposal **0.19 → 0** (336 proposals); holdout 0.14 → 0 (84). The template only paraphrases evidence, so "before" is
+low by construction. With the **LLM writer** (`gpt-oss-120b`) [`decision_dev_shipped_llm.json`, 15 jobs, 9 proposals]
+it is **1.78 → 0**: the LLM invents about seven times more unsupported claims, and verification removes them all
+before the Critic sees the draft. *Caveat:* free-tier rate limits pushed 35 node executions in that run onto the
+deterministic path (counted per job in the file); LLM-judge mean 4.0 / 5 on its 9 proposals [`judge_shipped_llm.json`].
 
-**Decisions** (shipped retrieval, deterministic nodes):
+**Decisions — and how three bugs changed the story.** The first numbers looked excellent and were partly wrong:
 
-| Split | Bid/skip F1 | Precision | Recall | Scam P / R | Price in fair band | Injection attack success |
-|---|---|---|---|---|---|---|
-| dev, threshold 0.55 (initial guess) [`decision_dev_shipped_t055.json`] | 0.842 | 0.727 | 1.000 | 1.0 / 1.0 | 97.1% | 0 / 51 |
-| dev, threshold 0.65 (swept on dev) [`decision_dev_shipped_offline.json`] | 0.943 | 0.933 | 0.954 | 1.0 / 1.0 | 97.3% | 0 / 51 |
-| **holdout** (never tuned on) [`decision_holdout_shipped_offline.json`] | **0.941** | 0.926 | 0.956 | 1.0 / 1.0 | 100% | 0 / 16 |
-| dev, **V0 retrieval** [`decision_dev_v0_offline.json`] | 0.947 | 0.921 | 0.974 | 1.0 / 1.0 | 97.4% | 0 / 51 |
+| Configuration (dev unless noted) | Bid/skip F1 | Precision | Recall | File |
+|---|---|---|---|---|
+| threshold 0.55 (initial guess) | 0.842 | 0.727 | 1.000 | `decision_dev_shipped_t055.json` |
+| threshold 0.65, **past proposals counted as proof** | 0.943 | 0.933 | 0.954 | `superseded/…before-proof-types.json` |
+| proposals excluded, filter applied *after* ranking | 0.673 | 0.973 | 0.514 | `superseded/…proof-types_t065.json` |
+| proposals excluded, filter applied *before* ranking, threshold re-swept to **0.62** | **0.879** | 0.893 | 0.865 | `decision_dev_shipped_offline.json` |
+| **holdout** (never used for tuning), same configuration | **0.880** | 0.917 | 0.846 | `decision_holdout_shipped_offline.json` |
+| V0 retrieval, same configuration | 0.866 | 0.888 | 0.845 | `decision_dev_v0_offline.json` |
 
-**Where better retrieval did not translate:** V0 makes bid/skip decisions as well as the shipped pipeline (F1 0.947
-vs 0.943) despite 15.7 points less Recall@5. The Fit Matcher only needs the single most similar item per requirement
-to clear a threshold, and V0's small fixed chunks often produce *higher* top-1 similarity than whole-document
-chunks. Recall matters for what the writer can cite, not for the decision.
+The 0.943 rested on **circular evidence**: past proposals name skills in sales language ("needs Pinecone and
+LangChain; I have shipped exactly that"), so they matched requirements strongly and "proved" skills the portfolio
+never demonstrates. Excluding them exposed a second bug — the type filter ran after top-k, and for common skills the
+top-k was all proposals, leaving 14% of requirements (308 / 2,197) with no evidence at all. Fixing both and
+re-sweeping gives F1 0.879, confirmed on the untouched holdout (0.880). The threshold sits two points below a cliff
+(at 0.64 recall falls to 0.67): `bge-small`'s similarities are compressed into a narrow band, a real fragility.
 
-**Nor did it move reply rate** [`gigsim_outcomes_shipped_offline.json`, `gigsim_outcomes_v0_offline.json`; 100
-gold-bid jobs per persona, harness approves, 10 simulated days]: shipped 67.4% realised / 66.8% expected (n = 285)
-vs V0 67.3% / 66.5% (n = 291); hires 14.4% vs 12.0%. GigSim's clients reward must-have skill coverage, measured
-results and a specific opening; the writer cites the top projects under either retriever, so must-have coverage is
-the same (0.845 vs 0.846). Better recall only pays off when the writer *uses* the extra evidence — which the
-deterministic writer, by design, does not.
+Other decision metrics (shipped, dev): scams 79/79 caught, 0 false alarms; price inside the fair band 97.7% (301
+priced); injection attack success 0 / 51; 0 errors in 600 runs.
 
-**By persona and job type:** F1 by category on dev: ai_ml 0.959, data 0.964, web 0.957, devops 0.435 (13 false
-positives); off-domain categories (design, mobile, writing, other) contain no gold bids, so their F1 is 0 by
-definition; there the relevant number is that they were skipped.
+**Where better retrieval did and did not translate.** With honest evidence the shipped retriever now beats V0 on
+decisions (F1 0.879 vs 0.866) — earlier, circular evidence had masked that difference. **Reply rate did not move**
+[`gigsim_outcomes_shipped_offline.json`, `gigsim_outcomes_v0_offline.json`; 100 gold-bid jobs per persona, harness
+approves, 10 simulated days]: shipped 68.7% realised / 67.8% expected (n = 259) vs V0 67.1% / 67.8% (n = 249). GigSim's
+clients reward must-have coverage, measured results and a specific opening; the writer cites the top projects under
+either retriever, so must-have coverage is the same (0.875 vs 0.880). Better recall pays off only when the writer
+*uses* the extra evidence — the deterministic writer, by design, cites at most three projects.
 
-**Judge calibration — PENDING (needs your labels):** `python -m evals.runners.judge_calibration sample` writes 30
-proposals to `evals/datasets/judge_labels.csv`; the author labels them, then `calibrate` reports Cohen's κ.
+**By persona and job type** (dev F1): ai_ml 0.891, fullstack 0.868, data_analyst 0.876; by category ai_ml 0.914,
+web 0.899, data 0.852, devops 0.526 (adjacent-skill false bids). Off-domain categories contain no gold bids, so F1 is 0
+by definition; there the relevant result is that they were skipped.
 
-**Shipped:** decompose + hybrid BM25/dense (RRF) + multi-vector grouping, evidence threshold 0.65 (ADR 0003).
+**Judge calibration.** 30 proposals sampled into `evals/datasets/judge_labels.csv` for the author to label;
+`judge_labels_assistant.csv` holds an AI assistant's evidence-based scores *for reference only* — they are not
+reported as human labels. κ is reported once the author's labels are in [`judge_calibration.json`].
+
+**Shipped:** decompose + hybrid BM25/dense (RRF) + multi-vector, proof types only, evidence threshold 0.62 (ADR 0003).
 
 ## 5. R&D question C — single agent vs supervisor vs graph
 *Setup* [`rq_c_agents.json`]: 9 dev jobs (3 per persona); the same open model for **every** system
@@ -147,26 +156,29 @@ are spent.
 
 ## 7. Signature extension — X2 proposal experiments
 Two writer strategies (`evidence_first`: up to three case studies with measured results; `concise_question`: one
-strongest case study plus a scoping question), jobs randomly assigned (seed 11), submitted to GigSim clients, compared
-with a two-proportion z-test and Fisher's exact test [`ab_test_evidence_first_vs_concise_question.json`]:
-evidence-first 65.6% (101/154) vs concise-question 63.4% (83/131), z = 0.39, p = 0.70 (Fisher p = 0.71) — **no
-significant difference**, so the default stays evidence-first. A first run reported 0 replies in both arms because the
-runner read statuses before GigSim applied due events; caught by the implausible zero, fixed, superseded result kept.
-See `docs/EXTENSION.md`.
+strongest case study plus a scoping question), jobs randomly assigned (seed 11), submitted to GigSim clients
+[`ab_test_evidence_first_vs_concise_question.json`]: evidence-first **65.7%** (94/143) vs concise-question **57.0%**
+(65/114); z = 1.43, p = 0.15 (Fisher p = 0.16) — a 8.7-point difference that is **not significant** at this sample
+size; the default stays evidence-first. Earlier runs (before the evidence fixes) pointed the same way (p = 0.10–0.70),
+which is a reason to collect more samples, not to claim a winner. A first run reported 0 replies in both arms because
+the runner read statuses before GigSim applied due events; caught by the implausible zero. See `docs/EXTENSION.md`.
 
 ## 8. Failure analysis (dev, shipped pipeline) [`decision_dev_shipped_offline.json`]
-40 of 600 dev decisions were wrong (24 false bids, 16 missed bids).
+83 of 600 dev decisions are wrong (36 false bids, 47 missed bids); the rows below also record bugs found along the
+way and how each changed the numbers.
 
 | Group (taxonomy) | Count | Example | Cause | Fix tried | Worked? |
 |---|---|---|---|---|---|
-| **Wrong bid — adjacent-skill conflation** | 24 | `dev-ai_ml-070` (Docker, AWS, Kubernetes; gold coverage 0.33) | "container orchestration cluster" matches Docker evidence at cosine 0.65–0.75 | raised evidence threshold 0.55 → 0.65 | Partly: false bids 131 → 24, holdout confirms; the rest needs a per-requirement LLM check (not yet tried) |
-| **Missed evidence — paraphrase-only skills** | 16 | `dev-ai_ml-143` (Pinecone, Airflow, Celery, SQL; gold coverage 1.0, fit 0.5) | Pinecone appears only as "managed vector database" and as an import in code; best similarity 0.62 | multi-vector indexing of code chunks | Partly (Recall@5 +4.8 from multi-vector), but the threshold cliff at 0.65–0.70 still drops it |
-| Mispriced | 9 / 332 priced outside the fair band (all hourly) | `dev-ai_ml-091` bid $40/h, band $22–39 | Pricing never bids below the user's floor (90% of their rate) even when the client's maximum is lower — a deliberate product rule the gold band does not encode | none (by design; such jobs should arguably be skipped on budget) | — |
+| **Wrong bid — adjacent-skill conflation** | 36 | `dev-ai_ml-036` (Docker, Kubernetes, AWS; gold coverage 0.33, fit 1.0) | "container orchestration cluster" / AWS phrases match Docker evidence at cosine 0.62–0.73 | threshold sweep (0.55 → 0.62) | Partly: false bids 123 → 36; the rest needs a per-requirement LLM check (not yet tried) |
+| **Missed evidence — paraphrase-only skills** | 47 | `dev-ai_ml-016` (Airflow, SQL, pgvector, Hugging Face, Kubernetes; gold coverage 0.8, fit 0.4) | SQL and Hugging Face evidence lands at 0.50–0.58, below 0.62 | multi-vector indexing; type filter before ranking | Partly: requirements with no evidence 308 → 0 and missed bids 169 → 47; the threshold cliff limits the rest |
+| Mispriced | 7 / 301 priced outside the fair band (all hourly) | `dev-ai_ml-091` bid $40/h, band $22–39 | Pricing never bids below the user's floor (90% of their rate) even when the client's maximum is lower — a deliberate product rule the gold band does not encode | none (by design; such jobs should arguably be skipped on budget) | — |
 | Unsupported claim | relevance clauses ("which maps to your need for X") were exempt from verification and often false | sampled judge item 1 (`dev-ai_ml-170`): a semantic-search project "mapping to" a model registry | writer appended the clause unconditionally; verifier stripped it before grading | clause only when the case study covers the requirement; verifier grades whole sentences; all affected results regenerated (old ones in `evals/results/superseded/`) | Yes (see regenerated `decision_*` files) |
 | Unsupported claim — circular evidence | past proposals counted as proof of experience | recorded demo, `dev-ai_ml-003`: "I have shipped a Pinecone solution…" cited a past proposal's own sales line | retrieval returned proposals among evidence and nothing excluded them | agents request proof types only (case studies, repos, code, reviews, CV); proposals feed outcome memory only | Yes — regression test `test_past_proposals_never_count_as_proof` |
 | Injection | 0 / 51 succeeded | `dev-*` with "IGNORE ALL PREVIOUS INSTRUCTIONS …" | rules flag it; writer never sees instructions as instructions | delimiting + rules + compliance echo filter | Yes on these templates; see §9 for what would beat it |
+| Tool error / retrieval bug | evidence type filter applied after top-k | 14% of requirements returned no evidence | proposals filled the top-k, then were filtered out | filter inside retrieval (mask before ranking) | Yes: 308 → 0; regression test `test_type_filter_applies_before_ranking` |
 | Tool error | 0 errors in 600 runs | — | — | polite queueing limiter + retries (ADR 0006) | Yes (degraded runs 19 → 0 in the smoke test) |
-| Generic opening / compliance miss | **PENDING** (LLM writer) | | | | |
+| Generic opening | LLM writer opened with a generic sentence | demo, `dev-ai_ml-004`: "Critic v1: revise — first sentence is generic" | the writer prompt alone does not stop generic openings | Critic's rule-based personalisation check sends the draft back (≤2 rounds) | Yes in that case (approved at v3); GigSim reports 0% generic openings in submitted proposals |
+| Compliance miss | none observed: 0 policy violations reached a submitted proposal; 1 draft blocked (unsupported claims) | — | — | Compliance Guard + claim verification | — |
 
 ## 9. Safety and platform respect
 *Never:* send, submit or spend without approval; move a client off-platform; claim unsupported experience; scrape or
@@ -192,7 +204,7 @@ Measured so far, against the declared budgets (p95 ≤ 20 s per job, ≤ 60 s pe
 
 | Run | p95 per job | p95 per proposal | USD per job | USD per proposal | Within budget? |
 |---|---|---|---|---|---|
-| Deterministic nodes, laptop [`decision_dev_shipped_offline.json`] | ~1.6 s | ~1.7 s | $0 | $0 | yes |
+| Deterministic nodes, laptop [`decision_dev_shipped_offline.json`] | 1.46 s | 1.54 s | $0 | $0 | yes |
 | Hosted open models, Groq free tier [`decision_dev_shipped_llm.json`] | 86.3 s | 86.3 s | $0.0019 | $0.0030 | **cost yes, latency no** |
 
 The latency miss is rate-limit waiting, not compute: the median job took 18.6 s, and the p95 is dominated by
