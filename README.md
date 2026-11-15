@@ -1,10 +1,12 @@
 # GigBid — a multi-agent freelancer copilot
 
+![GigBid demo: inbox, evidence, approval, scam caught, injection ignored, client reply](docs/images/demo.gif)
+
 **GigBid finds freelance jobs worth bidding on, flags scams, and drafts proposals in which every claim links to real
 portfolio evidence. A human approves every proposal and message before anything leaves the system.**
 
 > 🌐 **Live app: https://gigbid-ive3.onrender.com** (free instance — the first request after 15 min idle takes ~1 min
-> to wake; reviewer login in the Classroom private comment) · 🎥 Demo GIF: `docs/images/demo.gif` · ▶️ 3-minute video:
+> to wake; reviewer login in the Classroom private comment) · ▶️ 3-minute video:
 > _link_ · 🔎 Traces: open any job → **Trace** (node-by-node tools, models, tokens and USD; checkpoint replay)
 
 ## Why it exists

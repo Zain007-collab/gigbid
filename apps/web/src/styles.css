@@ -41,7 +41,7 @@ table { width: 100%; border-collapse: collapse; } th, td { text-align: left; pad
 .claim { border-bottom: 2px dotted var(--accent); cursor: help; position: relative; }
 .claim.partial { border-bottom-color: var(--warn); } .claim.unsupported { border-bottom-color: var(--bad); }
 .claim.none { border-bottom: none; cursor: text; }
-.pop { position: absolute; z-index: 20; left: 0; top: 1.6em; width: min(420px, 80vw); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 10px; box-shadow: 0 6px 24px rgba(0,0,0,.15); font-size: 13px; white-space: pre-wrap; }
+.pop { pointer-events: none; position: absolute; z-index: 20; left: 0; top: 1.6em; width: min(420px, 80vw); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 10px; box-shadow: 0 6px 24px rgba(0,0,0,.15); font-size: 13px; white-space: pre-wrap; }
 .kanban { display: grid; grid-template-columns: repeat(7, minmax(160px, 1fr)); gap: 10px; overflow-x: auto; }
 .kanban .col { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 8px; min-height: 160px; }
 .timeline li { margin: 6px 0; }

@@ -32,3 +32,22 @@ export async function draftWaitingForApproval(page: Page, jobId: string) {
   await page.goto(`/studio/${jobId}`);
   await expect(page.getByTestId("approval-panel")).toBeVisible();
 }
+
+const used = new Set<string>();
+
+/** Analyse candidate jobs until GigBid recommends one (decisions change as the system improves); returns its id. */
+export async function anyDraftWaitingForApproval(page: Page): Promise<string> {
+  for (const jobId of bidJobs) {
+    if (used.has(jobId)) continue;
+    used.add(jobId);
+    await page.request.post(`/api/jobs/${jobId}/analyze`);
+    await expect.poll(async () => (await (await page.request.get(`/api/jobs/${jobId}`)).json()).status, { timeout: 30_000 })
+      .not.toMatch(/^(queued|running)$/);
+    if ((await (await page.request.get(`/api/jobs/${jobId}`)).json()).status === "awaiting_approval") {
+      await page.goto(`/studio/${jobId}`);
+      await expect(page.getByTestId("approval-panel")).toBeVisible();
+      return jobId;
+    }
+  }
+  throw new Error("no candidate job reached approval");
+}

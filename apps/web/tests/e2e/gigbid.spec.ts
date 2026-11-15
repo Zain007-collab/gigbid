@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { bidJobs, draftWaitingForApproval, signUpAndOnboard } from "./helpers";
+import { anyDraftWaitingForApproval, signUpAndOnboard } from "./helpers";
 
 test("onboarding: sign up, pick a persona, land on an empty inbox @mobile", async ({ page }) => {
   await signUpAndOnboard(page);
@@ -10,8 +10,7 @@ test("onboarding: sign up, pick a persona, land on an empty inbox @mobile", asyn
 
 test("approve a proposal: evidence on hover, dry-run preview, submitted exactly once", async ({ page }) => {
   await signUpAndOnboard(page);
-  const job = bidJobs[0];
-  await draftWaitingForApproval(page, job);
+  const job = await anyDraftWaitingForApproval(page);
   await expect(page.getByTestId("dry-run")).toContainText(job);
   await expect(page.getByTestId("connects-cost")).toHaveText(/\d+/);
   const cited = page.locator(".claim:not(.none)").first();          // a sentence that cites evidence
@@ -25,8 +24,7 @@ test("approve a proposal: evidence on hover, dry-run preview, submitted exactly 
 
 test("reject with a reason: nothing is sent and the reason is recorded", async ({ page }) => {
   await signUpAndOnboard(page);
-  const job = bidJobs[1];
-  await draftWaitingForApproval(page, job);
+  const job = await anyDraftWaitingForApproval(page);
   await page.getByTestId("reject").click();
   await page.getByTestId("reject-reason").fill("budget too low for the scope");
   await page.getByTestId("confirm-reject").click();
@@ -39,8 +37,7 @@ test("reject with a reason: nothing is sent and the reason is recorded", async (
 
 test("edit a draft: the edit is re-checked and then submitted", async ({ page }) => {
   await signUpAndOnboard(page);
-  const job = bidJobs[2];
-  await draftWaitingForApproval(page, job);
+  const job = await anyDraftWaitingForApproval(page);
   await page.getByTestId("edit").click();
   const box = page.getByTestId("edit-text");
   const text = await box.inputValue();
