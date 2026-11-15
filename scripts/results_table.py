@@ -79,10 +79,11 @@ def agents_table() -> str:
     c = load("rq_c_agents.json")
     if not c:
         return "_Multi-agent comparison (R&D question C) pending an LLM run — see `evals/runners/rq_c_agents.py`._"
-    rows = ["| System | Bid/skip accuracy | Unsupported claims / proposal | Compliance violations caught | GigSim reply rate | Tokens / job | p95 latency (s) |",
+    rows = ["| System | Finished | Correct bid/skip (all jobs) | Unsupported claims / proposal | GigSim reply rate | Tokens / job | p95 latency (s) |",
             "|---|---|---|---|---|---|---|"]
     for name, s in c["systems"].items():
-        rows.append(f"| {name} | {f(s['bid_accuracy'])} | {f(s['unsupported_per_proposal'], 2)} | {s['violations_caught']} | "
+        done = sum(not r["error"] for r in c["jobs"][name])
+        rows.append(f"| {name} | {done}/{len(c['jobs'][name])} | {f(s['bid_accuracy'])} | {f(s['unsupported_per_proposal'], 2)} | "
                     f"{f(s['reply_rate'], pct=True)} | {f(s['tokens_per_job'], 0)} | {f(s['p95_latency_s'], 2)} |")
     return "\n".join(rows) + f"\n\n_Source: `evals/results/rq_c_agents.json` ({c.get('n_jobs')} dev jobs, model {c.get('model')})._"
 

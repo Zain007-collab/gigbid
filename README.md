@@ -98,7 +98,13 @@ Two-proportion z = 0.391, p = 0.6954; Fisher exact p = 0.7109 (seed 11). _Source
 
 ### Single agent vs supervisor vs hand-built graph
 
-_Multi-agent comparison (R&D question C) pending an LLM run — see `evals/runners/rq_c_agents.py`._
+| System | Finished | Correct bid/skip (all jobs) | Unsupported claims / proposal | GigSim reply rate | Tokens / job | p95 latency (s) |
+|---|---|---|---|---|---|---|
+| react | 2/9 | 0.444 | 2.00 | 100.0% | 3204 | 35.41 |
+| supervisor | 0/9 | 0.333 | n/a | n/a | 5192 | 116.88 |
+| graph | 9/9 | 0.778 | 0.00 | 66.7% | 3503 | 166.61 |
+
+_Source: `evals/results/rq_c_agents.json` (9 dev jobs, model groq/qwen/qwen3.8-27b)._
 
 <!-- results:end -->
 

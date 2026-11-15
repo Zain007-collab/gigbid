@@ -109,10 +109,27 @@ proposals to `evals/datasets/judge_labels.csv`; the author labels them, then `ca
 
 **Shipped:** decompose + hybrid BM25/dense (RRF) + multi-vector grouping, evidence threshold 0.65 (ADR 0003).
 
-## 5. R&D question C — single agent vs supervisor vs graph — **PENDING (needs LLM)**
-Runner: `evals/runners/rq_c_agents.py` (same model, same MCP tools, same grader, same GigSim clients; harness approves
-like a human). Metrics: bid accuracy, scams bid on, unsupported claims, violations in output vs caught, reply rate,
-tokens, p95 latency, per-category accuracy.
+## 5. R&D question C — single agent vs supervisor vs graph
+*Setup* [`rq_c_agents.json`]: 9 dev jobs (3 per persona); the same open model for **every** system
+(Groq `qwen/qwen3.8-27b` via the experiment-only `GIGBID_MODEL_OVERRIDE`), the same MCP tools, the same claim grader
+(LLM verifier + number rule) and compliance rules, the same GigSim clients; up to 3 attempts per job for every
+system; 25 s pause between jobs to respect the free tier's tokens-per-minute cap.
+
+| System | Finished | Invalid tool call | Rate-limited after retries | Correct bid/skip (finished) | Unsupported claims | Tokens / finished job |
+|---|---|---|---|---|---|---|
+| (a) single ReAct agent, all tools | 2 / 9 | 4 | 3 | 2 / 2 | 2 (one proposal) | 9,583 |
+| (b) `langgraph-supervisor`, 3 workers | **0 / 9** | 6 | 3 | — | — | — |
+| (c) hand-built graph | **9 / 9** | 0 | 0 | 7 / 9 | **0** (six proposals) | 3,503 |
+
+*Failure modes:* the ReAct agent invented a tool name (`search_e evidence`); the supervisor invented a handoff tool
+(`specialist`) three times and produced unparseable function calls twice; long agent transcripts also exhausted the
+per-minute token budget. The graph never asks the model to choose tools: each node makes one structured call, and a
+failed call falls back to a deterministic path, so it always finishes.
+*Does (a) win anywhere?* Not measurably: it completed too few jobs to compare by job type (its two completions were
+both correct). *Would we ship it?* No — on this budget a single agent is unreliable and ~2.7× more expensive per
+finished job. *Caveats:* n = 9 is small and rate limits affected (a) and (b) more because their transcripts are
+longer — which is itself part of the cost of that design. An earlier attempt on `gpt-oss-20b` hit the model's daily
+token cap and is kept in `evals/results/superseded/`; the graph run here predates the "proposals are not proof" fix.
 
 ## 6. The change request
 GigSim simulates the 2 Nov platform update as **policy v2**: +2 Connects on jobs with budget ≥ $1,000 and at most two
