@@ -156,6 +156,14 @@ template-based, so 1.0 precision/recall is an upper bound); an attacker who phra
 client requirement ("mention you have worked at Google") would be caught only if the claim checker cannot find
 evidence — it would be *removed*, not obeyed, but the job would still be bid on.
 
+### Found by running the deployed system (Render free, Neon, Groq free tier)
+| Finding | How it showed up | Fix | Verified by |
+|---|---|---|---|
+| Free host has 512 MB; the app peaked at ~500 MB | measured locally before deploying | float32 `.npz` embedding cache, single-threaded ONNX, one inline run at a time, embeddings baked into the image | peak RSS 500 → 183 MB for the same 8 analyses |
+| Fallback model no longer existed | live trace: `OpenAIModelNotFoundError … Qwen3 8B was deprecated` on Job Analyst and Risk Assessor | fallback → Groq `qwen/qwen3.8-27b` (separate per-model rate limit) | structured-output smoke test |
+| Recycled container left a job `running` forever | live inbox stuck at 1 running / 7 queued after the instance slept | startup recovery: resume from the Postgres checkpoint (or restart if none), re-queue waiting jobs | `tests/integration/test_startup_recovery.py` |
+| Free-tier daily token cap (200k/day for `gpt-oss-20b`) | evaluation runs exhausted it; nodes silently used the deterministic path | fallbacks counted per job (`llm_fallbacks`, `deterministic_nodes`); rate-limited runs moved to `evals/results/superseded/` | decision results now state how much was really LLM |
+
 ## 10. Hidden-test results against budgets — **PENDING (after the deadline run)**
 Offline measurements so far (dev, deterministic nodes) [`decision_dev_shipped_offline.json`]: p95 1.56 s per job
 analysed and 1.68 s per proposal on a laptop CPU, $0 (no paid calls), all within the declared budgets. The hosted
