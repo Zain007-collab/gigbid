@@ -21,12 +21,24 @@ Portfolio and Workspace are our other two servers; GitHub's MCP server is the se
 execution trace and long-term memory are separate (§ARCHITECTURE). Every LLM node has a deterministic fallback
 (ADR 0004), which is what all *offline* numbers below measure.
 
-## 3. R&D question A — tool granularity — **PENDING (needs LLM)**
-*Hypothesis:* a small model selects tools more accurately from a small set of well-described tools than from either
-many fine-grained tools or two catch-all tools, at fewer tokens per task.
-*Setup:* 40 tasks with known correct first calls (`evals/runners/rq_a_tools.py`), three tool sets (21 fine, 2 coarse,
-9 ours with example-bearing descriptions), same model (config node `scout`), `tool_choice=required`.
-*Results:* run `python -m evals.runners.rq_a_tools` → `rq_a_tools.json`.
+## 3. R&D question A — tool granularity
+*Hypothesis:* a small model selects tools and arguments more accurately from a small set of well-described tools than
+from many fine-grained tools or two catch-all tools, at moderate token cost.
+*Setup* [`rq_a_tools.json`]: 40 tasks with a known correct first call (8 templates × 5 jobs), the same model
+(Groq `gpt-oss-20b`, config node `scout`), `tool_choice=required`, tools offered as schemas only.
+
+| Tool set | Tools | Tool selection | Argument accuracy | Tokens / task |
+|---|---|---|---|---|
+| Fine-grained | 21 | 35/40 (87.5%) | 35/40 (87.5%) | 669 |
+| Coarse (`marketplace_query(action, params)`) | 2 | 40/40 (100%) | 37/40 (92.5%) | 301 |
+| **Ours** (9 tools, descriptions with examples) | 9 | **40/40 (100%)** | **40/40 (100%)** | 566 |
+
+*Failure modes:* with fine-grained tools the model twice refused to call any tool despite `tool_choice=required` and
+three times chose `search_past_proposals` for "which skills can I prove" (`list_skills` existed); with coarse tools
+the decision simply moved into the `action` enum, where it picked `job` instead of `client` three times.
+*Conclusion:* granularity changes behaviour; the middle ground with example-bearing descriptions was the only set with
+zero errors, at 1.9× the tokens of the coarse set and 15% fewer than the fine set. The two refusals are counted as
+failures (the runner's per-set accuracy over completed calls reads 92.1% for the fine set).
 
 ## 4. R&D question B — retrieval, verification, ablation
 *Hypothesis (stated before running):* requirement decomposition + hybrid retrieval raises evidence Recall@5 by
