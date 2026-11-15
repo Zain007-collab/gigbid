@@ -22,10 +22,12 @@ class DenseIndex:
         self.chunks, self.embedder = chunks, embedder
         self.matrix = embedder.embed(texts or [c.text for c in chunks])
 
-    def search(self, query: str, k: int) -> list[tuple[Chunk, float]]:
+    def search(self, query: str, k: int, allow: np.ndarray | None = None) -> list[tuple[Chunk, float]]:
         q = self.embedder.embed([query], is_query=True)[0]
         sims = self.matrix @ q
-        top = np.argsort(-sims)[:k]
+        if allow is not None:                       # filter BEFORE ranking, so top-k is never empty after filtering
+            sims = np.where(allow, sims, -np.inf)
+        top = [i for i in np.argsort(-sims)[:k] if np.isfinite(sims[i])]
         return [(self.chunks[i], float(sims[i])) for i in top]
 
 
@@ -41,10 +43,13 @@ class BM25Index:
         self.idf = {t: math.log(1 + (n - f + 0.5) / (f + 0.5)) for t, f in df.items()}
         self.tf = [Counter(d) for d in self.docs]
 
-    def search(self, query: str, k: int) -> list[tuple[Chunk, float]]:
+    def search(self, query: str, k: int, allow: np.ndarray | None = None) -> list[tuple[Chunk, float]]:
         q = tokenize(query)
         scores = []
         for i, tf in enumerate(self.tf):
+            if allow is not None and not allow[i]:
+                scores.append(0.0)
+                continue
             dl, s = len(self.docs[i]), 0.0
             for t in q:
                 if t in tf:

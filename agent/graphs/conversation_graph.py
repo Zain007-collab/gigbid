@@ -105,8 +105,11 @@ def template_reply(thread_id: str, intent: str, last: str, slots: list[dict], ev
         body = (f"Thanks, happy to talk. I'm free {fmt(slots[0])}" + (f" or {fmt(slots[1])}" if len(slots) > 1 else "")
                 + " (PKT). Which works best for you?")
     elif intent == "negotiation":
-        m = re.search(r"\$\s?(\d[\d,]*)", last)
-        offer = float(m.group(1).replace(",", "")) if m else None
+        # the client's offer is the amount they ask for ("could you do it for $940"), not our bid they quote
+        asked = re.search(r"(?:for|at|to|offer|pay)\s*\$\s?(\d[\d,]*)", last, re.I)
+        amounts = re.findall(r"\$\s?(\d[\d,]*)", last)
+        raw = asked.group(1) if asked else (amounts[-1] if amounts else None)
+        offer = float(raw.replace(",", "")) if raw else None
         if offer is not None and offer >= prof["min_project"]:
             body = f"${offer:.0f} works for me if we keep the scope as described. Shall I start with the first milestone?"
         else:

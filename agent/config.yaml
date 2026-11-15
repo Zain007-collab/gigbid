@@ -144,8 +144,9 @@ thresholds:
   max_risk_to_bid: 0.40
   scam_block: 0.70
   evidence_min_score:               # cosine(requirement, best evidence) needed to count as supported;
-    fastembed: 0.60                 #   per embedder; re-swept on dev after past proposals stopped counting as proof
-                                    #   (F1 plateau 0.80-0.81 over 0.45-0.60; 0.60 is its most precise point)
+    fastembed: 0.62                 #   per embedder; swept on dev after (1) past proposals stopped counting as proof
+                                    #   and (2) the type filter moved before ranking. Best F1; recall falls off a
+                                    #   cliff above 0.64, so do not raise it without re-sweeping.
     ollama: 0.55
     hash: 0.20                      #   CI only
   proposal_max_words: 220

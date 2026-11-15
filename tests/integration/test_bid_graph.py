@@ -112,3 +112,13 @@ async def test_past_proposals_never_count_as_proof(gigsim):
     assert all(e.type != "proposal" for m in fit.matches for e in m.evidence)
     for p in pending(snap):
         assert all(e["type"] != "proposal" for c in p["claims"] for e in c["evidence"])
+
+
+def test_type_filter_applies_before_ranking():
+    """Regression: filtering after top-k left 14% of requirements with no evidence (proposals filled the top-k)."""
+    import os
+    os.environ.setdefault("RAG_EMBED_BACKEND", "hash")
+    from rag import retriever
+    pipe = retriever.build("shipped", "ai_ml")
+    ev = pipe.retrieve("python", ["python"], k=5, types={"case_study", "readme", "code", "repo", "review", "cv"})
+    assert ev.hits and all(h.chunk.meta.get("type") != "proposal" for h in ev.hits)

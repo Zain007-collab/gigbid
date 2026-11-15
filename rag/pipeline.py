@@ -89,13 +89,24 @@ class Pipeline:
         self._won_projects = {p for d in docs if d.meta.get("type") == "proposal" and d.meta.get("outcome") == "won"
                               for p in d.meta.get("cited_projects") or []}
 
+    def _mask(self, types: frozenset | None):
+        if not types:
+            return None
+        if not hasattr(self, "_masks"):
+            self._masks = {}
+        if types not in self._masks:
+            import numpy as np
+            self._masks[types] = np.array([c.meta.get("type") in types for c in self.chunks])
+        return self._masks[types]
+
     # ------------------------------------------------------------------ one query
-    def _search(self, query: str, n: int) -> list[Hit]:
-        dense = self.dense.search(query, n)
+    def _search(self, query: str, n: int, types: frozenset | None = None) -> list[Hit]:
+        allow = self._mask(types)
+        dense = self.dense.search(query, n, allow)
         if self.bm25 is not None:
             # map BM25 hits back to the original chunk objects
             by_id = {c.chunk_id: c for c in self.chunks}
-            lex = [(by_id[c.chunk_id], s) for c, s in self.bm25.search(query, n)]
+            lex = [(by_id[c.chunk_id], s) for c, s in self.bm25.search(query, n, allow)]
             fused = rrf([dense, lex])[:n]
         else:
             fused = dense
@@ -127,18 +138,21 @@ class Pipeline:
                 for h in hits]
 
     # ------------------------------------------------------------------ public
-    def retrieve(self, job_text: str, requirements: list[str] | None = None, k: int = 10) -> EvidenceSet:
+    def retrieve(self, job_text: str, requirements: list[str] | None = None, k: int = 10,
+                 types: set[str] | None = None) -> EvidenceSet:
+        """`types` restricts evidence to those document types (applied before ranking)."""
+        types = frozenset(types) if types else None
         if not self.flags.decompose:
-            hits = self._search(job_text, max(k, self.candidate_n))
+            hits = self._search(job_text, max(k, self.candidate_n), types)
             return EvidenceSet(_group(hits, k) if self.flags.multivector else hits[:k])
 
         reqs = requirements or extract_requirements(job_text)
         per_req: dict[str, list[Hit]] = {}
         unsupported = []
         for r in reqs:
-            hits = self._search(r, self.candidate_n)
+            hits = self._search(r, self.candidate_n, types)
             if self.flags.crag:
-                hits = self._corrective(r, hits, job_text)
+                hits = self._corrective(r, hits, job_text, types)
                 if not hits:
                     unsupported.append(r)
             if self.flags.multivector:
@@ -149,12 +163,12 @@ class Pipeline:
         return EvidenceSet([Hit(c, s, req_of.get(c.chunk_id)) for c, s in fused[:max(k, 10)]],
                            per_req, unsupported)
 
-    def _corrective(self, requirement: str, hits: list[Hit], job_text: str) -> list[Hit]:
+    def _corrective(self, requirement: str, hits: list[Hit], job_text: str, types: frozenset | None = None) -> list[Hit]:
         """CRAG: keep hits above the grade threshold; if none, re-query once with job context; else refuse."""
         good = [h for h in hits if h.score >= self.crag_threshold]
         if good:
             return good
-        retry = self._search(f"{requirement} — in the context of: {job_text[:300]}", self.candidate_n)
+        retry = self._search(f"{requirement} — in the context of: {job_text[:300]}", self.candidate_n, types)
         return [h for h in retry if h.score >= self.crag_threshold]
 
 

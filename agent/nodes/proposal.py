@@ -182,7 +182,7 @@ async def template_writer(job: dict, fit, pack: list[dict], spec, style: list[st
     sup = [m for m in fit.matches if m.supported]
     need = ", ".join(m.requirement for m in fit.matches[:3])
     s = [_Sentence(text=f"For “{job['title']}”, the core of the work is {need}.")]
-    used, projects = set(), set()
+    used, projects, titles = set(), set(), set()
     max_projects = 1 if strategy == "concise_question" else 3
     for m in sup:
         if len(projects) >= max_projects:
@@ -197,7 +197,10 @@ async def template_writer(job: dict, fit, pack: list[dict], spec, style: list[st
             continue
         title = re.search(r"^#\s*(.+)$", cs["text"], re.M)
         result = re.search(r"We (.+?)\.", cs["text"])
+        if title and title.group(1).strip() in titles:      # same kind of project twice reads as padding
+            continue
         if title and result:
+            titles.add(title.group(1).strip())
             texts[cs["id"]] = cs["text"]
             used.add(cs["id"])
             sentence = f"On “{title.group(1).strip()}” I {result.group(1).strip()}"

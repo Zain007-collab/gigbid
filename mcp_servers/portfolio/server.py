@@ -143,13 +143,16 @@ def search_evidence(
 
     persona, _ = _docs(ctx)          # also refreshes the index if new work was uploaded
     pipe = retriever.for_persona(persona)
-    ev = pipe.retrieve(requirement, [requirement], k=max(k * 3, 10))
+    types = set(filters.types) if filters and filters.types else None
+    if types and types & {"readme", "code"}:
+        types |= {"repo"}            # README + code are merged into one "repo" item when multi-vector is off
+    ev = pipe.retrieve(requirement, [requirement], k=max(k * 3, 10), types=types)
     items = []
     sims = pipe.similarity(requirement, ev.hits)
     for h, sim in zip(ev.hits, sims):
         m = h.chunk.meta
         if filters:
-            if filters.types and m.get("type") not in filters.types:
+            if types and m.get("type") not in types:
                 continue
             if filters.outcome and m.get("outcome") != filters.outcome:
                 continue
