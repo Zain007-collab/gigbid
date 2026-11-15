@@ -116,9 +116,8 @@ either retriever, so must-have coverage is the same (0.875 vs 0.880). Better rec
 web 0.899, data 0.852, devops 0.526 (adjacent-skill false bids). Off-domain categories contain no gold bids, so F1 is 0
 by definition; there the relevant result is that they were skipped.
 
-**Judge calibration.** 30 proposals sampled into `evals/datasets/judge_labels.csv` for the author to label;
-`judge_labels_assistant.csv` holds an AI assistant's evidence-based scores *for reference only* — they are not
-reported as human labels. κ is reported once the author's labels are in [`judge_calibration.json`].
+**Judge calibration.** 30 proposals sampled into `evals/datasets/judge_labels.csv` for the author to label (1–4
+rubric). κ is reported once the author's labels are in [`judge_calibration.json`].
 
 **Shipped:** decompose + hybrid BM25/dense (RRF) + multi-vector, proof types only, evidence threshold 0.62 (ADR 0003).
 
