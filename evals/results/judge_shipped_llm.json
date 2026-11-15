@@ -1,0 +1,61 @@
+{
+ "tag": "shipped_llm",
+ "n": 9,
+ "mean_score": 4,
+ "items": [
+  {
+   "job_id": "dev-ai_ml-001",
+   "persona": "ai_ml",
+   "score": 4,
+   "why": "The proposal is specific to the RAG chatbot need, cites relevant experience, and covers the dashboard and weekly updates, but only implicitly mentions async job workers, leaving a small gap."
+  },
+  {
+   "job_id": "dev-ai_ml-003",
+   "persona": "ai_ml",
+   "score": 4,
+   "why": "The proposal is specific and addresses most requirements with concrete steps, but it omits any mention of Docker, a required skill."
+  },
+  {
+   "job_id": "dev-ai_ml-004",
+   "persona": "ai_ml",
+   "score": 5,
+   "why": "The proposal directly addresses every listed requirement with concrete past work (Airflow pipelines, Docker, FastAPI, LLM orchestration, MLflow, RAG) and promises the requested test suite and dashboard, ending with a clear next step to schedule a call."
+  },
+  {
+   "job_id": "dev-fullstack-001",
+   "persona": "fullstack",
+   "score": 5,
+   "why": "The proposal directly addresses all listed requirements with concrete experience, outlines specific deliverables, and offers a clear next step."
+  },
+  {
+   "job_id": "dev-data_analyst-001",
+   "persona": "data_analyst",
+   "score": 4,
+   "why": "The proposal directly addresses each client requirement with specific past results and concrete tools, and offers a clear next step, though the reproducible container setup is only promised rather than demonstrated."
+  },
+  {
+   "job_id": "dev-data_analyst-002",
+   "persona": "data_analyst",
+   "score": 4,
+   "why": "The proposal is specific, cites relevant experience with dbt, Snowflake, Google Sheets, and test suites, but does not address the required video editing skill."
+  },
+  {
+   "job_id": "dev-data_analyst-003",
+   "persona": "data_analyst",
+   "score": 3,
+   "why": "The proposal addresses Pandas and executive dashboards and offers updates and handover, but it does not mention dbt, missing a key requirement."
+  },
+  {
+   "job_id": "dev-data_analyst-004",
+   "persona": "data_analyst",
+   "score": 3,
+   "why": "The proposal mentions Pandas, WordPress, weekly updates and a test suite, but fails to address predicting next quarter's numbers or warehouse cost tuning and offers no concrete evidence of relevant experience."
+  },
+  {
+   "job_id": "dev-data_analyst-005",
+   "persona": "data_analyst",
+   "score": 4,
+   "why": "The proposal is specific, cites concrete past work for significance testing, data warehousing, spreadsheet automation, and complex queries, but fails to address the Solidity requirement."
+  }
+ ]
+}

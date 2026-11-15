@@ -3,44 +3,44 @@
  "llm_online": false,
  "overall": {
   "jobs": 300,
-  "submitted": 285,
-  "reply_rate": 0.6737,
-  "hire_rate": 0.1439,
-  "expected_reply_rate": 0.6685,
-  "mean_p_reply_client_model": 0.6685,
+  "submitted": 154,
+  "reply_rate": 0.7143,
+  "hire_rate": 0.1364,
+  "expected_reply_rate": 0.6825,
+  "mean_p_reply_client_model": 0.6825,
   "generic_opening_rate": 0,
-  "must_have_coverage": 0.8453
+  "must_have_coverage": 0.8854
  },
  "by_persona": {
   "ai_ml": {
    "jobs": 100,
-   "submitted": 97,
-   "reply_rate": 0.6186,
-   "hire_rate": 0.0928,
-   "expected_reply_rate": 0.6353,
-   "mean_p_reply_client_model": 0.6353,
+   "submitted": 42,
+   "reply_rate": 0.7619,
+   "hire_rate": 0.1429,
+   "expected_reply_rate": 0.6633,
+   "mean_p_reply_client_model": 0.6633,
    "generic_opening_rate": 0,
-   "must_have_coverage": 0.8405
+   "must_have_coverage": 0.8771
   },
   "fullstack": {
    "jobs": 100,
-   "submitted": 93,
-   "reply_rate": 0.6882,
-   "hire_rate": 0.1828,
-   "expected_reply_rate": 0.6915,
-   "mean_p_reply_client_model": 0.6915,
+   "submitted": 46,
+   "reply_rate": 0.6957,
+   "hire_rate": 0.1087,
+   "expected_reply_rate": 0.6653,
+   "mean_p_reply_client_model": 0.6653,
    "generic_opening_rate": 0,
-   "must_have_coverage": 0.889
+   "must_have_coverage": 0.9204
   },
   "data_analyst": {
    "jobs": 100,
-   "submitted": 95,
-   "reply_rate": 0.7158,
-   "hire_rate": 0.1579,
-   "expected_reply_rate": 0.6799,
-   "mean_p_reply_client_model": 0.6799,
+   "submitted": 66,
+   "reply_rate": 0.697,
+   "hire_rate": 0.1515,
+   "expected_reply_rate": 0.7068,
+   "mean_p_reply_client_model": 0.7068,
    "generic_opening_rate": 0,
-   "must_have_coverage": 0.8073
+   "must_have_coverage": 0.8662
   }
  },
  "jobs": [
@@ -67,58 +67,32 @@
    "job_id": "dev-ai_ml-003",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00004",
-   "words": 89,
-   "status": "lost",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 1,
-    "personalisation": 1.0,
-    "words": 89,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.547
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-004",
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00006",
-   "words": 87,
-   "status": "lost",
+   "proposal_id": "p00004",
+   "words": 88,
+   "status": "hired",
    "client_model": {
     "coverage": 0.0,
     "generic_opening": false,
-    "specific_metrics": 1,
+    "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 87,
+    "words": 88,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.368
+    "p_reply": 0.451
    }
   },
   {
    "job_id": "dev-ai_ml-007",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00008",
-   "words": 82,
-   "status": "replied",
-   "client_model": {
-    "coverage": 0.5,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 82,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.739
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-008",
@@ -130,38 +104,25 @@
    "job_id": "dev-ai_ml-009",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00010",
-   "words": 51,
-   "status": "interview",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 1,
-    "personalisation": 1.0,
-    "words": 51,
-    "price_ok": false,
-    "violation": false,
-    "p_reply": 0.591
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-010",
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00012",
-   "words": 72,
-   "status": "replied",
+   "proposal_id": "p00006",
+   "words": 73,
+   "status": "lost",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 0,
+    "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 72,
+    "words": 73,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.828
+    "p_reply": 0.872
    }
   },
   {
@@ -169,91 +130,65 @@
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00014",
-   "words": 66,
-   "status": "interview",
+   "proposal_id": "p00008",
+   "words": 102,
+   "status": "replied",
    "client_model": {
     "coverage": 0.0,
     "generic_opening": false,
-    "specific_metrics": 0,
+    "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 66,
+    "words": 102,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.495
+    "p_reply": 0.64
    }
   },
   {
    "job_id": "dev-ai_ml-016",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00016",
-   "words": 99,
-   "status": "lost",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 99,
-    "price_ok": false,
-    "violation": false,
-    "p_reply": 0.677
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-019",
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00018",
-   "words": 73,
-   "status": "lost",
+   "proposal_id": "p00010",
+   "words": 91,
+   "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 1,
+    "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 73,
+    "words": 91,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.631
+    "p_reply": 0.655
    }
   },
   {
    "job_id": "dev-ai_ml-021",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00020",
-   "words": 72,
-   "status": "replied",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 1,
-    "personalisation": 1.0,
-    "words": 72,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.649
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-024",
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00022",
-   "words": 113,
+   "proposal_id": "p00012",
+   "words": 128,
    "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 1,
     "personalisation": 1.0,
-    "words": 113,
+    "words": 128,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.881
@@ -263,130 +198,65 @@
    "job_id": "dev-ai_ml-025",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00024",
-   "words": 106,
-   "status": "replied",
-   "client_model": {
-    "coverage": 0.5,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 106,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.513
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-026",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00026",
-   "words": 98,
-   "status": "replied",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 98,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.815
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-029",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00028",
-   "words": 73,
-   "status": "replied",
-   "client_model": {
-    "coverage": 0.5,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 73,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.661
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-032",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00030",
-   "words": 120,
-   "status": "replied",
-   "client_model": {
-    "coverage": 0.5,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 120,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.688
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-033",
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00032",
-   "words": 50,
+   "proposal_id": "p00014",
+   "words": 85,
    "status": "lost",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 1,
+    "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 50,
+    "words": 85,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.52
+    "p_reply": 0.587
    }
   },
   {
    "job_id": "dev-ai_ml-035",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00034",
-   "words": 95,
-   "status": "lost",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 1,
-    "personalisation": 1.0,
-    "words": 95,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.686
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-040",
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00036",
-   "words": 85,
-   "status": "replied",
+   "proposal_id": "p00016",
+   "words": 109,
+   "status": "lost",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 5,
+    "specific_metrics": 6,
     "personalisation": 1.0,
-    "words": 85,
+    "words": 109,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.674
@@ -396,160 +266,69 @@
    "job_id": "dev-ai_ml-041",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00038",
-   "words": 74,
-   "status": "lost",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 74,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.521
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-042",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00040",
-   "words": 95,
-   "status": "replied",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 95,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.52
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-043",
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00042",
-   "words": 71,
-   "status": "lost",
+   "proposal_id": "p00018",
+   "words": 72,
+   "status": "hired",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 0,
+    "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 71,
+    "words": 72,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.621
+    "p_reply": 0.654
    }
   },
   {
    "job_id": "dev-ai_ml-045",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00044",
-   "words": 82,
-   "status": "interview",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 0,
-    "personalisation": 1.0,
-    "words": 82,
-    "price_ok": false,
-    "violation": false,
-    "p_reply": 0.497
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-046",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00046",
-   "words": 70,
-   "status": "lost",
-   "client_model": {
-    "coverage": 0.0,
-    "generic_opening": false,
-    "specific_metrics": 1,
-    "personalisation": 1.0,
-    "words": 70,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.526
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-047",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00048",
-   "words": 81,
-   "status": "replied",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 0,
-    "personalisation": 1.0,
-    "words": 81,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.666
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-049",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00050",
-   "words": 101,
-   "status": "hired",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 0,
-    "personalisation": 1.0,
-    "words": 101,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.846
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-050",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00052",
-   "words": 118,
-   "status": "interview",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 118,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.881
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-052",
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00054",
+   "proposal_id": "p00020",
    "words": 83,
    "status": "interview",
    "client_model": {
@@ -568,72 +347,46 @@
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00056",
-   "words": 92,
+   "proposal_id": "p00022",
+   "words": 93,
    "status": "interview",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 0,
+    "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 92,
+    "words": 93,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.72
+    "p_reply": 0.758
    }
   },
   {
    "job_id": "dev-ai_ml-054",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00058",
-   "words": 118,
-   "status": "lost",
-   "client_model": {
-    "coverage": 0.67,
-    "generic_opening": false,
-    "specific_metrics": 1,
-    "personalisation": 1.0,
-    "words": 118,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.529
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-055",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00060",
-   "words": 74,
-   "status": "replied",
-   "client_model": {
-    "coverage": 0.67,
-    "generic_opening": false,
-    "specific_metrics": 0,
-    "personalisation": 1.0,
-    "words": 74,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.724
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-056",
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00062",
-   "words": 73,
-   "status": "lost",
+   "proposal_id": "p00024",
+   "words": 90,
+   "status": "interview",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 1,
     "personalisation": 1.0,
-    "words": 73,
+    "words": 90,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.742
@@ -643,48 +396,22 @@
    "job_id": "dev-ai_ml-059",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00064",
-   "words": 121,
-   "status": "lost",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 121,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.55
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-062",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00066",
-   "words": 70,
-   "status": "lost",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 0,
-    "personalisation": 1.0,
-    "words": 70,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.54
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-063",
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00068",
+   "proposal_id": "p00026",
    "words": 74,
-   "status": "hired",
+   "status": "lost",
    "client_model": {
     "coverage": 0.5,
     "generic_opening": false,
@@ -700,65 +427,26 @@
    "job_id": "dev-ai_ml-064",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00070",
-   "words": 53,
-   "status": "replied",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 1,
-    "personalisation": 1.0,
-    "words": 53,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.801
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-067",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00072",
-   "words": 92,
-   "status": "replied",
-   "client_model": {
-    "coverage": 0.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 92,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.576
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-071",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00074",
-   "words": 90,
-   "status": "replied",
-   "client_model": {
-    "coverage": 0.67,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 90,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.651
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-072",
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00076",
+   "proposal_id": "p00028",
    "words": 71,
    "status": "lost",
    "client_model": {
@@ -776,149 +464,58 @@
    "job_id": "dev-ai_ml-073",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00078",
-   "words": 53,
-   "status": "hired",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 1,
-    "personalisation": 1.0,
-    "words": 53,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.528
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-074",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00080",
-   "words": 95,
-   "status": "interview",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 0,
-    "personalisation": 1.0,
-    "words": 95,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.756
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-075",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00082",
-   "words": 112,
-   "status": "hired",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 112,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.626
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-077",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00084",
-   "words": 69,
-   "status": "interview",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 69,
-    "price_ok": false,
-    "violation": false,
-    "p_reply": 0.686
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-078",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00086",
-   "words": 74,
-   "status": "replied",
-   "client_model": {
-    "coverage": 0.5,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 74,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.774
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-079",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00088",
-   "words": 96,
-   "status": "lost",
-   "client_model": {
-    "coverage": 0.5,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 96,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.452
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-080",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00090",
-   "words": 107,
-   "status": "replied",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 107,
-    "price_ok": false,
-    "violation": false,
-    "p_reply": 0.633
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-083",
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00092",
-   "words": 99,
+   "proposal_id": "p00030",
+   "words": 110,
    "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 99,
+    "words": 110,
     "price_ok": false,
     "violation": false,
     "p_reply": 0.535
@@ -928,38 +525,25 @@
    "job_id": "dev-ai_ml-085",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00094",
-   "words": 60,
-   "status": "replied",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 60,
-    "price_ok": false,
-    "violation": false,
-    "p_reply": 0.722
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-087",
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00096",
-   "words": 106,
-   "status": "replied",
+   "proposal_id": "p00032",
+   "words": 102,
+   "status": "interview",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 4,
+    "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 106,
+    "words": 102,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.809
+    "p_reply": 0.796
    }
   },
   {
@@ -967,75 +551,49 @@
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00098",
-   "words": 83,
-   "status": "lost",
+   "proposal_id": "p00034",
+   "words": 79,
+   "status": "hired",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 4,
+    "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 83,
+    "words": 79,
     "price_ok": false,
     "violation": false,
-    "p_reply": 0.516
+    "p_reply": 0.499
    }
   },
   {
    "job_id": "dev-ai_ml-090",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00100",
-   "words": 104,
-   "status": "replied",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 104,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.616
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-091",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00102",
-   "words": 76,
-   "status": "interview",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 76,
-    "price_ok": false,
-    "violation": false,
-    "p_reply": 0.497
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-092",
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00104",
-   "words": 111,
-   "status": "lost",
+   "proposal_id": "p00036",
+   "words": 90,
+   "status": "replied",
    "client_model": {
-    "coverage": 0.67,
+    "coverage": 0.33,
     "generic_opening": false,
-    "specific_metrics": 3,
+    "specific_metrics": 1,
     "personalisation": 1.0,
-    "words": 111,
+    "words": 90,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.558
+    "p_reply": 0.463
    }
   },
   {
@@ -1043,15 +601,15 @@
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00106",
-   "words": 70,
+   "proposal_id": "p00038",
+   "words": 89,
    "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 70,
+    "words": 89,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.501
@@ -1061,95 +619,56 @@
    "job_id": "dev-ai_ml-095",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00108",
-   "words": 76,
-   "status": "interview",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 76,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.531
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-098",
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00110",
-   "words": 83,
-   "status": "replied",
+   "proposal_id": "p00040",
+   "words": 79,
+   "status": "interview",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 2,
+    "specific_metrics": 0,
     "personalisation": 1.0,
-    "words": 83,
+    "words": 79,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.758
+    "p_reply": 0.72
    }
   },
   {
    "job_id": "dev-ai_ml-099",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00112",
-   "words": 76,
-   "status": "lost",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 0,
-    "personalisation": 1.0,
-    "words": 76,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.459
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-101",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00114",
-   "words": 74,
-   "status": "lost",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 74,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.645
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-102",
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00116",
-   "words": 76,
-   "status": "lost",
+   "proposal_id": "p00042",
+   "words": 94,
+   "status": "interview",
    "client_model": {
     "coverage": 0.67,
     "generic_opening": false,
-    "specific_metrics": 2,
+    "specific_metrics": 4,
     "personalisation": 1.0,
-    "words": 76,
+    "words": 94,
     "price_ok": false,
     "violation": false,
-    "p_reply": 0.662
+    "p_reply": 0.702
    }
   },
   {
@@ -1157,9 +676,9 @@
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00118",
+   "proposal_id": "p00044",
    "words": 95,
-   "status": "lost",
+   "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
@@ -1175,95 +694,56 @@
    "job_id": "dev-ai_ml-105",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00120",
-   "words": 80,
-   "status": "lost",
-   "client_model": {
-    "coverage": 0.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 80,
-    "price_ok": false,
-    "violation": false,
-    "p_reply": 0.42
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-106",
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00122",
-   "words": 94,
-   "status": "lost",
+   "proposal_id": "p00046",
+   "words": 95,
+   "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 0,
+    "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 94,
+    "words": 95,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.837
+    "p_reply": 0.881
    }
   },
   {
    "job_id": "dev-ai_ml-107",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00124",
-   "words": 86,
-   "status": "lost",
-   "client_model": {
-    "coverage": 0.0,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 86,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.404
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-108",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00126",
-   "words": 69,
-   "status": "interview",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 69,
-    "price_ok": false,
-    "violation": false,
-    "p_reply": 0.802
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-109",
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00128",
-   "words": 112,
-   "status": "interview",
+   "proposal_id": "p00048",
+   "words": 123,
+   "status": "replied",
    "client_model": {
-    "coverage": 0.67,
+    "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 5,
     "personalisation": 1.0,
-    "words": 112,
+    "words": 123,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.735
+    "p_reply": 0.761
    }
   },
   {
@@ -1271,15 +751,15 @@
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00130",
-   "words": 70,
-   "status": "replied",
+   "proposal_id": "p00050",
+   "words": 109,
+   "status": "lost",
    "client_model": {
     "coverage": 0.5,
     "generic_opening": false,
-    "specific_metrics": 4,
+    "specific_metrics": 6,
     "personalisation": 1.0,
-    "words": 70,
+    "words": 109,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.724
@@ -1289,29 +769,16 @@
    "job_id": "dev-ai_ml-114",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00132",
-   "words": 88,
-   "status": "hired",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 88,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.857
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-115",
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00134",
+   "proposal_id": "p00052",
    "words": 79,
-   "status": "replied",
+   "status": "hired",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
@@ -1327,29 +794,16 @@
    "job_id": "dev-ai_ml-116",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00136",
-   "words": 110,
-   "status": "hired",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 0,
-    "personalisation": 1.0,
-    "words": 110,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.621
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-118",
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00138",
+   "proposal_id": "p00054",
    "words": 117,
-   "status": "lost",
+   "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
@@ -1366,18 +820,18 @@
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00140",
-   "words": 56,
+   "proposal_id": "p00056",
+   "words": 74,
    "status": "hired",
    "client_model": {
     "coverage": 0.67,
     "generic_opening": false,
-    "specific_metrics": 0,
+    "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 56,
+    "words": 74,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.608
+    "p_reply": 0.813
    }
   },
   {
@@ -1385,47 +839,34 @@
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00142",
-   "words": 71,
-   "status": "lost",
+   "proposal_id": "p00058",
+   "words": 89,
+   "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 2,
+    "specific_metrics": 4,
     "personalisation": 1.0,
-    "words": 71,
+    "words": 89,
     "price_ok": false,
     "violation": false,
-    "p_reply": 0.552
+    "p_reply": 0.571
    }
   },
   {
    "job_id": "dev-ai_ml-122",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00144",
-   "words": 67,
-   "status": "replied",
-   "client_model": {
-    "coverage": 0.67,
-    "generic_opening": false,
-    "specific_metrics": 1,
-    "personalisation": 1.0,
-    "words": 67,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.677
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-124",
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00146",
+   "proposal_id": "p00060",
    "words": 118,
-   "status": "hired",
+   "status": "interview",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
@@ -1442,18 +883,18 @@
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00148",
-   "words": 95,
+   "proposal_id": "p00062",
+   "words": 96,
    "status": "interview",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 2,
+    "specific_metrics": 4,
     "personalisation": 1.0,
-    "words": 95,
+    "words": 96,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.853
+    "p_reply": 0.866
    }
   },
   {
@@ -1461,18 +902,18 @@
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00150",
-   "words": 90,
+   "proposal_id": "p00064",
+   "words": 86,
    "status": "interview",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 3,
+    "specific_metrics": 1,
     "personalisation": 1.0,
-    "words": 90,
+    "words": 86,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.924
+    "p_reply": 0.89
    }
   },
   {
@@ -1480,15 +921,15 @@
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00152",
-   "words": 77,
-   "status": "lost",
+   "proposal_id": "p00066",
+   "words": 88,
+   "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 1,
     "personalisation": 1.0,
-    "words": 77,
+    "words": 88,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.482
@@ -1499,9 +940,9 @@
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00154",
+   "proposal_id": "p00068",
    "words": 98,
-   "status": "lost",
+   "status": "interview",
    "client_model": {
     "coverage": 0.5,
     "generic_opening": false,
@@ -1518,38 +959,25 @@
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00156",
-   "words": 113,
+   "proposal_id": "p00070",
+   "words": 135,
    "status": "lost",
    "client_model": {
     "coverage": 0.67,
     "generic_opening": false,
-    "specific_metrics": 2,
+    "specific_metrics": 1,
     "personalisation": 1.0,
-    "words": 113,
+    "words": 135,
     "price_ok": false,
     "violation": false,
-    "p_reply": 0.501
+    "p_reply": 0.463
    }
   },
   {
    "job_id": "dev-ai_ml-139",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00158",
-   "words": 78,
-   "status": "lost",
-   "client_model": {
-    "coverage": 0.5,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 78,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.47
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-143",
@@ -1567,57 +995,31 @@
    "job_id": "dev-ai_ml-147",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00160",
-   "words": 89,
-   "status": "interview",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 1,
-    "personalisation": 1.0,
-    "words": 89,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.816
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-148",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00162",
-   "words": 107,
-   "status": "lost",
-   "client_model": {
-    "coverage": 0.5,
-    "generic_opening": false,
-    "specific_metrics": 4,
-    "personalisation": 1.0,
-    "words": 107,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.588
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-149",
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00164",
-   "words": 98,
-   "status": "lost",
+   "proposal_id": "p00072",
+   "words": 117,
+   "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 1,
+    "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 98,
+    "words": 117,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.826
+    "p_reply": 0.857
    }
   },
   {
@@ -1625,9 +1027,9 @@
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00166",
+   "proposal_id": "p00074",
    "words": 92,
-   "status": "interview",
+   "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
@@ -1643,35 +1045,22 @@
    "job_id": "dev-ai_ml-151",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00168",
-   "words": 128,
-   "status": "lost",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 1,
-    "personalisation": 1.0,
-    "words": 128,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.557
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-152",
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00170",
-   "words": 94,
+   "proposal_id": "p00076",
+   "words": 91,
    "status": "lost",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 4,
     "personalisation": 1.0,
-    "words": 94,
+    "words": 91,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.703
@@ -1682,72 +1071,46 @@
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00172",
-   "words": 77,
-   "status": "replied",
+   "proposal_id": "p00078",
+   "words": 96,
+   "status": "interview",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 0,
+    "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 77,
+    "words": 96,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.684
+    "p_reply": 0.72
    }
   },
   {
    "job_id": "dev-ai_ml-154",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00174",
-   "words": 113,
-   "status": "lost",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 113,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.588
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-155",
    "persona": "ai_ml",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00176",
-   "words": 73,
-   "status": "replied",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 1,
-    "personalisation": 1.0,
-    "words": 73,
-    "price_ok": false,
-    "violation": false,
-    "p_reply": 0.673
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-157",
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00178",
-   "words": 61,
-   "status": "replied",
+   "proposal_id": "p00080",
+   "words": 79,
+   "status": "lost",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 0,
     "personalisation": 1.0,
-    "words": 61,
+    "words": 79,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.756
@@ -1757,111 +1120,59 @@
    "job_id": "dev-ai_ml-158",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00180",
-   "words": 89,
-   "status": "lost",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 89,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.474
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-159",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00182",
-   "words": 92,
-   "status": "interview",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 5,
-    "personalisation": 1.0,
-    "words": 92,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.626
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-160",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00184",
-   "words": 71,
-   "status": "replied",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 1,
-    "personalisation": 1.0,
-    "words": 71,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.705
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-163",
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00186",
-   "words": 106,
-   "status": "lost",
+   "proposal_id": "p00082",
+   "words": 124,
+   "status": "interview",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 2,
+    "specific_metrics": 4,
     "personalisation": 1.0,
-    "words": 106,
+    "words": 124,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.626
+    "p_reply": 0.635
    }
   },
   {
    "job_id": "dev-ai_ml-166",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00188",
-   "words": 93,
-   "status": "interview",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 93,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.943
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-167",
    "persona": "ai_ml",
    "category": "ai_ml",
    "submitted": true,
-   "proposal_id": "p00190",
-   "words": 95,
-   "status": "replied",
+   "proposal_id": "p00084",
+   "words": 108,
+   "status": "lost",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 5,
+    "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 95,
+    "words": 108,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.568
@@ -1871,39 +1182,13 @@
    "job_id": "dev-ai_ml-168",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00192",
-   "words": 72,
-   "status": "interview",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 72,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.501
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-ai_ml-169",
    "persona": "ai_ml",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00194",
-   "words": 93,
-   "status": "replied",
-   "client_model": {
-    "coverage": 0.0,
-    "generic_opening": false,
-    "specific_metrics": 0,
-    "personalisation": 1.0,
-    "words": 93,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.346
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-003",
@@ -1915,39 +1200,13 @@
    "job_id": "dev-fullstack-006",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00196",
-   "words": 100,
-   "status": "lost",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 4,
-    "personalisation": 1.0,
-    "words": 100,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.934
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-007",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00198",
-   "words": 92,
-   "status": "lost",
-   "client_model": {
-    "coverage": 0.5,
-    "generic_opening": false,
-    "specific_metrics": 1,
-    "personalisation": 1.0,
-    "words": 92,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.544
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-009",
@@ -1959,76 +1218,50 @@
    "job_id": "dev-fullstack-012",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00200",
-   "words": 66,
-   "status": "interview",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 4,
-    "personalisation": 1.0,
-    "words": 66,
-    "price_ok": false,
-    "violation": false,
-    "p_reply": 0.902
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-014",
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00202",
-   "words": 84,
-   "status": "hired",
+   "proposal_id": "p00086",
+   "words": 83,
+   "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 1,
+    "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 84,
+    "words": 83,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.761
+    "p_reply": 0.777
    }
   },
   {
    "job_id": "dev-fullstack-015",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00204",
-   "words": 103,
-   "status": "replied",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 103,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.77
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-016",
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00206",
-   "words": 95,
+   "proposal_id": "p00088",
+   "words": 121,
    "status": "lost",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 0,
+    "specific_metrics": 1,
     "personalisation": 1.0,
-    "words": 95,
+    "words": 121,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.45
+    "p_reply": 0.464
    }
   },
   {
@@ -2041,92 +1274,53 @@
    "job_id": "dev-fullstack-018",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00208",
-   "words": 106,
-   "status": "hired",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 106,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.872
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-019",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00210",
-   "words": 81,
-   "status": "replied",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 4,
-    "personalisation": 1.0,
-    "words": 81,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.905
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-020",
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00212",
-   "words": 90,
+   "proposal_id": "p00090",
+   "words": 93,
    "status": "lost",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 4,
+    "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 90,
+    "words": 93,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.683
+    "p_reply": 0.673
    }
   },
   {
    "job_id": "dev-fullstack-021",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00214",
-   "words": 99,
-   "status": "replied",
-   "client_model": {
-    "coverage": 0.5,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 99,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.844
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-022",
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00216",
-   "words": 83,
+   "proposal_id": "p00092",
+   "words": 88,
    "status": "lost",
    "client_model": {
     "coverage": 0.5,
     "generic_opening": false,
-    "specific_metrics": 4,
+    "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 83,
+    "words": 88,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.525
@@ -2136,187 +1330,83 @@
    "job_id": "dev-fullstack-025",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00218",
-   "words": 98,
-   "status": "lost",
-   "client_model": {
-    "coverage": 0.5,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 98,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.724
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-026",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00220",
-   "words": 87,
-   "status": "interview",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 87,
-    "price_ok": false,
-    "violation": false,
-    "p_reply": 0.792
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-028",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00222",
-   "words": 84,
-   "status": "interview",
-   "client_model": {
-    "coverage": 0.5,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 84,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.868
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-030",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00224",
-   "words": 110,
-   "status": "lost",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 4,
-    "personalisation": 1.0,
-    "words": 110,
-    "price_ok": false,
-    "violation": false,
-    "p_reply": 0.608
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-032",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00226",
-   "words": 103,
-   "status": "hired",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 103,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.626
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-033",
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00228",
-   "words": 83,
-   "status": "hired",
+   "proposal_id": "p00094",
+   "words": 101,
+   "status": "lost",
    "client_model": {
-    "coverage": 0.5,
+    "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 2,
+    "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 83,
+    "words": 101,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.618
+    "p_reply": 0.683
    }
   },
   {
    "job_id": "dev-fullstack-034",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00230",
-   "words": 74,
-   "status": "interview",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 74,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.768
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-036",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00232",
-   "words": 91,
-   "status": "interview",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 91,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.953
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-037",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00234",
-   "words": 68,
-   "status": "replied",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 1,
-    "personalisation": 1.0,
-    "words": 68,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.519
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-039",
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00236",
-   "words": 86,
-   "status": "hired",
+   "proposal_id": "p00096",
+   "words": 110,
+   "status": "interview",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 86,
+    "words": 110,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.853
@@ -2327,9 +1417,9 @@
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00238",
+   "proposal_id": "p00098",
    "words": 94,
-   "status": "hired",
+   "status": "lost",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
@@ -2345,20 +1435,7 @@
    "job_id": "dev-fullstack-042",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00240",
-   "words": 95,
-   "status": "replied",
-   "client_model": {
-    "coverage": 0.67,
-    "generic_opening": false,
-    "specific_metrics": 4,
-    "personalisation": 1.0,
-    "words": 95,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.837
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-044",
@@ -2370,152 +1447,100 @@
    "job_id": "dev-fullstack-045",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00242",
-   "words": 107,
-   "status": "replied",
-   "client_model": {
-    "coverage": 0.5,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 107,
-    "price_ok": false,
-    "violation": false,
-    "p_reply": 0.57
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-046",
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00244",
-   "words": 80,
-   "status": "lost",
+   "proposal_id": "p00100",
+   "words": 107,
+   "status": "interview",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 3,
+    "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 80,
+    "words": 107,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.51
+    "p_reply": 0.502
    }
   },
   {
    "job_id": "dev-fullstack-048",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00246",
-   "words": 83,
-   "status": "lost",
-   "client_model": {
-    "coverage": 0.33,
-    "generic_opening": false,
-    "specific_metrics": 4,
-    "personalisation": 1.0,
-    "words": 83,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.61
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-052",
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00248",
-   "words": 86,
+   "proposal_id": "p00102",
+   "words": 108,
    "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 2,
+    "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 86,
+    "words": 108,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.616
+    "p_reply": 0.626
    }
   },
   {
    "job_id": "dev-fullstack-054",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00250",
-   "words": 99,
-   "status": "replied",
-   "client_model": {
-    "coverage": 0.67,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 99,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.813
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-055",
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00252",
-   "words": 85,
-   "status": "replied",
+   "proposal_id": "p00104",
+   "words": 103,
+   "status": "interview",
    "client_model": {
     "coverage": 0.67,
     "generic_opening": false,
-    "specific_metrics": 3,
+    "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 85,
+    "words": 103,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.772
+    "p_reply": 0.75
    }
   },
   {
    "job_id": "dev-fullstack-056",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00254",
-   "words": 84,
-   "status": "lost",
-   "client_model": {
-    "coverage": 0.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 84,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.419
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-063",
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00256",
-   "words": 64,
+   "proposal_id": "p00106",
+   "words": 84,
    "status": "lost",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 3,
+    "specific_metrics": 1,
     "personalisation": 1.0,
-    "words": 64,
+    "words": 84,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.578
+    "p_reply": 0.557
    }
   },
   {
@@ -2523,45 +1548,32 @@
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00258",
-   "words": 85,
-   "status": "interview",
+   "proposal_id": "p00108",
+   "words": 88,
+   "status": "lost",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 4,
+    "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 85,
+    "words": 88,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.597
+    "p_reply": 0.588
    }
   },
   {
    "job_id": "dev-fullstack-066",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00260",
-   "words": 79,
-   "status": "hired",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 79,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.953
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-067",
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00262",
+   "proposal_id": "p00110",
    "words": 107,
    "status": "lost",
    "client_model": {
@@ -2579,38 +1591,25 @@
    "job_id": "dev-fullstack-069",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00264",
-   "words": 66,
-   "status": "lost",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 66,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.55
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-070",
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00266",
-   "words": 92,
-   "status": "replied",
+   "proposal_id": "p00112",
+   "words": 91,
+   "status": "interview",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 3,
+    "specific_metrics": 1,
     "personalisation": 1.0,
-    "words": 92,
+    "words": 91,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.635
+    "p_reply": 0.612
    }
   },
   {
@@ -2618,18 +1617,18 @@
    "persona": "fullstack",
    "category": "devops",
    "submitted": true,
-   "proposal_id": "p00268",
-   "words": 34,
+   "proposal_id": "p00114",
+   "words": 38,
    "status": "lost",
    "client_model": {
     "coverage": 0.0,
     "generic_opening": false,
-    "specific_metrics": 0,
+    "specific_metrics": 1,
     "personalisation": 0.0,
-    "words": 34,
+    "words": 38,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.092
+    "p_reply": 0.122
    }
   },
   {
@@ -2637,53 +1636,40 @@
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00270",
-   "words": 112,
-   "status": "lost",
+   "proposal_id": "p00116",
+   "words": 114,
+   "status": "replied",
    "client_model": {
-    "coverage": 0.5,
+    "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 112,
+    "words": 114,
     "price_ok": false,
     "violation": false,
-    "p_reply": 0.794
+    "p_reply": 0.902
    }
   },
   {
    "job_id": "dev-fullstack-078",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00272",
-   "words": 65,
-   "status": "replied",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 65,
-    "price_ok": false,
-    "violation": false,
-    "p_reply": 0.535
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-079",
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00274",
-   "words": 87,
+   "proposal_id": "p00118",
+   "words": 92,
    "status": "lost",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 4,
+    "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 87,
+    "words": 92,
     "price_ok": false,
     "violation": false,
     "p_reply": 0.552
@@ -2694,56 +1680,43 @@
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00276",
-   "words": 79,
-   "status": "interview",
+   "proposal_id": "p00120",
+   "words": 110,
+   "status": "replied",
    "client_model": {
     "coverage": 0.5,
     "generic_opening": false,
-    "specific_metrics": 3,
+    "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 79,
+    "words": 110,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.57
+    "p_reply": 0.548
    }
   },
   {
    "job_id": "dev-fullstack-081",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00278",
-   "words": 82,
-   "status": "replied",
-   "client_model": {
-    "coverage": 0.5,
-    "generic_opening": false,
-    "specific_metrics": 4,
-    "personalisation": 1.0,
-    "words": 82,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.841
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-082",
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00280",
-   "words": 79,
+   "proposal_id": "p00122",
+   "words": 82,
    "status": "replied",
    "client_model": {
     "coverage": 0.0,
     "generic_opening": false,
-    "specific_metrics": 3,
+    "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 79,
+    "words": 82,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.567
+    "p_reply": 0.519
    }
   },
   {
@@ -2751,15 +1724,15 @@
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00282",
-   "words": 91,
+   "proposal_id": "p00124",
+   "words": 92,
    "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 91,
+    "words": 92,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.682
@@ -2770,75 +1743,49 @@
    "persona": "fullstack",
    "category": "devops",
    "submitted": true,
-   "proposal_id": "p00284",
-   "words": 86,
-   "status": "lost",
+   "proposal_id": "p00126",
+   "words": 83,
+   "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 3,
+    "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 86,
+    "words": 83,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.799
+    "p_reply": 0.787
    }
   },
   {
    "job_id": "dev-fullstack-085",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00286",
-   "words": 79,
-   "status": "replied",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 0,
-    "personalisation": 0.0,
-    "words": 79,
-    "price_ok": false,
-    "violation": false,
-    "p_reply": 0.443
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-086",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00288",
-   "words": 94,
-   "status": "interview",
-   "client_model": {
-    "coverage": 0.67,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 94,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.533
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-088",
    "persona": "fullstack",
    "category": "devops",
    "submitted": true,
-   "proposal_id": "p00290",
-   "words": 85,
+   "proposal_id": "p00128",
+   "words": 82,
    "status": "hired",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 4,
+    "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 85,
+    "words": 82,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.905
+    "p_reply": 0.891
    }
   },
   {
@@ -2846,9 +1793,9 @@
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00292",
+   "proposal_id": "p00130",
    "words": 113,
-   "status": "replied",
+   "status": "hired",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
@@ -2864,54 +1811,28 @@
    "job_id": "dev-fullstack-093",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00294",
-   "words": 102,
-   "status": "replied",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 102,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.815
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-095",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00296",
-   "words": 96,
-   "status": "hired",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 4,
-    "personalisation": 1.0,
-    "words": 96,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.655
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-097",
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00298",
-   "words": 92,
-   "status": "replied",
+   "proposal_id": "p00132",
+   "words": 115,
+   "status": "lost",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 92,
+    "words": 115,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.809
@@ -2922,9 +1843,9 @@
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00300",
+   "proposal_id": "p00134",
    "words": 76,
-   "status": "interview",
+   "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
@@ -2941,53 +1862,40 @@
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00302",
-   "words": 88,
-   "status": "interview",
+   "proposal_id": "p00136",
+   "words": 91,
+   "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 4,
+    "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 88,
+    "words": 91,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.866
+    "p_reply": 0.853
    }
   },
   {
    "job_id": "dev-fullstack-102",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00304",
-   "words": 62,
-   "status": "interview",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 62,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.493
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-103",
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00306",
-   "words": 89,
-   "status": "lost",
+   "proposal_id": "p00138",
+   "words": 90,
+   "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 89,
+    "words": 90,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.521
@@ -2998,18 +1906,18 @@
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00308",
-   "words": 104,
-   "status": "hired",
+   "proposal_id": "p00140",
+   "words": 103,
+   "status": "interview",
    "client_model": {
-    "coverage": 1.0,
+    "coverage": 0.67,
     "generic_opening": false,
-    "specific_metrics": 4,
+    "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 104,
+    "words": 103,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.866
+    "p_reply": 0.837
    }
   },
   {
@@ -3017,133 +1925,68 @@
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00310",
-   "words": 106,
-   "status": "lost",
+   "proposal_id": "p00142",
+   "words": 113,
+   "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 1,
+    "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 106,
+    "words": 113,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.51
+    "p_reply": 0.529
    }
   },
   {
    "job_id": "dev-fullstack-107",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00312",
-   "words": 87,
-   "status": "interview",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 1,
-    "personalisation": 1.0,
-    "words": 87,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.89
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-108",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00314",
-   "words": 83,
-   "status": "hired",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 83,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.863
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-109",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00316",
-   "words": 85,
-   "status": "replied",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 85,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.606
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-110",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00318",
-   "words": 82,
-   "status": "hired",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 82,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.787
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-111",
    "persona": "fullstack",
    "category": "devops",
    "submitted": true,
-   "proposal_id": "p00320",
-   "words": 87,
+   "proposal_id": "p00144",
+   "words": 90,
    "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 3,
+    "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 87,
+    "words": 90,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.683
+    "p_reply": 0.673
    }
   },
   {
    "job_id": "dev-fullstack-112",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00322",
-   "words": 64,
-   "status": "replied",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 1,
-    "personalisation": 1.0,
-    "words": 64,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.612
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-113",
@@ -3156,18 +1999,18 @@
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00324",
-   "words": 86,
-   "status": "interview",
+   "proposal_id": "p00146",
+   "words": 93,
+   "status": "hired",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 3,
+    "specific_metrics": 1,
     "personalisation": 1.0,
-    "words": 86,
+    "words": 93,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.789
+    "p_reply": 0.761
    }
   },
   {
@@ -3175,9 +2018,9 @@
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00326",
+   "proposal_id": "p00148",
    "words": 62,
-   "status": "replied",
+   "status": "interview",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
@@ -3193,27 +2036,14 @@
    "job_id": "dev-fullstack-117",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00328",
-   "words": 80,
-   "status": "hired",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 5,
-    "personalisation": 1.0,
-    "words": 80,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.761
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-120",
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00330",
+   "proposal_id": "p00150",
    "words": 95,
    "status": "hired",
    "client_model": {
@@ -3232,56 +2062,43 @@
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00332",
-   "words": 81,
-   "status": "interview",
+   "proposal_id": "p00152",
+   "words": 103,
+   "status": "hired",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 4,
+    "specific_metrics": 1,
     "personalisation": 1.0,
-    "words": 81,
+    "words": 103,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.712
+    "p_reply": 0.686
    }
   },
   {
    "job_id": "dev-fullstack-125",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00334",
-   "words": 62,
-   "status": "replied",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 62,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.881
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-127",
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00336",
-   "words": 73,
-   "status": "replied",
+   "proposal_id": "p00154",
+   "words": 76,
+   "status": "interview",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 3,
+    "specific_metrics": 1,
     "personalisation": 1.0,
-    "words": 73,
+    "words": 76,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.857
+    "p_reply": 0.826
    }
   },
   {
@@ -3289,56 +2106,43 @@
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00338",
-   "words": 80,
-   "status": "replied",
+   "proposal_id": "p00156",
+   "words": 86,
+   "status": "lost",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 4,
+    "specific_metrics": 1,
     "personalisation": 1.0,
-    "words": 80,
+    "words": 86,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.568
+    "p_reply": 0.547
    }
   },
   {
    "job_id": "dev-fullstack-130",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00340",
-   "words": 88,
-   "status": "lost",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 88,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.597
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-131",
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00342",
-   "words": 70,
-   "status": "lost",
+   "proposal_id": "p00158",
+   "words": 73,
+   "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 3,
+    "specific_metrics": 1,
     "personalisation": 1.0,
-    "words": 70,
+    "words": 73,
     "price_ok": false,
     "violation": false,
-    "p_reply": 0.829
+    "p_reply": 0.767
    }
   },
   {
@@ -3346,53 +2150,40 @@
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00344",
-   "words": 91,
-   "status": "lost",
+   "proposal_id": "p00160",
+   "words": 80,
+   "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 4,
+    "specific_metrics": 1,
     "personalisation": 1.0,
-    "words": 91,
+    "words": 80,
     "price_ok": false,
     "violation": false,
-    "p_reply": 0.654
+    "p_reply": 0.605
    }
   },
   {
    "job_id": "dev-fullstack-134",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00346",
-   "words": 106,
-   "status": "replied",
-   "client_model": {
-    "coverage": 0.67,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 106,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.632
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-136",
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00348",
-   "words": 82,
+   "proposal_id": "p00162",
+   "words": 83,
    "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 82,
+    "words": 83,
     "price_ok": false,
     "violation": false,
     "p_reply": 0.516
@@ -3408,67 +2199,28 @@
    "job_id": "dev-fullstack-140",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00350",
-   "words": 108,
-   "status": "hired",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 108,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.919
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-141",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00352",
-   "words": 80,
-   "status": "replied",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 4,
-    "personalisation": 1.0,
-    "words": 80,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.703
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-143",
    "persona": "fullstack",
    "category": "ai_ml",
-   "submitted": true,
-   "proposal_id": "p00354",
-   "words": 91,
-   "status": "replied",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 1,
-    "personalisation": 1.0,
-    "words": 91,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.584
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-144",
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00356",
+   "proposal_id": "p00164",
    "words": 83,
-   "status": "replied",
+   "status": "interview",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
@@ -3485,15 +2237,15 @@
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00358",
-   "words": 87,
-   "status": "hired",
+   "proposal_id": "p00166",
+   "words": 104,
+   "status": "interview",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 87,
+    "words": 104,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.558
@@ -3504,15 +2256,15 @@
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00360",
-   "words": 86,
-   "status": "hired",
+   "proposal_id": "p00168",
+   "words": 91,
+   "status": "lost",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 1,
     "personalisation": 1.0,
-    "words": 86,
+    "words": 91,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.612
@@ -3522,77 +2274,25 @@
    "job_id": "dev-fullstack-153",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00362",
-   "words": 107,
-   "status": "lost",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 107,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.531
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-156",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00364",
-   "words": 90,
-   "status": "interview",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 0,
-    "personalisation": 1.0,
-    "words": 90,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.72
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-157",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00366",
-   "words": 105,
-   "status": "lost",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 1,
-    "personalisation": 1.0,
-    "words": 105,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.649
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-158",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00368",
-   "words": 66,
-   "status": "replied",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 66,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.645
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-159",
@@ -3605,15 +2305,15 @@
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00370",
-   "words": 105,
-   "status": "lost",
+   "proposal_id": "p00170",
+   "words": 115,
+   "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 4,
+    "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 105,
+    "words": 115,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.866
@@ -3623,29 +2323,16 @@
    "job_id": "dev-fullstack-162",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00372",
-   "words": 64,
-   "status": "lost",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 64,
-    "price_ok": false,
-    "violation": false,
-    "p_reply": 0.855
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-163",
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00374",
+   "proposal_id": "p00172",
    "words": 86,
-   "status": "interview",
+   "status": "lost",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
@@ -3661,38 +2348,25 @@
    "job_id": "dev-fullstack-164",
    "persona": "fullstack",
    "category": "web",
-   "submitted": true,
-   "proposal_id": "p00376",
-   "words": 85,
-   "status": "lost",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 85,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.568
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-fullstack-165",
    "persona": "fullstack",
    "category": "web",
    "submitted": true,
-   "proposal_id": "p00378",
-   "words": 88,
-   "status": "lost",
+   "proposal_id": "p00174",
+   "words": 91,
+   "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 3,
+    "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 88,
+    "words": 91,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.626
+    "p_reply": 0.616
    }
   },
   {
@@ -3700,9 +2374,9 @@
    "persona": "fullstack",
    "category": "devops",
    "submitted": true,
-   "proposal_id": "p00380",
+   "proposal_id": "p00176",
    "words": 82,
-   "status": "lost",
+   "status": "interview",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
@@ -3718,54 +2392,28 @@
    "job_id": "dev-data_analyst-001",
    "persona": "data_analyst",
    "category": "data",
-   "submitted": true,
-   "proposal_id": "p00382",
-   "words": 105,
-   "status": "hired",
-   "client_model": {
-    "coverage": 0.5,
-    "generic_opening": false,
-    "specific_metrics": 4,
-    "personalisation": 1.0,
-    "words": 105,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.887
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-data_analyst-002",
    "persona": "data_analyst",
    "category": "data",
-   "submitted": true,
-   "proposal_id": "p00384",
-   "words": 109,
-   "status": "interview",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 109,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.549
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-data_analyst-003",
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00386",
-   "words": 83,
-   "status": "hired",
+   "proposal_id": "p00178",
+   "words": 82,
+   "status": "lost",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 83,
+    "words": 82,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.712
@@ -3776,13 +2424,13 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00388",
+   "proposal_id": "p00180",
    "words": 99,
-   "status": "replied",
+   "status": "lost",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 3,
+    "specific_metrics": 4,
     "personalisation": 1.0,
     "words": 99,
     "price_ok": true,
@@ -3795,15 +2443,15 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00390",
-   "words": 108,
-   "status": "interview",
+   "proposal_id": "p00182",
+   "words": 110,
+   "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 4,
     "personalisation": 1.0,
-    "words": 108,
+    "words": 110,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.953
@@ -3814,15 +2462,15 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00392",
-   "words": 89,
-   "status": "hired",
+   "proposal_id": "p00184",
+   "words": 88,
+   "status": "lost",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 89,
+    "words": 88,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.758
@@ -3833,18 +2481,18 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00394",
-   "words": 94,
-   "status": "replied",
+   "proposal_id": "p00186",
+   "words": 99,
+   "status": "hired",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 4,
+    "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 94,
+    "words": 99,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.587
+    "p_reply": 0.578
    }
   },
   {
@@ -3858,13 +2506,13 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00396",
+   "proposal_id": "p00188",
    "words": 95,
    "status": "lost",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 4,
+    "specific_metrics": 3,
     "personalisation": 1.0,
     "words": 95,
     "price_ok": true,
@@ -3877,18 +2525,18 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00398",
-   "words": 61,
-   "status": "interview",
+   "proposal_id": "p00190",
+   "words": 66,
+   "status": "hired",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 2,
+    "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 61,
+    "words": 66,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.739
+    "p_reply": 0.751
    }
   },
   {
@@ -3896,18 +2544,18 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00400",
-   "words": 108,
-   "status": "replied",
+   "proposal_id": "p00192",
+   "words": 107,
+   "status": "hired",
    "client_model": {
-    "coverage": 0.67,
+    "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 108,
+    "words": 107,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.781
+    "p_reply": 0.809
    }
   },
   {
@@ -3915,15 +2563,15 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00402",
-   "words": 99,
-   "status": "interview",
+   "proposal_id": "p00194",
+   "words": 113,
+   "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 5,
+    "specific_metrics": 4,
     "personalisation": 1.0,
-    "words": 99,
+    "words": 113,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.674
@@ -3934,13 +2582,13 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00404",
+   "proposal_id": "p00196",
    "words": 83,
-   "status": "replied",
+   "status": "hired",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 3,
+    "specific_metrics": 4,
     "personalisation": 1.0,
     "words": 83,
     "price_ok": true,
@@ -3953,18 +2601,18 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00406",
-   "words": 100,
-   "status": "replied",
+   "proposal_id": "p00198",
+   "words": 97,
+   "status": "interview",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 2,
+    "specific_metrics": 1,
     "personalisation": 1.0,
-    "words": 100,
+    "words": 97,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.739
+    "p_reply": 0.724
    }
   },
   {
@@ -3972,15 +2620,15 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00408",
-   "words": 85,
-   "status": "replied",
+   "proposal_id": "p00200",
+   "words": 110,
+   "status": "lost",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 4,
+    "specific_metrics": 5,
     "personalisation": 1.0,
-    "words": 85,
+    "words": 110,
     "price_ok": false,
     "violation": false,
     "p_reply": 0.469
@@ -3991,15 +2639,15 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00410",
-   "words": 92,
-   "status": "replied",
+   "proposal_id": "p00202",
+   "words": 94,
+   "status": "lost",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 1,
     "personalisation": 1.0,
-    "words": 92,
+    "words": 94,
     "price_ok": false,
     "violation": false,
     "p_reply": 0.716
@@ -4010,15 +2658,15 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00412",
-   "words": 92,
-   "status": "hired",
+   "proposal_id": "p00204",
+   "words": 96,
+   "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 5,
     "personalisation": 1.0,
-    "words": 92,
+    "words": 96,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.761
@@ -4028,33 +2676,20 @@
    "job_id": "dev-data_analyst-025",
    "persona": "data_analyst",
    "category": "data",
-   "submitted": true,
-   "proposal_id": "p00414",
-   "words": 107,
-   "status": "replied",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 107,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.606
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-data_analyst-027",
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00416",
+   "proposal_id": "p00206",
    "words": 96,
-   "status": "replied",
+   "status": "hired",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 6,
+    "specific_metrics": 4,
     "personalisation": 1.0,
     "words": 96,
     "price_ok": true,
@@ -4066,38 +2701,25 @@
    "job_id": "dev-data_analyst-028",
    "persona": "data_analyst",
    "category": "data",
-   "submitted": true,
-   "proposal_id": "p00418",
-   "words": 86,
-   "status": "lost",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 4,
-    "personalisation": 1.0,
-    "words": 86,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.568
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-data_analyst-029",
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00420",
-   "words": 73,
-   "status": "replied",
+   "proposal_id": "p00208",
+   "words": 82,
+   "status": "lost",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 3,
+    "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 73,
+    "words": 82,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.761
+    "p_reply": 0.749
    }
   },
   {
@@ -4105,15 +2727,15 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00422",
-   "words": 96,
-   "status": "replied",
+   "proposal_id": "p00210",
+   "words": 95,
+   "status": "lost",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 96,
+    "words": 95,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.693
@@ -4124,18 +2746,18 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00424",
-   "words": 88,
+   "proposal_id": "p00212",
+   "words": 104,
    "status": "replied",
    "client_model": {
-    "coverage": 0.0,
+    "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 88,
+    "words": 104,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.762
+    "p_reply": 0.943
    }
   },
   {
@@ -4143,9 +2765,9 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00426",
+   "proposal_id": "p00214",
    "words": 73,
-   "status": "lost",
+   "status": "interview",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
@@ -4162,15 +2784,15 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00428",
-   "words": 109,
-   "status": "replied",
+   "proposal_id": "p00216",
+   "words": 108,
+   "status": "lost",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 109,
+    "words": 108,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.818
@@ -4180,76 +2802,37 @@
    "job_id": "dev-data_analyst-034",
    "persona": "data_analyst",
    "category": "data",
-   "submitted": true,
-   "proposal_id": "p00430",
-   "words": 88,
-   "status": "lost",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 1,
-    "personalisation": 1.0,
-    "words": 88,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.547
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-data_analyst-037",
    "persona": "data_analyst",
    "category": "data",
-   "submitted": true,
-   "proposal_id": "p00432",
-   "words": 53,
-   "status": "lost",
-   "client_model": {
-    "coverage": 0.5,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 0.67,
-    "words": 53,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.67
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-data_analyst-040",
    "persona": "data_analyst",
    "category": "data",
-   "submitted": true,
-   "proposal_id": "p00434",
-   "words": 85,
-   "status": "interview",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 85,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.711
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-data_analyst-041",
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00436",
-   "words": 88,
-   "status": "replied",
+   "proposal_id": "p00218",
+   "words": 108,
+   "status": "lost",
    "client_model": {
-    "coverage": 0.0,
+    "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 4,
     "personalisation": 1.0,
-    "words": 88,
+    "words": 108,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.482
+    "p_reply": 0.597
    }
   },
   {
@@ -4257,15 +2840,15 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00438",
-   "words": 66,
-   "status": "lost",
+   "proposal_id": "p00220",
+   "words": 65,
+   "status": "interview",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 66,
+    "words": 65,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.635
@@ -4275,73 +2858,47 @@
    "job_id": "dev-data_analyst-045",
    "persona": "data_analyst",
    "category": "data",
-   "submitted": true,
-   "proposal_id": "p00440",
-   "words": 95,
-   "status": "interview",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 4,
-    "personalisation": 1.0,
-    "words": 95,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.568
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-data_analyst-047",
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00442",
-   "words": 100,
-   "status": "hired",
+   "proposal_id": "p00222",
+   "words": 111,
+   "status": "lost",
    "client_model": {
-    "coverage": 1.0,
+    "coverage": 0.5,
     "generic_opening": false,
-    "specific_metrics": 1,
+    "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 100,
+    "words": 111,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.482
+    "p_reply": 0.452
    }
   },
   {
    "job_id": "dev-data_analyst-049",
    "persona": "data_analyst",
    "category": "data",
-   "submitted": true,
-   "proposal_id": "p00444",
-   "words": 86,
-   "status": "replied",
-   "client_model": {
-    "coverage": 0.0,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 86,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.637
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-data_analyst-050",
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00446",
-   "words": 103,
-   "status": "hired",
+   "proposal_id": "p00224",
+   "words": 108,
+   "status": "lost",
    "client_model": {
     "coverage": 0.67,
     "generic_opening": false,
     "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 103,
+    "words": 108,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.903
@@ -4351,35 +2908,22 @@
    "job_id": "dev-data_analyst-052",
    "persona": "data_analyst",
    "category": "data",
-   "submitted": true,
-   "proposal_id": "p00448",
-   "words": 107,
-   "status": "interview",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 5,
-    "personalisation": 1.0,
-    "words": 107,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.635
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-data_analyst-054",
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00450",
-   "words": 83,
-   "status": "lost",
+   "proposal_id": "p00226",
+   "words": 87,
+   "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 4,
     "personalisation": 1.0,
-    "words": 83,
+    "words": 87,
     "price_ok": false,
     "violation": false,
     "p_reply": 0.488
@@ -4390,18 +2934,18 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00452",
-   "words": 87,
-   "status": "lost",
+   "proposal_id": "p00228",
+   "words": 88,
+   "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 4,
+    "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 87,
+    "words": 88,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.655
+    "p_reply": 0.645
    }
   },
   {
@@ -4415,15 +2959,15 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00454",
-   "words": 89,
-   "status": "interview",
+   "proposal_id": "p00230",
+   "words": 88,
+   "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 89,
+    "words": 88,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.568
@@ -4440,18 +2984,18 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00456",
-   "words": 90,
+   "proposal_id": "p00232",
+   "words": 101,
    "status": "hired",
    "client_model": {
-    "coverage": 0.0,
+    "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 3,
+    "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 90,
+    "words": 101,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.606
+    "p_reply": 0.739
    }
   },
   {
@@ -4459,18 +3003,18 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00458",
-   "words": 80,
-   "status": "hired",
+   "proposal_id": "p00234",
+   "words": 104,
+   "status": "interview",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 2,
+    "specific_metrics": 4,
     "personalisation": 1.0,
-    "words": 80,
+    "words": 104,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.739
+    "p_reply": 0.751
    }
   },
   {
@@ -4478,15 +3022,15 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00460",
-   "words": 82,
+   "proposal_id": "p00236",
+   "words": 87,
    "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 4,
+    "specific_metrics": 5,
     "personalisation": 1.0,
-    "words": 82,
+    "words": 87,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.828
@@ -4497,15 +3041,15 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00462",
-   "words": 95,
+   "proposal_id": "p00238",
+   "words": 111,
    "status": "replied",
    "client_model": {
     "coverage": 0.0,
     "generic_opening": false,
-    "specific_metrics": 3,
+    "specific_metrics": 4,
     "personalisation": 1.0,
-    "words": 95,
+    "words": 111,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.591
@@ -4516,15 +3060,15 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00464",
-   "words": 79,
+   "proposal_id": "p00240",
+   "words": 84,
    "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 3,
+    "specific_metrics": 5,
     "personalisation": 1.0,
-    "words": 79,
+    "words": 84,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.789
@@ -4535,15 +3079,15 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00466",
-   "words": 76,
+   "proposal_id": "p00242",
+   "words": 100,
    "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 4,
     "personalisation": 1.0,
-    "words": 76,
+    "words": 100,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.857
@@ -4553,57 +3097,31 @@
    "job_id": "dev-data_analyst-076",
    "persona": "data_analyst",
    "category": "data",
-   "submitted": true,
-   "proposal_id": "p00468",
-   "words": 55,
-   "status": "lost",
-   "client_model": {
-    "coverage": 0.5,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 0.33,
-    "words": 55,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.577
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-data_analyst-077",
    "persona": "data_analyst",
    "category": "data",
-   "submitted": true,
-   "proposal_id": "p00470",
-   "words": 68,
-   "status": "lost",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 68,
-    "price_ok": false,
-    "violation": false,
-    "p_reply": 0.606
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-data_analyst-080",
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00472",
-   "words": 80,
-   "status": "lost",
+   "proposal_id": "p00244",
+   "words": 79,
+   "status": "interview",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 2,
+    "specific_metrics": 1,
     "personalisation": 1.0,
-    "words": 80,
+    "words": 79,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.521
+    "p_reply": 0.51
    }
   },
   {
@@ -4611,15 +3129,15 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00474",
-   "words": 71,
+   "proposal_id": "p00246",
+   "words": 70,
    "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 71,
+    "words": 70,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.834
@@ -4630,13 +3148,13 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00476",
+   "proposal_id": "p00248",
    "words": 93,
-   "status": "hired",
+   "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 4,
+    "specific_metrics": 5,
     "personalisation": 1.0,
     "words": 93,
     "price_ok": true,
@@ -4655,15 +3173,15 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00478",
-   "words": 87,
-   "status": "replied",
+   "proposal_id": "p00250",
+   "words": 111,
+   "status": "hired",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 4,
+    "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 87,
+    "words": 111,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.943
@@ -4674,15 +3192,15 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00480",
-   "words": 83,
-   "status": "replied",
+   "proposal_id": "p00252",
+   "words": 84,
+   "status": "lost",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 1,
     "personalisation": 1.0,
-    "words": 83,
+    "words": 84,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.798
@@ -4692,39 +3210,13 @@
    "job_id": "dev-data_analyst-089",
    "persona": "data_analyst",
    "category": "data",
-   "submitted": true,
-   "proposal_id": "p00482",
-   "words": 86,
-   "status": "replied",
-   "client_model": {
-    "coverage": 0.67,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 86,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.549
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-data_analyst-090",
    "persona": "data_analyst",
    "category": "data",
-   "submitted": true,
-   "proposal_id": "p00484",
-   "words": 89,
-   "status": "interview",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 89,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.52
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-data_analyst-091",
@@ -4737,15 +3229,15 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00486",
-   "words": 91,
-   "status": "hired",
+   "proposal_id": "p00254",
+   "words": 112,
+   "status": "replied",
    "client_model": {
     "coverage": 0.67,
     "generic_opening": false,
-    "specific_metrics": 4,
+    "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 91,
+    "words": 112,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.855
@@ -4755,29 +3247,16 @@
    "job_id": "dev-data_analyst-095",
    "persona": "data_analyst",
    "category": "data",
-   "submitted": true,
-   "proposal_id": "p00488",
-   "words": 82,
-   "status": "interview",
-   "client_model": {
-    "coverage": 0.67,
-    "generic_opening": false,
-    "specific_metrics": 4,
-    "personalisation": 1.0,
-    "words": 82,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.632
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-data_analyst-096",
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00490",
+   "proposal_id": "p00256",
    "words": 109,
-   "status": "replied",
+   "status": "interview",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
@@ -4794,18 +3273,18 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00492",
-   "words": 92,
+   "proposal_id": "p00258",
+   "words": 109,
    "status": "lost",
    "client_model": {
-    "coverage": 0.0,
+    "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 3,
+    "specific_metrics": 4,
     "personalisation": 1.0,
-    "words": 92,
+    "words": 109,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.389
+    "p_reply": 0.481
    }
   },
   {
@@ -4813,18 +3292,18 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00494",
-   "words": 79,
+   "proposal_id": "p00260",
+   "words": 103,
    "status": "lost",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 4,
+    "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 79,
+    "words": 103,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.587
+    "p_reply": 0.578
    }
   },
   {
@@ -4832,15 +3311,15 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00496",
-   "words": 86,
-   "status": "lost",
+   "proposal_id": "p00262",
+   "words": 85,
+   "status": "hired",
    "client_model": {
     "coverage": 0.5,
     "generic_opening": false,
     "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 86,
+    "words": 85,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.47
@@ -4851,15 +3330,15 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00498",
-   "words": 89,
-   "status": "interview",
+   "proposal_id": "p00264",
+   "words": 87,
+   "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 4,
+    "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 89,
+    "words": 87,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.857
@@ -4869,35 +3348,22 @@
    "job_id": "dev-data_analyst-109",
    "persona": "data_analyst",
    "category": "data",
-   "submitted": true,
-   "proposal_id": "p00500",
-   "words": 89,
-   "status": "replied",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 4,
-    "personalisation": 1.0,
-    "words": 89,
-    "price_ok": false,
-    "violation": false,
-    "p_reply": 0.571
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-data_analyst-110",
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00502",
-   "words": 87,
-   "status": "replied",
+   "proposal_id": "p00266",
+   "words": 71,
+   "status": "lost",
    "client_model": {
     "coverage": 0.0,
     "generic_opening": false,
     "specific_metrics": 2,
     "personalisation": 0.0,
-    "words": 87,
+    "words": 71,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.456
@@ -4908,7 +3374,7 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00504",
+   "proposal_id": "p00268",
    "words": 96,
    "status": "lost",
    "client_model": {
@@ -4927,7 +3393,7 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00506",
+   "proposal_id": "p00270",
    "words": 74,
    "status": "lost",
    "client_model": {
@@ -4946,18 +3412,18 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00508",
-   "words": 77,
+   "proposal_id": "p00272",
+   "words": 82,
    "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 2,
+    "specific_metrics": 4,
     "personalisation": 1.0,
-    "words": 77,
+    "words": 82,
     "price_ok": false,
     "violation": false,
-    "p_reply": 0.873
+    "p_reply": 0.902
    }
   },
   {
@@ -4965,18 +3431,18 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00510",
-   "words": 86,
-   "status": "interview",
+   "proposal_id": "p00274",
+   "words": 106,
+   "status": "hired",
    "client_model": {
-    "coverage": 0.5,
+    "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 4,
+    "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 86,
+    "words": 106,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.887
+    "p_reply": 0.943
    }
   },
   {
@@ -4984,56 +3450,43 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00512",
-   "words": 83,
-   "status": "lost",
+   "proposal_id": "p00276",
+   "words": 109,
+   "status": "hired",
    "client_model": {
-    "coverage": 0.67,
+    "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 4,
+    "specific_metrics": 5,
     "personalisation": 1.0,
-    "words": 83,
+    "words": 109,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.837
+    "p_reply": 0.866
    }
   },
   {
    "job_id": "dev-data_analyst-117",
    "persona": "data_analyst",
    "category": "data",
-   "submitted": true,
-   "proposal_id": "p00514",
-   "words": 74,
-   "status": "replied",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 74,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.77
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-data_analyst-118",
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00516",
+   "proposal_id": "p00278",
    "words": 84,
-   "status": "hired",
+   "status": "interview",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 3,
+    "specific_metrics": 1,
     "personalisation": 1.0,
     "words": 84,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.674
+    "p_reply": 0.649
    }
   },
   {
@@ -5041,15 +3494,15 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00518",
-   "words": 92,
-   "status": "lost",
+   "proposal_id": "p00280",
+   "words": 108,
+   "status": "replied",
    "client_model": {
     "coverage": 0.33,
     "generic_opening": false,
-    "specific_metrics": 6,
+    "specific_metrics": 4,
     "personalisation": 1.0,
-    "words": 92,
+    "words": 108,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.654
@@ -5059,35 +3512,22 @@
    "job_id": "dev-data_analyst-122",
    "persona": "data_analyst",
    "category": "data",
-   "submitted": true,
-   "proposal_id": "p00520",
-   "words": 83,
-   "status": "hired",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 1,
-    "personalisation": 1.0,
-    "words": 83,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.649
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-data_analyst-123",
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00522",
-   "words": 79,
-   "status": "hired",
+   "proposal_id": "p00282",
+   "words": 77,
+   "status": "replied",
    "client_model": {
     "coverage": 0.0,
     "generic_opening": false,
     "specific_metrics": 1,
     "personalisation": 1.0,
-    "words": 79,
+    "words": 77,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.482
@@ -5097,35 +3537,22 @@
    "job_id": "dev-data_analyst-129",
    "persona": "data_analyst",
    "category": "data",
-   "submitted": true,
-   "proposal_id": "p00524",
-   "words": 79,
-   "status": "lost",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 4,
-    "personalisation": 1.0,
-    "words": 79,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.539
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-data_analyst-130",
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00526",
-   "words": 88,
+   "proposal_id": "p00284",
+   "words": 91,
    "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 3,
+    "specific_metrics": 5,
     "personalisation": 1.0,
-    "words": 88,
+    "words": 91,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.886
@@ -5136,15 +3563,15 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00528",
-   "words": 84,
+   "proposal_id": "p00286",
+   "words": 105,
    "status": "replied",
    "client_model": {
     "coverage": 0.67,
     "generic_opening": false,
     "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 84,
+    "words": 105,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.865
@@ -5154,38 +3581,25 @@
    "job_id": "dev-data_analyst-132",
    "persona": "data_analyst",
    "category": "data",
-   "submitted": true,
-   "proposal_id": "p00530",
-   "words": 100,
-   "status": "interview",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 100,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.924
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-data_analyst-134",
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00532",
-   "words": 81,
-   "status": "replied",
+   "proposal_id": "p00288",
+   "words": 103,
+   "status": "interview",
    "client_model": {
     "coverage": 0.33,
     "generic_opening": false,
-    "specific_metrics": 1,
+    "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 81,
+    "words": 103,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.548
+    "p_reply": 0.619
    }
   },
   {
@@ -5193,56 +3607,43 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00534",
-   "words": 83,
-   "status": "lost",
+   "proposal_id": "p00290",
+   "words": 109,
+   "status": "interview",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 2,
+    "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 83,
+    "words": 109,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.739
+    "p_reply": 0.751
    }
   },
   {
    "job_id": "dev-data_analyst-136",
    "persona": "data_analyst",
    "category": "data",
-   "submitted": true,
-   "proposal_id": "p00536",
-   "words": 81,
-   "status": "replied",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 81,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.626
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-data_analyst-137",
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00538",
-   "words": 94,
-   "status": "lost",
+   "proposal_id": "p00292",
+   "words": 110,
+   "status": "replied",
    "client_model": {
-    "coverage": 0.0,
+    "coverage": 0.5,
     "generic_opening": false,
     "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 94,
+    "words": 110,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.469
+    "p_reply": 0.574
    }
   },
   {
@@ -5250,18 +3651,18 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00540",
-   "words": 100,
-   "status": "lost",
+   "proposal_id": "p00294",
+   "words": 116,
+   "status": "interview",
    "client_model": {
-    "coverage": 0.67,
+    "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 4,
     "personalisation": 1.0,
-    "words": 100,
+    "words": 116,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.539
+    "p_reply": 0.558
    }
   },
   {
@@ -5269,15 +3670,15 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00542",
-   "words": 89,
-   "status": "interview",
+   "proposal_id": "p00296",
+   "words": 88,
+   "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
     "specific_metrics": 2,
     "personalisation": 1.0,
-    "words": 89,
+    "words": 88,
     "price_ok": false,
     "violation": false,
     "p_reply": 0.552
@@ -5287,35 +3688,22 @@
    "job_id": "dev-data_analyst-146",
    "persona": "data_analyst",
    "category": "data",
-   "submitted": true,
-   "proposal_id": "p00544",
-   "words": 74,
-   "status": "lost",
-   "client_model": {
-    "coverage": 0.33,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 74,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.687
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-data_analyst-147",
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00546",
-   "words": 86,
-   "status": "hired",
+   "proposal_id": "p00298",
+   "words": 106,
+   "status": "replied",
    "client_model": {
     "coverage": 0.0,
     "generic_opening": false,
-    "specific_metrics": 3,
+    "specific_metrics": 4,
     "personalisation": 1.0,
-    "words": 86,
+    "words": 106,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.552
@@ -5326,13 +3714,13 @@
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00548",
+   "proposal_id": "p00300",
    "words": 107,
-   "status": "replied",
+   "status": "lost",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 4,
+    "specific_metrics": 5,
     "personalisation": 1.0,
     "words": 107,
     "price_ok": true,
@@ -5344,73 +3732,47 @@
    "job_id": "dev-data_analyst-150",
    "persona": "data_analyst",
    "category": "data",
-   "submitted": true,
-   "proposal_id": "p00550",
-   "words": 79,
-   "status": "lost",
-   "client_model": {
-    "coverage": 0.67,
-    "generic_opening": false,
-    "specific_metrics": 1,
-    "personalisation": 1.0,
-    "words": 79,
-    "price_ok": false,
-    "violation": false,
-    "p_reply": 0.493
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-data_analyst-151",
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00552",
-   "words": 89,
+   "proposal_id": "p00302",
+   "words": 75,
    "status": "replied",
    "client_model": {
-    "coverage": 1.0,
+    "coverage": 0.5,
     "generic_opening": false,
-    "specific_metrics": 4,
+    "specific_metrics": 3,
     "personalisation": 0.0,
-    "words": 89,
+    "words": 75,
     "price_ok": true,
     "violation": false,
-    "p_reply": 0.887
+    "p_reply": 0.762
    }
   },
   {
    "job_id": "dev-data_analyst-152",
    "persona": "data_analyst",
    "category": "data",
-   "submitted": true,
-   "proposal_id": "p00554",
-   "words": 69,
-   "status": "replied",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 4,
-    "personalisation": 1.0,
-    "words": 69,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.635
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-data_analyst-153",
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00556",
-   "words": 83,
-   "status": "lost",
+   "proposal_id": "p00304",
+   "words": 87,
+   "status": "interview",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 4,
+    "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 83,
+    "words": 87,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.799
@@ -5420,35 +3782,22 @@
    "job_id": "dev-data_analyst-157",
    "persona": "data_analyst",
    "category": "data",
-   "submitted": true,
-   "proposal_id": "p00558",
-   "words": 89,
-   "status": "lost",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 89,
-    "price_ok": false,
-    "violation": false,
-    "p_reply": 0.517
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-data_analyst-158",
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00560",
-   "words": 91,
-   "status": "interview",
+   "proposal_id": "p00306",
+   "words": 92,
+   "status": "lost",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 5,
+    "specific_metrics": 3,
     "personalisation": 1.0,
-    "words": 91,
+    "words": 92,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.529
@@ -5458,35 +3807,22 @@
    "job_id": "dev-data_analyst-160",
    "persona": "data_analyst",
    "category": "data",
-   "submitted": true,
-   "proposal_id": "p00562",
-   "words": 86,
-   "status": "replied",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 1,
-    "personalisation": 1.0,
-    "words": 86,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.696
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-data_analyst-163",
    "persona": "data_analyst",
    "category": "data",
    "submitted": true,
-   "proposal_id": "p00564",
-   "words": 88,
-   "status": "lost",
+   "proposal_id": "p00308",
+   "words": 103,
+   "status": "replied",
    "client_model": {
     "coverage": 1.0,
     "generic_opening": false,
-    "specific_metrics": 5,
+    "specific_metrics": 4,
     "personalisation": 1.0,
-    "words": 88,
+    "words": 103,
     "price_ok": true,
     "violation": false,
     "p_reply": 0.789
@@ -5496,58 +3832,19 @@
    "job_id": "dev-data_analyst-164",
    "persona": "data_analyst",
    "category": "data",
-   "submitted": true,
-   "proposal_id": "p00566",
-   "words": 68,
-   "status": "interview",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 2,
-    "personalisation": 1.0,
-    "words": 68,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.929
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-data_analyst-165",
    "persona": "data_analyst",
    "category": "data",
-   "submitted": true,
-   "proposal_id": "p00568",
-   "words": 110,
-   "status": "replied",
-   "client_model": {
-    "coverage": 0.67,
-    "generic_opening": false,
-    "specific_metrics": 1,
-    "personalisation": 1.0,
-    "words": 110,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.729
-   }
+   "submitted": false
   },
   {
    "job_id": "dev-data_analyst-175",
    "persona": "data_analyst",
    "category": "data",
-   "submitted": true,
-   "proposal_id": "p00570",
-   "words": 77,
-   "status": "hired",
-   "client_model": {
-    "coverage": 1.0,
-    "generic_opening": false,
-    "specific_metrics": 3,
-    "personalisation": 1.0,
-    "words": 77,
-    "price_ok": true,
-    "violation": false,
-    "p_reply": 0.568
-   }
+   "submitted": false
   }
  ]
 }

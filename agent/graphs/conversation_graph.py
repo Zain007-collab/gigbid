@@ -112,6 +112,10 @@ def template_reply(thread_id: str, intent: str, last: str, slots: list[dict], ev
         else:
             body = (f"I can't go below ${prof['min_project']} for this scope, but I can trim it: I'd deliver the core "
                     "feature first and leave the extras for a second milestone. Would that work?")
+    elif intent == "question" and re.search(r"\b(walk me through|structure|approach|plan|first week|how would you|timeline)\b", last, re.I):
+        body = ("Here's how I'd run the first week: day 1, a short call to agree the success metric and get access; "
+                "days 2-3, a working first slice of the core feature on a branch you can review; days 4-5, tests, a "
+                "short handover note and a demo. I'd send progress updates twice a week. Does that fit your timeline?")
     elif intent == "question" and evidence:
         e = evidence[0]
         title = re.search(r"^#\s*(.+)$", e["snippet"], re.M)

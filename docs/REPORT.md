@@ -76,8 +76,12 @@ above the artefacts that prove the skill. Outcome knowledge is used where it bel
 outcome memory (§C2).
 
 **Claim verification (B3)** [`decision_dev_shipped_offline.json`]: unsupported claims per proposal **0.245 before →
-0 after** verification on 355 drafted proposals; holdout 0.19 → 0 (94 proposals). The deterministic writer only
-paraphrases evidence, so the "before" rate is low by construction; the LLM writer's rate is **PENDING**.
+0 after** verification with the deterministic writer (it only paraphrases evidence, so "before" is low by
+construction). With the **LLM writer** (`gpt-oss-120b`) [`decision_dev_shipped_llm.json`, 15 dev jobs, 9 proposals]
+it is **1.78 → 0**: the LLM invents seven times more unsupported claims than the template, and verification removes
+them all before the Critic sees the draft. *Caveat:* free-tier rate limits pushed 35 node executions in that run onto
+the deterministic path (counted per job in the file), so it is a mixed run; the writer/verifier numbers come from
+the proposals the LLM did write. LLM-judge mean: 4.0 / 5 on those 9 proposals [`judge_shipped_llm.json`].
 
 **Decisions** (shipped retrieval, deterministic nodes):
 
@@ -183,6 +187,15 @@ evidence — it would be *removed*, not obeyed, but the job would still be bid o
 | Free-tier daily token cap (200k/day for `gpt-oss-20b`) | evaluation runs exhausted it; nodes silently used the deterministic path | fallbacks counted per job (`llm_fallbacks`, `deterministic_nodes`); rate-limited runs moved to `evals/results/superseded/` | decision results now state how much was really LLM |
 
 ## 10. Hidden-test results against budgets — **PENDING (after the deadline run)**
-Offline measurements so far (dev, deterministic nodes) [`decision_dev_shipped_offline.json`]: p95 1.56 s per job
-analysed and 1.68 s per proposal on a laptop CPU, $0 (no paid calls), all within the declared budgets. The hosted
-open-model profile adds LLM latency and cost; those numbers will be reported from the deployed run, as measured.
+Measured so far, against the declared budgets (p95 ≤ 20 s per job, ≤ 60 s per proposal; ≤ $0.002 per job,
+≤ $0.01 per proposal):
+
+| Run | p95 per job | p95 per proposal | USD per job | USD per proposal | Within budget? |
+|---|---|---|---|---|---|
+| Deterministic nodes, laptop [`decision_dev_shipped_offline.json`] | ~1.6 s | ~1.7 s | $0 | $0 | yes |
+| Hosted open models, Groq free tier [`decision_dev_shipped_llm.json`] | 86.3 s | 86.3 s | $0.0019 | $0.0030 | **cost yes, latency no** |
+
+The latency miss is rate-limit waiting, not compute: the median job took 18.6 s, and the p95 is dominated by
+`Retry-After` sleeps on the free tier's tokens-per-minute cap. The optimisation that helped most was routing the
+verifier and critic to the 20B model and trimming the writer's evidence pack (one live job went from 57 s with
+retries to 13 s). Hidden-test results will be reported here as measured, without excuses.
