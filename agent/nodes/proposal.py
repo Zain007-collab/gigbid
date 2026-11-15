@@ -120,7 +120,7 @@ def evidence_pack(fit, per_requirement: int = 2, chars: int = 380) -> list[dict]
     for m in fit.matches:
         if not m.supported:
             continue
-        for e in m.evidence[:per_requirement]:
+        for e in [e for e in m.evidence if e.type != "proposal"][:per_requirement]:
             if e.id not in seen:
                 seen.add(e.id)
                 pack.append({"id": e.id, "type": e.type, "project": e.project, "requirement": m.requirement,
@@ -284,7 +284,9 @@ async def check_claims(claims: list[Claim], fit, use_llm: bool, extra: dict[str,
             continue
         texts = [ev_by_id[i] for i in c.evidence_ids if i in ev_by_id]
         if not texts:  # no citation: search the portfolio once
-            res = await tool("verifier", "portfolio.search_evidence", {"requirement": c.text[:300], "k": 3})
+            from agent.nodes.analysis import PROOF_TYPES
+            res = await tool("verifier", "portfolio.search_evidence",
+                             {"requirement": c.text[:300], "k": 3, "filters": {"types": PROOF_TYPES}})
             texts = [i["snippet"] for i in res.get("items", [])]
             c = c.model_copy(update={"evidence_ids": [i["id"] for i in res.get("items", [])][:2]})
             for i in res.get("items", []):

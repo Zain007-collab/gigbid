@@ -101,3 +101,14 @@ async def test_marketplace_outage_pauses_and_resumes(gigsim):
     await g.ainvoke(None, cfg)                          # worker retry: resumes the failed node
     snap = await g.aget_state(cfg)
     assert snap.values.get("job") and snap.values.get("status") != "dead_letter"
+
+
+async def test_past_proposals_never_count_as_proof(gigsim):
+    """Regression: the LLM writer once cited a past *proposal* ('I have shipped exactly that') as proof."""
+    g = build_bid_graph(InMemorySaver(), InMemoryStore())
+    job = pick(lambda gold: gold["bid"] and gold["coverage"] == 1.0)
+    snap = await run(g, job)
+    fit = snap.values["fit"]
+    assert all(e.type != "proposal" for m in fit.matches for e in m.evidence)
+    for p in pending(snap):
+        assert all(e["type"] != "proposal" for c in p["claims"] for e in c["evidence"])

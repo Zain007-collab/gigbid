@@ -37,5 +37,9 @@
     the judge-calibration sheet. Fixed: the relevance clause is only added when the case study itself covers the
     requirement, and the verifier grades the whole sentence. All decision/outcome results produced before the fix were
     moved to `evals/results/superseded/` and regenerated.
+12. **Circular evidence:** past proposals were allowed as proof, so the LLM writer cited a past *sales pitch*
+    ("I have shipped exactly that") to support "I have shipped a Pinecone solution". Spotted on the evidence-hover
+    screenshot of the recorded demo. Agents now request proof types only (`filters.types`, `PROOF_TYPES`); proposals
+    still feed outcome memory. Regression test added; affected results regenerated.
 11. **A/B runner read GigSim statuses before due events were applied** (GigSim processes events lazily on the next
     request), reporting 0 replies in both arms; the implausible zero gave it away. Fixed and re-run.

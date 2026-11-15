@@ -13,6 +13,10 @@ from agent.settings import section
 from rag.pipeline import extract_requirements
 
 
+# Past proposals are sales copy, not proof: they shape wording and outcome memory but never support a claim.
+PROOF_TYPES = ["case_study", "readme", "code", "repo", "review", "cv"]
+
+
 def job_text(job: dict) -> str:
     return f"{job['title']}\n\n{job['description']}"
 
@@ -118,7 +122,8 @@ async def fit_matcher(state: dict) -> dict:
     threshold = section("thresholds")["evidence_min_score"][backend]
     matches: list[RequirementMatch] = []
     for r in reqs[:8]:
-        res = await tool("fit_matcher", "portfolio.search_evidence", {"requirement": r, "k": 3})
+        res = await tool("fit_matcher", "portfolio.search_evidence",
+                         {"requirement": r, "k": 3, "filters": {"types": PROOF_TYPES}})
         items = [EvidenceItem(id=i["id"], type=_etype(i["type"]), source=i.get("source") or "", project=i.get("project"),
                               date=i.get("date"), outcome=i.get("outcome"), text=i["snippet"],
                               score=i.get("similarity", i["score"])) for i in res.get("items", [])]

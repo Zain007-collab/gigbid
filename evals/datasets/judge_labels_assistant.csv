@@ -1,0 +1,31 @@
+item,job_id,assistant_score,reasoning,writer_version
+1,dev-ai_ml-170,3,Cites three projects with metrics; semantic-search project is relevant (pgvector) but never tied to the need; model registry not addressed although the portfolio has MLflow work.,current
+2,dev-data_analyst-029,2,False relevance claim: a demand-forecast project 'maps to your need for Airflow' (it used no Airflow). Other two links are true. Pre-fix writer output.,pre-fix (relevance-claim bug)
+3,dev-fullstack-012,4,Both requirements tied to true evidence (customer dashboards used Next.js and Prisma) with measured results; concise. Generic opening/close keep it from 5.,pre-fix (relevance-claim bug)
+4,dev-ai_ml-045,3,Evaluation-harness evidence is correct and linked; pgvector and scikit-learn are not addressed and the pipeline project is irrelevant. Injected instruction correctly ignored.,current
+5,dev-data_analyst-089,3,"Data clean-up correctly covers Python wrangling and the sales dashboard implies SQL, but Looker Studio and dbt ('tested SQL models') are missing; A/B project is off-topic.",current
+6,dev-ai_ml-114,3,"Six requirements, three weakly covered (PyTorch via defect detection, FastAPI via Q&A bot); scikit-learn, Hugging Face and LLM evaluation missing though the portfolio has them. '1 seconds' typo.",current
+7,dev-data_analyst-081,3,dbt evidence is correct and linked; Looker Studio not evidenced (the persona has a Looker attribution project that should have been cited); the Power BI dashboard is weak support.,current
+8,dev-fullstack-073,1,"Single sentence about a real-time collaboration board — wrong focus for an AWS/Kubernetes job; no opening, no requirement addressed although an AWS migration project exists.",current
+9,dev-ai_ml-178,4,"FastAPI and scheduled jobs evidenced and linked, honest gap statement for Tailwind; minor: same pipeline archetype cited twice, PostgreSQL not addressed.",current
+10,dev-data_analyst-145,4,Forecasting and Tableau each linked to true evidence; honest 'short spike' for video editing instead of a false claim. Template close.,pre-fix (relevance-claim bug)
+11,dev-data_analyst-181,2,Claims a warehouse-modelling (dbt/Snowflake) project 'covered Google warehouse queries' — BigQuery was not used: unsupported. Three of six requirements unaddressed; '1 minutes'.,current
+12,dev-data_analyst-186,1,Bids on a Kubernetes/AWS job with data-cleaning and dbt projects; wrong focus. Job should have been skipped.,current
+13,dev-fullstack-120,4,"GraphQL API and real-time board are strong, specific matches with metrics; type-safe ORM only loosely covered by the booking backend.",current
+14,dev-ai_ml-159,3,RAG and Python linked correctly; the same Q&A archetype is cited twice; experiment tracking (MLflow) missed although the churn project has it. '1 seconds' typo.,current
+15,dev-ai_ml-122,2,Two projects cited but neither linked to a requirement; scikit-learn and experiment tracking ignored despite matching portfolio work. Weak evidence use.,current
+16,dev-fullstack-088,1,Two false relevance claims: a Next.js dashboard 'maps to Docker' and a GraphQL API 'maps to Kubernetes'. Pre-fix writer output — unsupported claims.,pre-fix (relevance-claim bug)
+17,dev-data_analyst-049,3,"Relevant projects (Power BI/Snowflake dashboard, forecast, experiment analysis) but none tied to a requirement; Looker Studio missing.",current
+18,dev-ai_ml-168,2,Only the support-agent project fits (multi-agent workflow); model registry and Celery are unevidenced although the portfolio has both; two irrelevant projects.,current
+19,dev-data_analyst-185,1,Absurd false claims: data de-duplication 'maps to your need for Kubernetes' / containers / AWS. Job should have been skipped. Pre-fix writer.,pre-fix (relevance-claim bug)
+20,dev-data_analyst-196,1,"False claims mapping warehouse/A-B/Sheets projects to Unity, Shopify and smart contracts. Wrong job entirely.",pre-fix (relevance-claim bug)
+21,dev-data_analyst-077,2,One project for SQL; misses A/B testing even though the persona has a checkout-experiment case study. Thin.,current
+22,dev-fullstack-016,3,Websockets well evidenced (but the same archetype twice); AWS linked via test automation; Celery and GraphQL not cited although both exist in the portfolio.,current
+23,dev-ai_ml-136,1,Bids on a Kubernetes job citing two near-identical pipeline projects; no orchestration evidence and no gap acknowledged. Should have skipped.,current
+24,dev-ai_ml-099,4,DAG scheduling and LLM evaluation each correctly linked to true evidence; pgvector not addressed.,pre-fix (relevance-claim bug)
+25,dev-ai_ml-010,4,"Both requirements (LLM evaluation, Docker) linked to true evidence with measured results; concise. Generic opening/close.",pre-fix (relevance-claim bug)
+26,dev-ai_ml-036,1,Three copies of the same pipeline archetype for a Docker/Kubernetes/AWS job; no Kubernetes or AWS evidence. Should have skipped.,current
+27,dev-data_analyst-070,3,Python wrangling linked; warehouse and BI projects relevant but unlinked; Airflow and A/B testing missing. Injection ignored. '1 minutes'.,current
+28,dev-fullstack-158,4,Stripe linked to a billing project with a measured result; the marketing site implies Tailwind (unlinked). Short and on point.,current
+29,dev-fullstack-167,2,"Booking backend fits Celery but the rest is off-topic; honest gap for neural networks; model registry, LangGraph, pgvector unaddressed. Weak fit — should have been skipped.",current
+30,dev-ai_ml-085,3,"One project (defect detection: PyTorch + Docker) genuinely covers both needs, but only one sentence of evidence and the neural-network link is implicit.",pre-fix (relevance-claim bug)
